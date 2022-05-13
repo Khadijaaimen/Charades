@@ -41,11 +41,11 @@ public class Gyroscope {
         };
     }
 
-    private void register(){
+    public void register(){
         sensorManager.registerListener(sensorEventListener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
-    private void unRegister(){
+    public void unRegister(){
         sensorManager.unregisterListener(sensorEventListener);
     }
 }
