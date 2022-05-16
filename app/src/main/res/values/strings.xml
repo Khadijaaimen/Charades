@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Charades</string>
+    <string name="charades">Charades</string>
+    <string name="celebrities">Celebrities</string>
+    <string name="category_name">Category Name</string>
+    <string name="_5">5</string>
+    <string name="please_place_your_device_on_forehead">Please place your device on forehead.</string>
+    <string name="guesses">Guesses</string>
+    <string name="_60">60</string>
 </resources>

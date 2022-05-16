@@ -1,54 +1,36 @@
 package com.example.charades;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Accelerometer accelerometer;
-    private Gyroscope gyroscope;
+    ArrayList<String> categoryNames = new ArrayList<>();
+    CategoryAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        accelerometer = new Accelerometer(this);
-        gyroscope = new Gyroscope(this);
+        categoryNames.add("Celebrities");
+        categoryNames.add("Songs");
+        categoryNames.add("Impressions");
+        categoryNames.add("Movies");
+        categoryNames.add("Science");
+        categoryNames.add("Activities");
 
-        gyroscope.setListener(new Gyroscope.Listener() {
-            @Override
-            public void onRotation(float rx, float ry, float rz) {
-                if(rz > 5.0f){
-                    getWindow().getDecorView().setBackgroundColor(Color.GREEN);
-                } else if(rz < -5.0f){
-                    getWindow().getDecorView().setBackgroundColor(Color.YELLOW);
-                }
-
-                if(ry > 5.0f){
-                    getWindow().getDecorView().setBackgroundColor(Color.RED);
-                } else if(ry < -5.0f){
-                    getWindow().getDecorView().setBackgroundColor(Color.BLUE);
-                }
-            }
-        });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        accelerometer.register();
-        gyroscope.register();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        accelerometer.unRegister();
-        gyroscope.unRegister();
+        // set up the RecyclerView
+        RecyclerView recyclerView = findViewById(R.id.categoryRv);
+        recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
+        adapter = new CategoryAdapter(categoryNames, this);
+        recyclerView.setAdapter(adapter);
     }
 }
