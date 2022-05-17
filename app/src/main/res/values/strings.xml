@@ -7,4 +7,10 @@
     <string name="please_place_your_device_on_forehead">Please place your device on forehead.</string>
     <string name="guesses">Guesses</string>
     <string name="_60">60</string>
+    <string name="results">Results</string>
+    <string name="correct_answers">Correct Answers</string>
+    <string name="incorrect_answers">Incorrect Answers</string>
+    <string name="total">Total:</string>
+    <string name="_10">10</string>
+    <string name="aamir_khan">Aamir Khan</string>
 </resources>
