@@ -45,7 +45,7 @@ public class Gyroscope {
     }
 
     public void register(){
-        sensorManager.registerListener(sensorEventListener, sensor, SensorManager.SENSOR_DELAY_FASTEST);
+        sensorManager.registerListener(sensorEventListener, sensor, SensorManager.SENSOR_DELAY_GAME);
     }
 
     public void unRegister(){

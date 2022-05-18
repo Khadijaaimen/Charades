@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -26,14 +27,16 @@ public class CelebritiesActivity extends AppCompatActivity {
     TextView foreheadText, timerText, guessesText, secondTimerText;
     String name;
     CountDownTimer countDownTimer;
-    int count = 5, index = 0;
+    int count = 5;
     int correctCount = 0, incorrectCount = 0;
-    int Max = 97, Min = 1;
     List<String> celebrities;
+    int Min = 1, Max = 97;
     Random random;
     long mTimeLeftInMillis = START_TIME_IN_MILLIS;
     ArrayList<String> incorrectList = new ArrayList<>();
     ArrayList<String> correctList = new ArrayList<>();
+    ArrayList<String> checkList = new ArrayList<>();
+    TextView warning;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,7 @@ public class CelebritiesActivity extends AppCompatActivity {
         timerText = findViewById(R.id.timer);
         guessesText = findViewById(R.id.guesses);
         secondTimerText = findViewById(R.id.secondTimer);
+        warning = findViewById(R.id.verticalWarning);
 
         countDownTimer = new CountDownTimer(5000, 1000) {
             @Override
@@ -91,6 +95,7 @@ public class CelebritiesActivity extends AppCompatActivity {
                 Bundle b2 = new Bundle();
                 b2.putSerializable("correctList", (Serializable) correctList);
                 intent.putExtras(b2);
+                intent.putExtra("nameCategory", name);
                 startActivity(intent);
             }
         }.start();
@@ -205,14 +210,14 @@ public class CelebritiesActivity extends AppCompatActivity {
                 celebrities.add("Tom Hiddleston");
                 celebrities.add("Aamir Khan");
 
-                Collections.shuffle(celebrities);
+                int rndNum = (int) (Math.random() * (Max - Min));
 
                 timerText.setVisibility(View.GONE);
                 foreheadText.setVisibility(View.GONE);
                 secondTimerText.setVisibility(View.VISIBLE);
                 guessesText.setVisibility(View.VISIBLE);
 
-                guessesText.setText(celebrities.get(0));
+                guessesText.setText(celebrities.get(rndNum));
                 startTimer();
 
                 gyroscope = new Gyroscope(this);
@@ -220,55 +225,46 @@ public class CelebritiesActivity extends AppCompatActivity {
                 gyroscope.register();
 
                 gyroscope.setListener(new Gyroscope.Listener() {
-                    @SuppressLint("ResourceAsColor")
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onRotation(float rx, float ry, float rz) {
-                        if (ry > 5.0f) {
+                        if (ry > 8.0f) {
                             timerPause();
-                            incorrectList.add(celebrities.get(index));
                             getWindow().getDecorView().setBackgroundColor(Color.RED);
                             guessesText.setText("Pass");
-                            incorrectCount++;
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
+                                    int rndNum = (int) (Math.random() * (Max - Min));
+                                    incorrectList.add(celebrities.get(rndNum));
+                                    incorrectCount++;
+                                    checkList.add(String.valueOf(rndNum));
                                     startTimer();
                                     secondTimerText.setVisibility(View.VISIBLE);
                                     getWindow().getDecorView().setBackgroundColor(Color.WHITE);
-                                    String i = (String) guessesText.getText();
-                                    index = celebrities.indexOf(i);
-                                    index++;
-                                    if (index == 97) index = 0;
-                                    guessesText.setText(celebrities.get(index));
+                                    int rndNum2 = (int) (Math.random() * (Max - Min));
+                                    guessesText.setText(celebrities.get(rndNum2));
                                 }
                             }, 1500);
-                        } else if (ry < -5.0f) {
+                        } else if (ry < -8.0f) {
                             timerPause();
-                            correctList.add(celebrities.get(index));
                             getWindow().getDecorView().setBackgroundColor(Color.GREEN);
                             guessesText.setText("Correct!");
-                            correctCount++;
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
+                                    int rndNum = (int) (Math.random() * (Max - Min));
+                                    correctList.add(celebrities.get(rndNum));
+                                    correctCount++;
+                                    checkList.add(String.valueOf(rndNum));
                                     startTimer();
                                     secondTimerText.setVisibility(View.VISIBLE);
                                     getWindow().getDecorView().setBackgroundColor(Color.WHITE);
-                                    String i = (String) guessesText.getText();
-                                    index = celebrities.indexOf(i);
-                                    index++;
-                                    if (index == 97) index = 0;
-                                    guessesText.setText(celebrities.get(index));
+                                    int rndNum2 = (int) (Math.random() * (Max - Min));
+                                    guessesText.setText(celebrities.get(rndNum2));
                                 }
                             }, 1500);
                         }
-//                        else{
-//                            isChecked = false;
-//                        }
-//
-//                        if(!isChecked){
-//                            getWindow().getDecorView().setBackgroundColor(Color.WHITE);
-//                        }
                     }
                 });
         }

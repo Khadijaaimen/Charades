@@ -7,21 +7,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class ScoreboardActivity extends AppCompatActivity {
 
-    String correct, incorrect;
-    Integer correctNum, incorrectNum;
+    Integer correct, incorrect;
+    String name;
     ArrayList<String> correctList = new ArrayList<>();
     ArrayList<String> incorrectList = new ArrayList<>();
     RecyclerView recyclerView1, recyclerView2;
     TextView incorrectTotal, correctTotal;
     CorrectAnswersAdapter correctAnswersAdapter;
     IncorrectAnswersAdapter incorrectAnswersAdapter;
+    ImageView buttonRestart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +40,19 @@ public class ScoreboardActivity extends AppCompatActivity {
         correctTotal = findViewById(R.id.totalCountCorrect);
 
         Intent intent = getIntent();
-        correct = intent.getStringExtra("incorrectAns");
-        incorrect = intent.getStringExtra("correctAns");
+        correct = intent.getIntExtra("incorrectAns", 0);
+        incorrect = intent.getIntExtra("correctAns", 0);
+        name = intent.getStringExtra("nameCategory");
 
-        correctNum = Integer.parseInt(correct);
-        incorrectNum = Integer.parseInt(incorrect);
+        buttonRestart = findViewById(R.id.restartButton);
+        buttonRestart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),CelebritiesActivity.class);
+                intent.putExtra("category", name);
+                startActivity(intent);
+            }
+        });
 
         Bundle b = getIntent().getExtras();
         correctList = (ArrayList<String>) b.getSerializable("correctList");
@@ -55,10 +66,7 @@ public class ScoreboardActivity extends AppCompatActivity {
         incorrectAnswersAdapter = new IncorrectAnswersAdapter(incorrectList, this);
         recyclerView2.setAdapter(incorrectAnswersAdapter);
 
-        correctTotal.setText(correct);
-        incorrectTotal.setText(incorrect);
-
-
-
+        correctTotal.setText(String.valueOf(correct));
+        incorrectTotal.setText(String.valueOf(incorrect));
     }
 }

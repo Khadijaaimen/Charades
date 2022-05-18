@@ -21,11 +21,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         categoryNames.add("Celebrities");
-        categoryNames.add("Songs");
-        categoryNames.add("Impressions");
-        categoryNames.add("Movies");
-        categoryNames.add("Science");
-        categoryNames.add("Activities");
+//        categoryNames.add("Songs");
+//        categoryNames.add("Impressions");
+//        categoryNames.add("Movies");
+//        categoryNames.add("Science");
+//        categoryNames.add("Activities");
 
         // set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.categoryRv);

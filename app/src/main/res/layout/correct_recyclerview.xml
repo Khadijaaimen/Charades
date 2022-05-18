@@ -8,8 +8,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="start"
-        android:fontFamily="sans-serif-black"
+        android:fontFamily="@font/classroom"
         android:text="@string/aamir_khan"
         android:textColor="#788179"
+        android:layout_marginTop="5dp"
         android:textSize="18sp" />
 </LinearLayout>
