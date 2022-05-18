@@ -43,6 +43,7 @@ public class CelebritiesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_celebrities);
 
+        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         gyroscope = new Gyroscope(this);
@@ -243,7 +244,7 @@ public class CelebritiesActivity extends AppCompatActivity {
                                     Max = celebrities.size();
                                     startTimer();
                                     secondTimerText.setVisibility(View.VISIBLE);
-                                    getWindow().getDecorView().setBackgroundColor(Color.WHITE);
+                                    getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
                                     int rndNum2 = (int) (Math.random() * (Max - Min));
                                     guessesText.setText(celebrities.get(rndNum2));
                                 }
@@ -263,7 +264,7 @@ public class CelebritiesActivity extends AppCompatActivity {
                                     startTimer();
                                     Max = celebrities.size();
                                     secondTimerText.setVisibility(View.VISIBLE);
-                                    getWindow().getDecorView().setBackgroundColor(Color.WHITE);
+                                    getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
                                     int rndNum2 = (int) (Math.random() * (Max - Min));
                                     guessesText.setText(celebrities.get(rndNum2));
                                 }

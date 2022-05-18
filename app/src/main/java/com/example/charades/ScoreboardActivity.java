@@ -40,8 +40,8 @@ public class ScoreboardActivity extends AppCompatActivity {
         correctTotal = findViewById(R.id.totalCountCorrect);
 
         Intent intent = getIntent();
-        correct = intent.getIntExtra("incorrectAns", 0);
-        incorrect = intent.getIntExtra("correctAns", 0);
+        correct = intent.getIntExtra("correctAns", 0);
+        incorrect = intent.getIntExtra("incorrectAns", 0);
         name = intent.getStringExtra("nameCategory");
 
         buttonRestart = findViewById(R.id.restartButton);
