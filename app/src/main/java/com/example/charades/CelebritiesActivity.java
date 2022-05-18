@@ -231,14 +231,16 @@ public class CelebritiesActivity extends AppCompatActivity {
                         if (ry > 8.0f) {
                             timerPause();
                             getWindow().getDecorView().setBackgroundColor(Color.RED);
-                            guessesText.setText("Pass");
+//                            guessesText.setText("Pass");
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    int rndNum = (int) (Math.random() * (Max - Min));
-                                    incorrectList.add(celebrities.get(rndNum));
+                                    String text = (String) guessesText.getText();
+                                    int index = celebrities.indexOf(text);
+                                    incorrectList.add(text);
+                                    celebrities.remove(index);
                                     incorrectCount++;
-                                    checkList.add(String.valueOf(rndNum));
+                                    Max = celebrities.size();
                                     startTimer();
                                     secondTimerText.setVisibility(View.VISIBLE);
                                     getWindow().getDecorView().setBackgroundColor(Color.WHITE);
@@ -249,15 +251,17 @@ public class CelebritiesActivity extends AppCompatActivity {
                         } else if (ry < -8.0f) {
                             timerPause();
                             getWindow().getDecorView().setBackgroundColor(Color.GREEN);
-                            guessesText.setText("Correct!");
+//                            guessesText.setText("Correct!");
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    int rndNum = (int) (Math.random() * (Max - Min));
-                                    correctList.add(celebrities.get(rndNum));
+                                    String text = (String) guessesText.getText();
+                                    int index = celebrities.indexOf(text);
+                                    correctList.add(text);
+                                    celebrities.remove(index);
                                     correctCount++;
-                                    checkList.add(String.valueOf(rndNum));
                                     startTimer();
+                                    Max = celebrities.size();
                                     secondTimerText.setVisibility(View.VISIBLE);
                                     getWindow().getDecorView().setBackgroundColor(Color.WHITE);
                                     int rndNum2 = (int) (Math.random() * (Max - Min));
@@ -298,3 +302,4 @@ public class CelebritiesActivity extends AppCompatActivity {
         finishAffinity();
     }
 }
+

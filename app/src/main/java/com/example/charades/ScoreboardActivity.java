@@ -51,6 +51,8 @@ public class ScoreboardActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),CelebritiesActivity.class);
                 intent.putExtra("category", name);
                 startActivity(intent);
+                correctList.clear();
+                incorrectList.clear();
             }
         });
 
@@ -68,5 +70,19 @@ public class ScoreboardActivity extends AppCompatActivity {
 
         correctTotal.setText(String.valueOf(correct));
         incorrectTotal.setText(String.valueOf(incorrect));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        correctList.clear();
+        incorrectList.clear();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        correctList.clear();
+        incorrectList.clear();
     }
 }
