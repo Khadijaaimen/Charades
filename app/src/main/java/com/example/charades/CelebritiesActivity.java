@@ -229,15 +229,16 @@ public class CelebritiesActivity extends AppCompatActivity {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onRotation(float rx, float ry, float rz) {
-                        if (ry > 6.0 && ry < 6.2f) {
+                        if (ry > 8.0 && ry < 8.2f) {
                             timerPause();
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                textIncorrect = (String) guessesText.getText();
+                                guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        textIncorrect = (String) guessesText.getText();
                                         int index = celebrities.indexOf(textIncorrect);
                                         incorrectList.add(textIncorrect);
                                         celebrities.remove(index);
@@ -259,10 +260,11 @@ public class CelebritiesActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                textCorrect = (String) guessesText.getText();
+                                guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        textCorrect = (String) guessesText.getText();
                                         int index = celebrities.indexOf(textCorrect);
                                         correctList.add(textCorrect);
                                         celebrities.remove(index);
