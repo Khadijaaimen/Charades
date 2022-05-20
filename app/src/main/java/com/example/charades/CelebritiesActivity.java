@@ -25,7 +25,7 @@ public class CelebritiesActivity extends AppCompatActivity {
     private static final long START_TIME_IN_MILLIS = 60000;
     private Gyroscope gyroscope;
     TextView foreheadText, timerText, guessesText, secondTimerText;
-    String name;
+    String name, textCorrect = "", textIncorrect = "", backgroundColor = "purple";
     CountDownTimer countDownTimer;
     int count = 5;
     int correctCount = 0, incorrectCount = 0;
@@ -229,46 +229,56 @@ public class CelebritiesActivity extends AppCompatActivity {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onRotation(float rx, float ry, float rz) {
-                        if (ry > 8.0f) {
+                        if (ry > 6.0 && ry < 6.2f) {
                             timerPause();
-                            getWindow().getDecorView().setBackgroundColor(Color.RED);
-//                            guessesText.setText("Pass");
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    String text = (String) guessesText.getText();
-                                    int index = celebrities.indexOf(text);
-                                    incorrectList.add(text);
-                                    celebrities.remove(index);
-                                    incorrectCount++;
-                                    Max = celebrities.size();
-                                    startTimer();
-                                    secondTimerText.setVisibility(View.VISIBLE);
-                                    getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
-                                    int rndNum2 = (int) (Math.random() * (Max - Min));
-                                    guessesText.setText(celebrities.get(rndNum2));
-                                }
-                            }, 1500);
-                        } else if (ry < -8.0f) {
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                                backgroundColor = "red";
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        textIncorrect = (String) guessesText.getText();
+                                        int index = celebrities.indexOf(textIncorrect);
+                                        incorrectList.add(textIncorrect);
+                                        celebrities.remove(index);
+                                        incorrectCount++;
+                                        startTimer();
+                                        Max = celebrities.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(celebrities.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if (backgroundColor.equals("green")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                            }
+                        } else if (ry < -8.0f && ry > -8.2f) {
                             timerPause();
-                            getWindow().getDecorView().setBackgroundColor(Color.GREEN);
-//                            guessesText.setText("Correct!");
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    String text = (String) guessesText.getText();
-                                    int index = celebrities.indexOf(text);
-                                    correctList.add(text);
-                                    celebrities.remove(index);
-                                    correctCount++;
-                                    startTimer();
-                                    Max = celebrities.size();
-                                    secondTimerText.setVisibility(View.VISIBLE);
-                                    getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
-                                    int rndNum2 = (int) (Math.random() * (Max - Min));
-                                    guessesText.setText(celebrities.get(rndNum2));
-                                }
-                            }, 1500);
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                                backgroundColor = "green";
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        textCorrect = (String) guessesText.getText();
+                                        int index = celebrities.indexOf(textCorrect);
+                                        correctList.add(textCorrect);
+                                        celebrities.remove(index);
+                                        correctCount++;
+                                        startTimer();
+                                        Max = celebrities.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(celebrities.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if(backgroundColor.equals("red")){
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                            }
                         }
                     }
                 });

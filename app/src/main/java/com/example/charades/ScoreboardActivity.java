@@ -24,7 +24,7 @@ public class ScoreboardActivity extends AppCompatActivity {
     TextView incorrectTotal, correctTotal;
     CorrectAnswersAdapter correctAnswersAdapter;
     IncorrectAnswersAdapter incorrectAnswersAdapter;
-    ImageView buttonRestart;
+    ImageView buttonRestart, buttonHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +53,14 @@ public class ScoreboardActivity extends AppCompatActivity {
                 startActivity(intent);
                 correctList.clear();
                 incorrectList.clear();
+            }
+        });
+
+        buttonHome = findViewById(R.id.homeButton);
+        buttonHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
 
