@@ -229,7 +229,7 @@ public class CelebritiesActivity extends AppCompatActivity {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onRotation(float rx, float ry, float rz) {
-                        if (ry > 6.0 && ry < 6.2f) {
+                        if (ry > 8.0) {
                             timerPause();
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
@@ -255,7 +255,7 @@ public class CelebritiesActivity extends AppCompatActivity {
                             } else if (backgroundColor.equals("green")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                             }
-                        } else if (ry < -6.0f && ry > -6.2f) {
+                        } else if (ry < -8.0f) {
                             timerPause();
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
