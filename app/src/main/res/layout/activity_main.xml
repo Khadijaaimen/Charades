@@ -20,29 +20,32 @@
         android:fontFamily="@font/vanilla"
         android:textColor="#7307BF" />
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:padding="20dp"-->
-<!--        android:orientation="vertical"-->
-<!--        tools:ignore="UseCompoundDrawables">-->
 
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_height="wrap_content">-->
 <!--        <ImageView-->
+<!--            android:id="@+id/icon"-->
 <!--            android:layout_width="120dp"-->
 <!--            android:layout_height="120dp"-->
-<!--            android:src="@drawable/pic"-->
-<!--            android:contentDescription="@string/app_name" />-->
+<!--            android:src="@drawable/add_new_word"-->
+<!--            />-->
 
 <!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
+<!--            android:id="@+id/name"-->
+<!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/celebrities"-->
+<!--            android:text="@string/custom_category"-->
+<!--            android:layout_gravity="center_vertical"-->
 <!--            android:gravity="center"-->
-<!--            android:layout_gravity="center"-->
 <!--            android:textSize="18sp"-->
 <!--            android:textStyle="bold"-->
 <!--            />-->
 <!--    </LinearLayout>-->
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRv"

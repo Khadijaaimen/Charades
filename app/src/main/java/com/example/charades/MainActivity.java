@@ -20,12 +20,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        categoryNames.add("Celebrities");
-//        categoryNames.add("Songs");
-//        categoryNames.add("Impressions");
-//        categoryNames.add("Movies");
-//        categoryNames.add("Science");
-//        categoryNames.add("Activities");
+        categoryNames.add("Custom Category");
+        categoryNames.add("Science");
+        categoryNames.add("Activities");
+        categoryNames.add("Animals");
+        categoryNames.add("Sports");
+        categoryNames.add("Jobs/Personalities");
+        categoryNames.add("Musical Instruments");
+        categoryNames.add("Emotions");
+        categoryNames.add("TV Shows");
+        categoryNames.add("Books");
+        categoryNames.add("Miscellaneous Items");
+        categoryNames.add("Gadgets");
+        categoryNames.add("Pakistani Celebrities");
+        categoryNames.add("Pakistani Dramas");
+        categoryNames.add("Hollywood Celebrities");
+        categoryNames.add("English Songs");
+        categoryNames.add("Hollywood Movies");
+        categoryNames.add("Bollywood Celebrities");
+        categoryNames.add("Bollywood Movies");
+        categoryNames.add("Indian Songs");
+        categoryNames.add("Famous Places");
 
         // set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.categoryRv);
