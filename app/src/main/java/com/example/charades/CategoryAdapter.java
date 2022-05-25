@@ -37,7 +37,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, CelebritiesActivity.class);
+                Intent intent = new Intent(context, GameActivity.class);
                 intent.putExtra("category", categoryList.get(position));
                 context.startActivity(intent);
             }

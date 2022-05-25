@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class CelebritiesActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
 
     private static final long START_TIME_IN_MILLIS = 60000;
     private Gyroscope gyroscope;
@@ -37,7 +37,7 @@ public class CelebritiesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_celebrities);
+        setContentView(R.layout.activity_game);
 
         getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -83,7 +83,7 @@ public class CelebritiesActivity extends AppCompatActivity {
             public void onFinish() {
                 secondTimerText.setVisibility(View.GONE);
                 guessesText.setText("Finish!");
-                Intent intent = new Intent(CelebritiesActivity.this, ScoreboardActivity.class);
+                Intent intent = new Intent(GameActivity.this, ScoreboardActivity.class);
                 intent.putExtra("incorrectAns", incorrectCount);
                 intent.putExtra("correctAns", correctCount);
                 Bundle b = new Bundle();
@@ -1430,7 +1430,6 @@ public class CelebritiesActivity extends AppCompatActivity {
                 namesList.add("Hippo");
                 namesList.add("Warthog");
                 namesList.add("Zebra");
-                namesList.add("Deer");
                 namesList.add("Deer");
                 namesList.add("Frog");
                 namesList.add("Butterfly");

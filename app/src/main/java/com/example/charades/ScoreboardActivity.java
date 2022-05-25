@@ -1,7 +1,6 @@
 package com.example.charades;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,7 +47,7 @@ public class ScoreboardActivity extends AppCompatActivity {
         buttonRestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),CelebritiesActivity.class);
+                Intent intent = new Intent(getApplicationContext(), GameActivity.class);
                 intent.putExtra("category", name);
                 startActivity(intent);
                 correctList.clear();

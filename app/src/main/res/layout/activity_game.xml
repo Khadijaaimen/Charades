@@ -7,7 +7,7 @@
     android:padding="30dp"
     android:weightSum="6"
     android:orientation="vertical"
-    tools:context=".CelebritiesActivity">
+    tools:context=".GameActivity">
 
     <TextView
         android:id="@+id/forehead"
