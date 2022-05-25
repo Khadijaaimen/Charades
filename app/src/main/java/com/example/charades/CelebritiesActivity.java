@@ -108,6 +108,7 @@ public class CelebritiesActivity extends AppCompatActivity {
         switch (name) {
             case "Hollywood Celebrities":
                 namesList = new ArrayList<>();
+
                 namesList.add("Arnold Schwarzenegger");
                 namesList.add("Jim Carrey");
                 namesList.add("Emma Watson");
@@ -796,7 +797,7 @@ public class CelebritiesActivity extends AppCompatActivity {
                 break;
             case "Activities":
                 namesList = new ArrayList<>();
-                
+
                 namesList.add("Dancing a ballet");
                 namesList.add("Shopping at the mall");
                 namesList.add("Going bowling");
@@ -1320,11 +1321,6 @@ public class CelebritiesActivity extends AppCompatActivity {
                 namesList.add("Coin");
                 namesList.add("Money");
                 namesList.add("Braid");
-                namesList.add("");
-                namesList.add("");
-                namesList.add("");
-                namesList.add("");
-                namesList.add("");
 
                 Max = namesList.size();
 
@@ -1981,6 +1977,8 @@ public class CelebritiesActivity extends AppCompatActivity {
                 namesList.add("Relieved");
                 namesList.add("Silly");
 
+                Max = namesList.size();
+
                 rndNum = (int) (Math.random() * (Max - Min));
 
                 timerText.setVisibility(View.GONE);
@@ -2058,7 +2056,6 @@ public class CelebritiesActivity extends AppCompatActivity {
             case "TV Shows":
                 namesList = new ArrayList<>();
 
-                namesList.add("Supernatural");
                 namesList.add("Supernatural");
                 namesList.add("The Simpsons");
                 namesList.add("Top Gear");
