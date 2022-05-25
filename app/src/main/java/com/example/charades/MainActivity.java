@@ -34,12 +34,16 @@ public class MainActivity extends AppCompatActivity {
         categoryNames.add("Gadgets");
         categoryNames.add("Pakistani Celebrities");
         categoryNames.add("Pakistani Dramas");
+        categoryNames.add("Pakistani Singers");
         categoryNames.add("Hollywood Celebrities");
+        categoryNames.add("Hollywood Singers");
         categoryNames.add("English Songs");
         categoryNames.add("Hollywood Movies");
         categoryNames.add("Bollywood Celebrities");
+        categoryNames.add("Bollywood Singers");
         categoryNames.add("Bollywood Movies");
         categoryNames.add("Indian Songs");
+        categoryNames.add("Famous People");
         categoryNames.add("Famous Places");
 
         // set up the RecyclerView

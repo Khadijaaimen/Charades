@@ -196,17 +196,97 @@ public class CelebritiesActivity extends AppCompatActivity {
                 namesList.add("John Travolta");
                 namesList.add("Channing Tatum");
                 namesList.add("Ben Affleck");
-                namesList.add("Shah Rukh Khan");
                 namesList.add("Jennifer Aniston");
-                namesList.add("Jennifer Aniston");
+                namesList.add("Jennifer Lawrence");
                 namesList.add("Chris Hemsworth");
                 namesList.add("James McAvoy");
                 namesList.add("James Cameron");
-                namesList.add("Amitabh Bachchan");
                 namesList.add("Brendan Fraser");
                 namesList.add("Rachel McAdams");
                 namesList.add("Tom Hiddleston");
-                namesList.add("Aamir Khan");
+                namesList.add("Johnny Depp");
+                namesList.add("Margot Robbie");
+                namesList.add("Jared Leto");
+                namesList.add("Ryan Reynolds");
+                namesList.add("Ryan Gosling");
+                namesList.add("Paul Rudd");
+                namesList.add("Matthew Mcconaughey");
+                namesList.add("Tom Hardy");
+                namesList.add("Jammie Foxx");
+                namesList.add("Emma Stone");
+                namesList.add("Chris Pratt");
+                namesList.add("Samuel L. Jackson");
+                namesList.add("Tom Holland");
+                namesList.add("Tyler Peryy");
+                namesList.add("Gal Gadot");
+                namesList.add("Idris Elba");
+                namesList.add("Cara Delevinge");
+                namesList.add("Melissa Mccarthy");
+                namesList.add("Charlize Theron");
+                namesList.add("Anna Kendrick");
+                namesList.add("Amy Poehler");
+                namesList.add("Mark Wahlberg");
+                namesList.add("Jonah Hill");
+                namesList.add("Daisy Ridley");
+                namesList.add("Jessica Chastain");
+                namesList.add("Kristen Wiig");
+                namesList.add("James Mcavoy");
+                namesList.add("Denzel Washington");
+                namesList.add("Felicity Jones");
+                namesList.add("Richard Gere");
+                namesList.add("Catherine Zeta-Jones");
+                namesList.add("Clive Owen");
+                namesList.add("Guy Pearce");
+                namesList.add("Meg Ryan");
+                namesList.add("Nicole Kidman");
+                namesList.add("Gerard Butler");
+                namesList.add("Simon Baker");
+                namesList.add("Katherine Heigl");
+                namesList.add("Eddie Murphy");
+                namesList.add("Meryl Streep");
+                namesList.add("Anthony Hopkins");
+                namesList.add("Martin Lawrence");
+                namesList.add("Salma Hayek");
+                namesList.add("Penelope Cruz");
+                namesList.add("Cuba Gooding Jr.");
+                namesList.add("Jack Black");
+                namesList.add("Lindsay Lohan");
+                namesList.add("Kevin Costner");
+                namesList.add("Steve Martin");
+                namesList.add("Michelle Rodriguez");
+                namesList.add("Milla Jovovich");
+                namesList.add("Elijah Wood");
+                namesList.add("Demi Moore");
+                namesList.add("Eva Mendes");
+                namesList.add("Kirsten Dunst");
+                namesList.add("Leslie Nielsen");
+                namesList.add("Liv Tyler");
+                namesList.add("Robert Redford");
+                namesList.add("Ewan McGregor");
+                namesList.add("Lucy Liu");
+                namesList.add("Paul Newman");
+                namesList.add("Zooey Deschanel");
+                namesList.add("Danny Devito");
+                namesList.add("Michelle Pfeiffer");
+                namesList.add("Michael J Fox");
+                namesList.add("Sharon Stone");
+                namesList.add("Amanda Bynes");
+                namesList.add("Winona Ryder");
+                namesList.add("Jane Fonda");
+                namesList.add("Jessica Biel");
+                namesList.add("Rosario Dawson");
+                namesList.add("Kim Basinger");
+                namesList.add("Monica Bellucci");
+                namesList.add("Sarah Michelle Geller");
+                namesList.add("Carla Gugino");
+                namesList.add("Andie MacDowell");
+                namesList.add("Carmen Electra");
+                namesList.add("Cristina Ricci");
+                namesList.add("Alicia Silverstone");
+                namesList.add("Mike Myers");
+                namesList.add("Stella Warren");
+                namesList.add("Rebecca Romijn-Stamos");
+                namesList.add("Sienna Guillory");
 
                 Max = namesList.size();
                 int rndNum = (int) (Math.random() * (Max - Min));
@@ -716,6 +796,7 @@ public class CelebritiesActivity extends AppCompatActivity {
                 break;
             case "Activities":
                 namesList = new ArrayList<>();
+                
                 namesList.add("Dancing a ballet");
                 namesList.add("Shopping at the mall");
                 namesList.add("Going bowling");
@@ -2380,6 +2461,2708 @@ public class CelebritiesActivity extends AppCompatActivity {
                 namesList.add("Ha Long Bay");
                 namesList.add("Stonehenge");
                 namesList.add("Blue Domes of Oia");
+
+                Max = namesList.size();
+
+                rndNum = (int) (Math.random() * (Max - Min));
+
+                timerText.setVisibility(View.GONE);
+                foreheadText.setVisibility(View.GONE);
+                secondTimerText.setVisibility(View.VISIBLE);
+                guessesText.setVisibility(View.VISIBLE);
+
+                guessesText.setText(namesList.get(rndNum));
+                startTimer();
+
+                gyroscope = new Gyroscope(this);
+
+                gyroscope.register();
+
+                gyroscope.setListener(new Gyroscope.Listener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onRotation(float rx, float ry, float rz) {
+                        if (ry > 8.0) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                                backgroundColor = "red";
+                                textIncorrect = (String) guessesText.getText();
+                                guessesText.setText("Pass");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textIncorrect);
+                                        incorrectList.add(textIncorrect);
+                                        namesList.remove(index);
+                                        incorrectCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if (backgroundColor.equals("green")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                            }
+                        } else if (ry < -8.0f) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                                backgroundColor = "green";
+                                textCorrect = (String) guessesText.getText();
+                                guessesText.setText("Correct");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textCorrect);
+                                        correctList.add(textCorrect);
+                                        namesList.remove(index);
+                                        correctCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if(backgroundColor.equals("red")){
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                            }
+                        }
+                    }
+                });
+                break;
+
+            case "Gadgets":
+                namesList = new ArrayList<>();
+
+                namesList.add("Alarm clock");
+                namesList.add("Antenna");
+                namesList.add("Calculator");
+                namesList.add("Computer");
+                namesList.add("Digital camera");
+                namesList.add("DVD player");
+                namesList.add("Earbuds");
+                namesList.add("Ebook");
+                namesList.add("Floppy disc");
+                namesList.add("Game console");
+                namesList.add("Hard drive");
+                namesList.add("Headphones");
+                namesList.add("Laptop");
+                namesList.add("Memory card");
+                namesList.add("Memory stick");
+                namesList.add("Microphone");
+                namesList.add("Mouse");
+                namesList.add("Mp3 player");
+                namesList.add("Photo camera");
+                namesList.add("Printer");
+                namesList.add("Projector");
+                namesList.add("Remote control");
+                namesList.add("Router");
+                namesList.add("Scanner");
+                namesList.add("Smart Board");
+                namesList.add("Tablet PC");
+                namesList.add("Usb stick");
+                namesList.add("Video Camera");
+                namesList.add("Webcam");
+                namesList.add("Smartphone");
+                namesList.add("Satellite phones");
+                namesList.add("Tablets");
+                namesList.add("E-reader");
+                namesList.add("Bulb");
+                namesList.add("Radiator");
+                namesList.add("Toaster");
+                namesList.add("Curling Iron");
+                namesList.add("Radio");
+                namesList.add("Lamp");
+                namesList.add("Refrigerator");
+                namesList.add("Cooker");
+                namesList.add("Safe");
+                namesList.add("Scale");
+                namesList.add("Sewing Machine");
+                namesList.add("Smart TV");
+                namesList.add("PEncil Sharpener");
+                namesList.add("Electric Guitar");
+                namesList.add("Timer");
+                namesList.add("Speaker");
+                namesList.add("Telephone");
+                namesList.add("Flashlight");
+                namesList.add("USB");
+                namesList.add("Fan");
+                namesList.add("Washing Machine");
+                namesList.add("CCTV");
+                namesList.add("Iron");
+                namesList.add("Smartwatch");
+                namesList.add("Drone");
+                namesList.add("Oven");
+                namesList.add("Dishwasher");
+                namesList.add("Drill");
+                namesList.add("Electric Grill");
+                namesList.add("Hair Dryer");
+                namesList.add("Juicer");
+                namesList.add("Piano");
+                namesList.add("Keyboard");
+                namesList.add("Generator");
+                namesList.add("Joystick");
+                namesList.add("Electric Cars");
+
+                Max = namesList.size();
+
+                rndNum = (int) (Math.random() * (Max - Min));
+
+                timerText.setVisibility(View.GONE);
+                foreheadText.setVisibility(View.GONE);
+                secondTimerText.setVisibility(View.VISIBLE);
+                guessesText.setVisibility(View.VISIBLE);
+
+                guessesText.setText(namesList.get(rndNum));
+                startTimer();
+
+                gyroscope = new Gyroscope(this);
+
+                gyroscope.register();
+
+                gyroscope.setListener(new Gyroscope.Listener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onRotation(float rx, float ry, float rz) {
+                        if (ry > 8.0) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                                backgroundColor = "red";
+                                textIncorrect = (String) guessesText.getText();
+                                guessesText.setText("Pass");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textIncorrect);
+                                        incorrectList.add(textIncorrect);
+                                        namesList.remove(index);
+                                        incorrectCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if (backgroundColor.equals("green")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                            }
+                        } else if (ry < -8.0f) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                                backgroundColor = "green";
+                                textCorrect = (String) guessesText.getText();
+                                guessesText.setText("Correct");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textCorrect);
+                                        correctList.add(textCorrect);
+                                        namesList.remove(index);
+                                        correctCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if(backgroundColor.equals("red")){
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                            }
+                        }
+                    }
+                });
+                break;
+            case "Pakistani Celebrities":
+                namesList = new ArrayList<>();
+
+                namesList.add("Aaminah Haq");
+                namesList.add("Armeena Khan");
+                namesList.add("Aamina Sheikh");
+                namesList.add("Aiman Khan");
+                namesList.add("Ainy Jaffri");
+                namesList.add("Alishba Yousuf");
+                namesList.add("Angeline Malik");
+                namesList.add("Anjuman Shehzadi");
+                namesList.add("Anum Fayyaz");
+                namesList.add("Anoushey Ashraf");
+                namesList.add("Arjumand Rahim");
+                namesList.add("Arisha Razi");
+                namesList.add("Asha Posley");
+                namesList.add("Atiqa Odho");
+                namesList.add("Ayesha Khan");
+                namesList.add("Ayesha Omar");
+                namesList.add("Ayesha Sana");
+                namesList.add("Ayeza Khan");
+                namesList.add("Ayyan Ali");
+                namesList.add("Azra Sherwani");
+                namesList.add("Arij Fatyma");
+                namesList.add("Abdullah Ejaz");
+                namesList.add("Abdullah Kadwani");
+                namesList.add("Abdur Rashid Kardar");
+                namesList.add("Abid Ali");
+                namesList.add("Abid Kashmiri");
+                namesList.add("Abid Khan");
+                namesList.add("Adeeb");
+                namesList.add("Adeel Hussain");
+                namesList.add("Adil Murad");
+                namesList.add("Adnan Khan");
+                namesList.add("Adnan Jaffar");
+                namesList.add("Adnan Malik");
+                namesList.add("Adnan Siddiqui");
+                namesList.add("Afzal Khan");
+                namesList.add("Ahad Raza Mir");
+                namesList.add("Ahmed Ali Butt");
+                namesList.add("Ahmed Butt");
+                namesList.add("Ahmed Jahanzeb");
+                namesList.add("Ahsan Khan");
+                namesList.add("Aijaz Aslam");
+                namesList.add("Ajab Gul");
+                namesList.add("Akmal Khan");
+                namesList.add("Alamzeb Mujahid");
+                namesList.add("Albela");
+                namesList.add("Ali Abbas");
+                namesList.add("Ali Haider");
+                namesList.add("Ali Ejaz");
+                namesList.add("Ali Rehman Khan");
+                namesList.add("Ali Zafar");
+                namesList.add("Allauddin");
+                namesList.add("Alyy Khan");
+                namesList.add("Anwar Solangi");
+                namesList.add("Asad Malik");
+                namesList.add("Asif Raza Mir");
+                namesList.add("Aslam Pervaiz");
+                namesList.add("Ather Shah Khan Jaidi");
+                namesList.add("Ayaz Samoo");
+                namesList.add("Azfar Rehman");
+                namesList.add("Babra Sharif");
+                namesList.add("Badar Khalil");
+                namesList.add("Bahar Begum");
+                namesList.add("Begum Khurshid Mirz");
+                namesList.add("Bushra Ansari");
+                namesList.add("Bushra Farrukh");
+                namesList.add("Deeba");
+                namesList.add("Deedar");
+                namesList.add("Babar Ali");
+                namesList.add("Babar Khan");
+                namesList.add("Badar Munir");
+                namesList.add("Bilal Ashraf");
+                namesList.add("Bilal Khan");
+                namesList.add("Behroze Sabzwari");
+                namesList.add("Babu Baral");
+                namesList.add("Cezanne Khan");
+                namesList.add("Danish Nawaz");
+                namesList.add("Danish Taimoor");
+                namesList.add("Darpan");
+                namesList.add("Ejaz Durrani");
+                namesList.add("Emi Khan");
+                namesList.add("Farah Shah");
+                namesList.add("Fatima Effendi Kanwar");
+                namesList.add("Fazila Qazi");
+                namesList.add("Ghana Ali");
+                namesList.add("Gori");
+                namesList.add("Fahad Mustafa");
+                namesList.add("Faisal Rehman");
+                namesList.add("Faisal Qureshi");
+                namesList.add("Farhan Saeed");
+                namesList.add("Farooq Qaiser");
+                namesList.add("Fawad Khan");
+                namesList.add("Faysal Qureshi");
+                namesList.add("Feroze Khan");
+                namesList.add("Firdous Jamal");
+                namesList.add("Firdous Jamal");
+                namesList.add("Faizan Khawaja");
+                namesList.add("Faizan Shahzad Khan");
+                namesList.add("Hajra Yamin");
+                namesList.add("Hareem Farooq");
+                namesList.add("Hina Dilpazeer");
+                namesList.add("Hina Shaheen");
+                namesList.add("Humaima Malik");
+                namesList.add("Husna");
+                namesList.add("Hania Amir");
+                namesList.add("Ghulam Mohiuddin");
+                namesList.add("Ghayyur Akhtar");
+                namesList.add("Gohar Rasheed");
+                namesList.add("Goher Mumtaz");
+                namesList.add("Hamza Ali Abbasi");
+                namesList.add("Habib-ur-Rehman");
+                namesList.add("Hameed Sheikh");
+                namesList.add("Hamid Rana");
+                namesList.add("Hassam Khan");
+                namesList.add("Hasan Jahangir");
+                namesList.add("Hayatullah Khan Durrani");
+                namesList.add("Humayun Saeed");
+                namesList.add("Iffat Rahim");
+                namesList.add("Iman Ali");
+                namesList.add("Ismat Zaidi");
+                namesList.add("Iqra Aziz");
+                namesList.add("Jana Malik");
+                namesList.add("Javeria Abbasi");
+                namesList.add("Javeria Saud");
+                namesList.add("Juggan Kazim");
+                namesList.add("Iftikhar Thakur");
+                namesList.add("Ilyas Kashmiri");
+                namesList.add("Imran Abbas Naqvi");
+                namesList.add("Imran Ashraf");
+                namesList.add("Imran Aslam");
+                namesList.add("Inayat Hussain Bhatti");
+                namesList.add("Iqbal Theba");
+                namesList.add("Irfan Khoosat");
+                namesList.add("Ismael Shah");
+                namesList.add("Ismail Tara");
+                namesList.add("Ismail Shahid");
+                namesList.add("Jamal Shah");
+                namesList.add("Izhar Qazi");
+                namesList.add("Jamil Fakhri");
+                namesList.add("Jamshed Ansari");
+                namesList.add("Javed Sheikh");
+                namesList.add("Jawad Bashir");
+                namesList.add("Junaid Khan");
+                namesList.add("Kaveeta");
+                namesList.add("Khalida Riyasat");
+                namesList.add("Khushboo");
+                namesList.add("Komal Rizvi");
+                namesList.add("Laila Khan");
+                namesList.add("Laila Zuberi");
+                namesList.add("Kader Khan");
+                namesList.add("Kaifee");
+                namesList.add("Kamal Irani");
+                namesList.add("Kanwar Arsalan");
+                namesList.add("Kashif Mehmood");
+                namesList.add("Khalid Abbas Dar");
+                namesList.add("Khayyam Sarhadi");
+                namesList.add("Kumail Nanjiani");
+                namesList.add("Latif Kapadia");
+                namesList.add("Lehri");
+                namesList.add("Liaquat Soldier");
+                namesList.add("Madeeha Gauhar");
+                namesList.add("Madiha Iftikhar");
+                namesList.add("Madiha Imam");
+                namesList.add("Madiha Shah");
+                namesList.add("Maham Amir");
+                namesList.add("Mahira Khan");
+                namesList.add("Maheen Rizvi");
+                namesList.add("Mahnoor Baloch");
+                namesList.add("Maira Khan");
+                namesList.add("Mansha Pasha");
+                namesList.add("Maria Wasti");
+                namesList.add("Marina Khan");
+                namesList.add("Mariyam Khalif");
+                namesList.add("Maryam Fatima");
+                namesList.add("Maryam Nafees");
+                namesList.add("Mathira");
+                namesList.add("Mawra Hocane");
+                namesList.add("Maya Ali");
+                namesList.add("Meera");
+                namesList.add("Meesha Shafi");
+                namesList.add("Mehr Hassan");
+                namesList.add("Mehreen Raheel");
+                namesList.add("Mehwish Hayat");
+                namesList.add("Mishi Khan");
+                namesList.add("Mizna Waqas");
+                namesList.add("Momal Sheikh");
+                namesList.add("Musarrat Nazir");
+                namesList.add("Musarrat Shaheen");
+                namesList.add("Mahmood Ali");
+                namesList.add("Mehmood Akhtar");
+                namesList.add("Munawar Zarif");
+                namesList.add("Malik Anokha");
+                namesList.add("Murtaza Hassan");
+                namesList.add("Mehmood Aslam");
+                namesList.add("Mikaal Zulfiqar");
+                namesList.add("Moammar Rana");
+                namesList.add("Mohammad Ali");
+                namesList.add("Mohammed Ehteshamuddin");
+                namesList.add("Mohib Mirza");
+                namesList.add("Mohsin Abbas Haider");
+                namesList.add("Moin Akhter");
+                namesList.add("Mukarram");
+                namesList.add("Murtaza Hassan");
+                namesList.add("Mustafa Qureshi");
+                namesList.add("Mustansar Hussain Tarar");
+                namesList.add("Nadira");
+                namesList.add("Nadia Afghan");
+                namesList.add("Nadia Hussain");
+                namesList.add("Nadia Khan");
+                namesList.add("Nadia Jamil");
+                namesList.add("Naheed Shabbir");
+                namesList.add("Nargis");
+                namesList.add("Naveen Tajik");
+                namesList.add("Naveen Waqar");
+                namesList.add("Nayyar Sultana");
+                namesList.add("Neelam Muneer");
+                namesList.add("Neeli");
+                namesList.add("Neelo");
+                namesList.add("Nida Yasir");
+                namesList.add("Nimra Bucha");
+                namesList.add("Nirma");
+                namesList.add("Noor Bukhari");
+                namesList.add("Noor Jehan");
+                namesList.add("Nabeel");
+                namesList.add("Nadeem Baig");
+                namesList.add("Naeem Haq");
+                namesList.add("Naeem Hashmi");
+                namesList.add("Najeebullah Anjum");
+                namesList.add("Naseem Vicky");
+                namesList.add("Nasir Chinyoti");
+                namesList.add("Nayyar Ejaz");
+                namesList.add("Nazir Ahmed Khan");
+                namesList.add("Nirala");
+                namesList.add("Noman Ijaz");
+                namesList.add("Noman Masood");
+                namesList.add("Noor Hassan Rizvi");
+                namesList.add("Nouman Javaid");
+                namesList.add("Omer Shahzad");
+                namesList.add("Osman Khalid Butt");
+                namesList.add("Qavi Khan");
+                namesList.add("Qazi Wajid");
+                namesList.add("Qandeel Baloch");
+                namesList.add("Rabia Butt");
+                namesList.add("Rani");
+                namesList.add("Reema Khan");
+                namesList.add("Resham");
+                namesList.add("Rozina");
+                namesList.add("Rubina Ashraf");
+                namesList.add("Rubya Chaudhry");
+                namesList.add("Rahman Syed");
+                namesList.add("Rasheed Naz");
+                namesList.add("Rauf Khalid");
+                namesList.add("Rauf Lala");
+                namesList.add("Rizwan Wasti");
+                namesList.add("Saba Hameed");
+                namesList.add("Saba Qamar");
+                namesList.add("Sabiha Khanum");
+                namesList.add("Saboor Ali");
+                namesList.add("Sadia Imam");
+                namesList.add("Saeeda Imtiaz");
+                namesList.add("Sahiba Afzal");
+                namesList.add("Saima Noor");
+                namesList.add("Saira Khan");
+                namesList.add("Sajal Ali");
+                namesList.add("Salma Mumtaz");
+                namesList.add("Salma Agha");
+                namesList.add("Saloni");
+                namesList.add("Samina Ahmad");
+                namesList.add("Samina Peerzada");
+                namesList.add("Samiya Mumtaz");
+                namesList.add("Sana Askari");
+                namesList.add("Sana Nawaz");
+                namesList.add("Saman Ansari");
+                namesList.add("Sanam Baloch");
+                namesList.add("Sanam Chaudhry");
+                namesList.add("Sanam Jung");
+                namesList.add("Sanam Saeed");
+                namesList.add("Sangeeta");
+                namesList.add("Sania Saeed");
+                namesList.add("Sara Loren");
+                namesList.add("Sarah Khan");
+                namesList.add("Sarwat Gilani");
+                namesList.add("Savera Nadeem");
+                namesList.add("Shabnam");
+                namesList.add("Shagufta Ejaz");
+                namesList.add("Shamim Ara");
+                namesList.add("Shamim Bano");
+                namesList.add("Shehnaz Sheikh");
+                namesList.add("Sitara");
+                namesList.add("Sobia Khan");
+                namesList.add("Sohai Ali Abro");
+                namesList.add("Somy Ali");
+                namesList.add("Sonia Khan");
+                namesList.add("Sonia Mishal");
+                namesList.add("Sonya Jehan");
+                namesList.add("Sumbul Iqbal");
+                namesList.add("Suzain Fatima");
+                namesList.add("Swaran Lata");
+                namesList.add("Syra Yousuf");
+                namesList.add("Saad Haroon");
+                namesList.add("Saeed Khan Rangeela");
+                namesList.add("Sheheryar Munawar Siddiqui");
+                namesList.add("Sahir Lodhi");
+                namesList.add("Sajjad Ali");
+                namesList.add("Sajjad Kishwar");
+                namesList.add("Sajid Hasan");
+                namesList.add("Salahuddin Toofani");
+                namesList.add("Saleem Sheikh");
+                namesList.add("Salim Nasir");
+                namesList.add("Salman Shahid");
+                namesList.add("Sami Shah");
+                namesList.add("Sami Khan");
+                namesList.add("Santosh Kumar");
+                namesList.add("Sarmad Khoosat");
+                namesList.add("Saud");
+                namesList.add("Shaan Shahid");
+                namesList.add("Shabbir Jan");
+                namesList.add("Shafi Muhammad Shah");
+                namesList.add("Shafqat Cheema");
+                namesList.add("Shahid Hameed");
+                namesList.add("Shehroz Sabzwari");
+                namesList.add("Shahood Alvi");
+                namesList.add("Shahzad Noor");
+                namesList.add("Shaz Khan");
+                namesList.add("Shakeel Hussain Khan");
+                namesList.add("Shakeel Yousuf");
+                namesList.add("Shamil Khan");
+                namesList.add("Shamil Khan");
+                namesList.add("Shamoon Abbasi");
+                namesList.add("Shehzad Sheikh");
+                namesList.add("Sikander Rizvi");
+                namesList.add("Sikandar Sanam");
+                namesList.add("Sohail Ahmed");
+                namesList.add("Subhani ba Yunus");
+                namesList.add("Sudhir");
+                namesList.add("Sultan Rahi");
+                namesList.add("Syed Ishrat Abbas");
+                namesList.add("Syed Kamal");
+                namesList.add("Syed Musa Raza");
+                namesList.add("Tooba Siddiqui");
+                namesList.add("Ushna Shah");
+                namesList.add("Uzra Butt");
+                namesList.add("Urwa Hocane");
+                namesList.add("Umer Sharif");
+                namesList.add("Usman Peerzada");
+                namesList.add("Vasay Chaudhry");
+                namesList.add("Vaneeza Ahmad");
+                namesList.add("Veena Malik");
+                namesList.add("Yumna Zaidi");
+                namesList.add("Waheed Murad");
+                namesList.add("Waqar Zaka");
+                namesList.add("Waseem Abbas");
+                namesList.add("Yasir Hussain");
+                namesList.add("Yousuf Khan");
+                namesList.add("Zainub Qayyum");
+                namesList.add("Zara Noor Abbas");
+                namesList.add("Zara Sheikh[");
+                namesList.add("Zeba");
+                namesList.add("Zeba Ali");
+                namesList.add("Shaheen Bano");
+                namesList.add("Zhalay Sarhadi");
+                namesList.add("Zarnish Khan");
+                namesList.add("Zain Afzal");
+                namesList.add("Zia Mohyeddin");
+                namesList.add("Zuhab Khan");
+
+                Max = namesList.size();
+
+                rndNum = (int) (Math.random() * (Max - Min));
+
+                timerText.setVisibility(View.GONE);
+                foreheadText.setVisibility(View.GONE);
+                secondTimerText.setVisibility(View.VISIBLE);
+                guessesText.setVisibility(View.VISIBLE);
+
+                guessesText.setText(namesList.get(rndNum));
+                startTimer();
+
+                gyroscope = new Gyroscope(this);
+
+                gyroscope.register();
+
+                gyroscope.setListener(new Gyroscope.Listener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onRotation(float rx, float ry, float rz) {
+                        if (ry > 8.0) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                                backgroundColor = "red";
+                                textIncorrect = (String) guessesText.getText();
+                                guessesText.setText("Pass");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textIncorrect);
+                                        incorrectList.add(textIncorrect);
+                                        namesList.remove(index);
+                                        incorrectCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if (backgroundColor.equals("green")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                            }
+                        } else if (ry < -8.0f) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                                backgroundColor = "green";
+                                textCorrect = (String) guessesText.getText();
+                                guessesText.setText("Correct");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textCorrect);
+                                        correctList.add(textCorrect);
+                                        namesList.remove(index);
+                                        correctCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if(backgroundColor.equals("red")){
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                            }
+                        }
+                    }
+                });
+                break;
+            case "Pakistani Dramas":
+                namesList = new ArrayList<>();
+
+                namesList.add("Dil Lagi");
+                namesList.add("Sange Mar Mar");
+                namesList.add("Alif Allah Aur Insaan");
+                namesList.add("Pyarey Afzal");
+                namesList.add("Aisi Hai Tanhai");
+                namesList.add("Humsafar");
+                namesList.add("Zindagi Gulzar Hai");
+                namesList.add("Shehr-e-Zaat");
+                namesList.add("Meri Zaat Zarrae Benishan");
+                namesList.add("Khuda Aur Mohabbat");
+                namesList.add("Dastaan");
+                namesList.add("Mann Mayal");
+                namesList.add("Udaari");
+                namesList.add("Sadqay Tumhare");
+                namesList.add("Bin Roye");
+                namesList.add("Bashar Momin");
+                namesList.add("Aunn Zara");
+                namesList.add("Mehndi");
+                namesList.add("Daam");
+                namesList.add("Laag");
+                namesList.add("Alpha Bravo Charlie");
+                namesList.add("Tum Kon Piya");
+                namesList.add("Kuch Pyar Ka Pagalpan Bhi Tha");
+                namesList.add("Qaid-e-Tanhai");
+                namesList.add("Jackson Heights ");
+                namesList.add("Mera Pehla Pyaar");
+                namesList.add("Akbari Asghari");
+                namesList.add("Doraha");
+                namesList.add("Diyar-e-Dil");
+                namesList.add("Suno Chanda");
+                namesList.add("Baaghi");
+                namesList.add("Khamoshi");
+                namesList.add("Baydardi");
+                namesList.add("Haiwan");
+                namesList.add("Khaani");
+                namesList.add("Khasara");
+                namesList.add("Inkaar");
+                namesList.add("Ehd-e-Wafa");
+                namesList.add("Tajdeed e Wafa");
+                namesList.add("Do Bol");
+                namesList.add("Dil Mom Ka Diya");
+                namesList.add("Woh Mera Dil Tha");
+                namesList.add("Rasmeduniya");
+                namesList.add("Ranjha Ranjha Kardi");
+                namesList.add("Durr-e-shahwar");
+                namesList.add("Cheekh");
+                namesList.add("Gul-e-Rana");
+                namesList.add("Munafiq");
+                namesList.add("Pyare Afzal");
+                namesList.add("Ramz-e-Ishq");
+                namesList.add("Main Abdul Qadir Hoon");
+                namesList.add("Kankar");
+                namesList.add("Chup Raho");
+                namesList.add("Meray Qatil Meray Dilbar");
+                namesList.add("Raaz-e-Ulfat");
+                namesList.add("Meray Pass Tum Ho");
+                namesList.add("Alif");
+                namesList.add("Mora Piya");
+                namesList.add("Thakan");
+                namesList.add("Maat");
+                namesList.add("Ishq Gumshuda");
+                namesList.add("Roag");
+                namesList.add("Marasim");
+                namesList.add("Azar Ki Ayegi Baraat");
+                namesList.add("Ek Nazar Meri Taraf");
+                namesList.add("Mera Saaein");
+                namesList.add("Saat Pardon Main");
+                namesList.add("Yakeen Ka Safar");
+                namesList.add("Dil e Muztar");
+                namesList.add("Musht e Khaak");
+                namesList.add("Yeh Dil Mera");
+                namesList.add("Jalan");
+                namesList.add("Ishqiya");
+                namesList.add("Asmano Pay Likha");
+                namesList.add("Dil Kiya Karay");
+                namesList.add("Parizaad");
+                namesList.add("Ye Raha Dil");
+                namesList.add("Sabaat");
+                namesList.add("Chupke Chupke");
+                namesList.add("Hum Kahan Ke Sachy Thay");
+                namesList.add("Mushk");
+                namesList.add("Raqs e Bismil");
+                namesList.add("O Rangreza");
+                namesList.add("Mehram");
+                namesList.add("Pyar Ke Sadqay");
+                namesList.add("Malaal-e-Yaar");
+                namesList.add("Zara Yaad Kar");
+                namesList.add("Aangan");
+                namesList.add("Digest Writer");
+                namesList.add("Alvida");
+                namesList.add("Muhabbat Subh ka Sitara");
+
+                Max = namesList.size();
+
+                rndNum = (int) (Math.random() * (Max - Min));
+
+                timerText.setVisibility(View.GONE);
+                foreheadText.setVisibility(View.GONE);
+                secondTimerText.setVisibility(View.VISIBLE);
+                guessesText.setVisibility(View.VISIBLE);
+
+                guessesText.setText(namesList.get(rndNum));
+                startTimer();
+
+                gyroscope = new Gyroscope(this);
+
+                gyroscope.register();
+
+                gyroscope.setListener(new Gyroscope.Listener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onRotation(float rx, float ry, float rz) {
+                        if (ry > 8.0) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                                backgroundColor = "red";
+                                textIncorrect = (String) guessesText.getText();
+                                guessesText.setText("Pass");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textIncorrect);
+                                        incorrectList.add(textIncorrect);
+                                        namesList.remove(index);
+                                        incorrectCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if (backgroundColor.equals("green")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                            }
+                        } else if (ry < -8.0f) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                                backgroundColor = "green";
+                                textCorrect = (String) guessesText.getText();
+                                guessesText.setText("Correct");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textCorrect);
+                                        correctList.add(textCorrect);
+                                        namesList.remove(index);
+                                        correctCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if(backgroundColor.equals("red")){
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                            }
+                        }
+                    }
+                });
+                break;
+            case "Bollywood Celebrities":
+                namesList = new ArrayList<>();
+
+                namesList.add("Priyanka Chopra");
+                namesList.add("Aamir Khan");
+                namesList.add("Aditya Roy Kapur");
+                namesList.add("Ajay Devgn");
+                namesList.add("Akhsgay Kumar");
+                namesList.add("Amit Sadh");
+                namesList.add("Amitabh Bachan");
+                namesList.add("Anil Kapoor");
+                namesList.add("Arjun Kapoor");
+                namesList.add("Arjun Rampal");
+                namesList.add("Aditi Rao Hyderi");
+                namesList.add("Aishwarya Rai");
+                namesList.add("Alia Bhatt");
+                namesList.add("Amy Jackson");
+                namesList.add("Anushka Sharma");
+                namesList.add("Asin Thottumkal");
+                namesList.add("Chitraganda Singh");
+                namesList.add("Deepika Padukone");
+                namesList.add("Diana Penty");
+                namesList.add("Amrish Puri");
+                namesList.add("Nana Patekar");
+                namesList.add("Shah Rukh Khan");
+                namesList.add("Mithun Chakraborty");
+                namesList.add("Rajinikanth");
+                namesList.add("Govinda");
+                namesList.add("Boman Irani");
+                namesList.add("Hrithik Roshan");
+                namesList.add("Johny Lever");
+                namesList.add("Shatrughan Sinha");
+                namesList.add("Shakti Kapoor");
+                namesList.add("Nawazuddin Siddiqui");
+                namesList.add("Kishore Kumar");
+                namesList.add("Shahid Kapoor");
+                namesList.add("Ranbir Kapoor");
+                namesList.add("Salman Khan");
+                namesList.add("Rajpal Naurang Yadav");
+                namesList.add("Saif Ali Khan");
+                namesList.add("Arshad Warsi");
+                namesList.add("Suniel Shetty");
+                namesList.add("Ranveer Singh");
+                namesList.add("Abhishek Bachchan");
+                namesList.add("Riteish Deshmukh");
+                namesList.add("Shekhar Suman");
+                namesList.add("Rakesh Roshan");
+                namesList.add("Vidya Balan");
+                namesList.add("Kangana Ranaut");
+                namesList.add("Kareena Kapoor");
+                namesList.add("Rani Mukerji");
+                namesList.add("Sonam Kapoor");
+                namesList.add("Lara Dutta");
+                namesList.add("Konkona Sen Sharma");
+                namesList.add("Sameera Reddy");
+                namesList.add("Katrina Kaif");
+                namesList.add("Bipasha Basu");
+                namesList.add("Esha Gupta");
+                namesList.add("Jacqueline Fernandez");
+                namesList.add("Amrita Rao");
+                namesList.add("Ayesha Takia");
+                namesList.add("Dia Mirza");
+                namesList.add("Sonakshi Sinha");
+                namesList.add("Shraddha Kapoor");
+                namesList.add("Nargis Fakhri");
+                namesList.add("Shriya Pilgaonkar");
+                namesList.add("Mallika Sherawat");
+                namesList.add("Parineeti Chopra");
+                namesList.add("Yami Gautam");
+                namesList.add("Neha Dhupia");
+                namesList.add("Disha Patani");
+                namesList.add("Huma Qureshi");
+                namesList.add("Minissha Lamba");
+                namesList.add("Kajal Aggarwal");
+                namesList.add("Ileana D'Cruz");
+                namesList.add("Kim Sharma");
+                namesList.add("Riya Sen");
+                namesList.add("Isha Koppikar");
+                namesList.add("Shriya Saran");
+                namesList.add("Aarti Chhabria");
+                namesList.add("Genelia D'Souza");
+                namesList.add("Celina Jaitly");
+                namesList.add("Kriti Sanon");
+                namesList.add("Ameesha Patel");
+                namesList.add("sha Deol");
+                namesList.add("Daisy Shah");
+                namesList.add("Amrita Arora");
+                namesList.add("Vaani Kapoor");
+                namesList.add("Nushrratt Bharuccha");
+                namesList.add("Sonnalli Seygall");
+                namesList.add("Sneha Ullal");
+                namesList.add("Bhoomika Chawla");
+                namesList.add("Lisa Haydon");
+                namesList.add("Zareen Khan");
+                namesList.add("Sana Khan");
+                namesList.add("Shazahn Padamsee");
+                namesList.add("Nimrat Kaur");
+                namesList.add("Preeti Jhangiani");
+                namesList.add("Radhika Apte");
+                namesList.add("Anjana Sukhani");
+                namesList.add("Mugdha Godse");
+                namesList.add("Shruti Haasan");
+                namesList.add("Anushka Shetty");
+                namesList.add("Tamannaah Bhatia");
+                namesList.add("Kalki Koechlin");
+                namesList.add("Priyanka Bose");
+                namesList.add("Sunny Leone");
+                namesList.add("Dharmendra");
+                namesList.add("Rishi Kapoor");
+                namesList.add("Rajesh Khanna");
+                namesList.add("Kunal Kapoor");
+                namesList.add("Vivek Oberoi");
+                namesList.add("Zayed Khan");
+                namesList.add("Anil Kapoor");
+                namesList.add("Arbaaz Khan");
+                namesList.add("John Abraham");
+                namesList.add("Prabhu Deva");
+                namesList.add("Ayushmann Khurrana");
+                namesList.add("Naseeruddin Shah");
+                namesList.add("Varun Dhavan");
+                namesList.add("Dissharth Malhothra");
+                namesList.add("Sara Ali Khan");
+                namesList.add("Kiara Advani");
+                namesList.add("Tiger Shroff");
+                namesList.add("Jacky Shroff");
+                namesList.add("Madhuri Dixit");
+                namesList.add("Shilpa Shetty");
+                namesList.add("Kajol");
+                namesList.add("Sonu Sood");
+                namesList.add("Preeti Zinta");
+                namesList.add("Raveen Tandon");
+                namesList.add("Emraan Hashmi");
+                namesList.add("Irrfan Khan");
+                namesList.add("Karisma Kapoor");
+                namesList.add("Tabu");
+                namesList.add("Sushmita Sen");
+                namesList.add("Vdyut Jammwal");
+                namesList.add("Farhan Akhtar");
+                namesList.add("Twinkle Khanna");
+                namesList.add("Rajkummar Rao");
+                namesList.add("Manoj Bajoayee");
+                namesList.add("Suuny Deol");
+                namesList.add("Sonali Bendre");
+                namesList.add("Bobby Deol");
+                namesList.add("Pankaj Tripati");
+                namesList.add("Juhi Chawla");
+                namesList.add("Paresh Rawal");
+                namesList.add("Imran Khan");
+                namesList.add("Pulkit Samrat");
+                namesList.add("Rajesh Khanna");
+                namesList.add("Hema Malini");
+                namesList.add("Amjad Khan");
+                namesList.add("Amol Palekar");
+                namesList.add("Abhay Deol");
+                namesList.add("Akshaye Khanna");
+                namesList.add("Atul Kulkarni");
+                namesList.add("Govardhan Asrani");
+                namesList.add("Aruna Irani");
+                namesList.add("Annu Kapoor");
+                namesList.add("Adil Hussain");
+                namesList.add("Anupam Kher");
+                namesList.add("Amole Gupte");
+                namesList.add("Balraj Sahni");
+                namesList.add("Bharat Bhushan");
+                namesList.add("Chiranjeevi");
+                namesList.add("Darsheel Safary");
+                namesList.add("Deepak Tijori");
+                namesList.add("Dimple Kapadia");
+                namesList.add("Dev Anand");
+                namesList.add("Dilip Kumar");
+                namesList.add("Farooq Shaikh");
+                namesList.add("Feroz Khan");
+                namesList.add("Farida Jalal");
+                namesList.add("Guru Dutt");
+                namesList.add("Gulshan Grover");
+                namesList.add("Gurpreet Ghuggi");
+                namesList.add("Jeetendra");
+                namesList.add("Johny Lever");
+                namesList.add("Kader Khan");
+                namesList.add("Kay Kay Menon");
+                namesList.add("Kapil Sharma");
+                namesList.add("Karuna Bannerjee");
+                namesList.add("Mukesh Tiwari");
+                namesList.add("Mammootty");
+                namesList.add("Madhavan");
+                namesList.add("Manoj Joshi");
+                namesList.add("Mohnish Bahl");
+                namesList.add("Mukul Dev");
+                namesList.add("Madhubala");
+                namesList.add("Meena Kumari");
+                namesList.add("Mala Sinha");
+                namesList.add("Manoj Pahwa");
+                namesList.add("Manoj Kumar");
+                namesList.add("Nandita Das");
+                namesList.add("Nargis");
+                namesList.add("Nirupa Roy");
+                namesList.add("Nutan");
+                namesList.add("Om Puri");
+                namesList.add("Prakash Raj");
+                namesList.add("Rekha");
+                namesList.add("Rajendra Kumar Tuli");
+                namesList.add("Raaj Kumar");
+                namesList.add("Raj Kapoor");
+                namesList.add("Rakhee Gulzar");
+                namesList.add("Randeep Hooda");
+                namesList.add("Shabana Azmi");
+                namesList.add("Shakti Kapoor");
+                namesList.add("Sunil Dutt");
+                namesList.add("Shashi Kapoor");
+                namesList.add("Sharmila Tagore");
+                namesList.add("Sridevi");
+                namesList.add("Utpal Dutt");
+                namesList.add("Vijay Raaz");
+                namesList.add("Vikram Gokhale");
+                namesList.add("Vinod Khanna");
+                namesList.add("Vyjayanthimala");
+                namesList.add("Waheeda Rehman");
+                namesList.add("Zeenat Aman");
+                namesList.add("Zohra Sehgal");
+                namesList.add("Rajender Kumar");
+                namesList.add("Shami Kapoor");
+                namesList.add("Sanjeev Kumar");
+                namesList.add("Kamal Haasan");
+                namesList.add("Ashok Kumar");
+                namesList.add("Pankaj Kapur");
+                namesList.add("Saurabh Shukla");
+                namesList.add("Sanjay Mishra");
+                namesList.add("Prithviraj Kapoor");
+                namesList.add("Danny Denzongpa");
+                namesList.add("Prem Chopra");
+                namesList.add("Raj Babbar");
+                namesList.add("Jimmy Shergill");
+                namesList.add("Vinay Pathak");
+                namesList.add("Mukesh Khanna");
+                namesList.add("Johnny Walker");
+                namesList.add("Jaaved Jaaferi");
+
+                Max = namesList.size();
+
+                rndNum = (int) (Math.random() * (Max - Min));
+
+                timerText.setVisibility(View.GONE);
+                foreheadText.setVisibility(View.GONE);
+                secondTimerText.setVisibility(View.VISIBLE);
+                guessesText.setVisibility(View.VISIBLE);
+
+                guessesText.setText(namesList.get(rndNum));
+                startTimer();
+
+                gyroscope = new Gyroscope(this);
+
+                gyroscope.register();
+
+                gyroscope.setListener(new Gyroscope.Listener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onRotation(float rx, float ry, float rz) {
+                        if (ry > 8.0) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                                backgroundColor = "red";
+                                textIncorrect = (String) guessesText.getText();
+                                guessesText.setText("Pass");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textIncorrect);
+                                        incorrectList.add(textIncorrect);
+                                        namesList.remove(index);
+                                        incorrectCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if (backgroundColor.equals("green")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                            }
+                        } else if (ry < -8.0f) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                                backgroundColor = "green";
+                                textCorrect = (String) guessesText.getText();
+                                guessesText.setText("Correct");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textCorrect);
+                                        correctList.add(textCorrect);
+                                        namesList.remove(index);
+                                        correctCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if(backgroundColor.equals("red")){
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                            }
+                        }
+                    }
+                });
+                break;
+            case "Bollywood Movies":
+                namesList = new ArrayList<>();
+
+                namesList.add("Dilwale Dulhania Le Jayenge");
+                namesList.add("Pyaasa");
+                namesList.add("Insaf Ka Tarazu");
+                namesList.add("Love Aaj Kal");
+                namesList.add("Veer-Zaara");
+                namesList.add("Mrs. Serial Killer");
+                namesList.add("Fanaa");
+                namesList.add("Panga =Pang");
+                namesList.add("Panga ");
+                namesList.add("Dil Chahta Hai");
+                namesList.add("The Lunchbox");
+                namesList.add("Lagaan");
+                namesList.add("Sholay");
+                namesList.add("Jab We Met");
+                namesList.add("Queen");
+                namesList.add("Barfi");
+                namesList.add("Zindagi Na Milegi Dobara");
+                namesList.add("Jodhaa Akbar");
+                namesList.add("Mary Kom");
+                namesList.add("Haider");
+                namesList.add("Kabhi Khushi Kabhie Gham");
+                namesList.add("Khoobsurat");
+                namesList.add("3 Idiots");
+                namesList.add("Ek Tha Tiger");
+                namesList.add("Devdas");
+                namesList.add("Hichki");
+                namesList.add("Main Prem Ki Diwani Hoon");
+                namesList.add("Neerja");
+                namesList.add("Bajirao Mastani");
+                namesList.add("Dhoom 2");
+                namesList.add("Ek Ladki Ko Dekha Toh Aisa Laga");
+                namesList.add("Bodyguard");
+                namesList.add("The White Tiger");
+                namesList.add("Saina");
+                namesList.add("Thapped");
+                namesList.add("Bobby");
+                namesList.add("Hum Aapke Hain Koun");
+                namesList.add("Yeh Jawaani Hai Deewani");
+                namesList.add("Umrao Jaan");
+                namesList.add("Swades");
+                namesList.add("Salaam Bombay");
+                namesList.add("Gully Boy");
+                namesList.add("Lage Raho Munna Bhai");
+                namesList.add("Ardh Satya");
+                namesList.add("Hera Pheri");
+                namesList.add("Bhaag Milkha Bhaag");
+                namesList.add("Dhobi Ghat");
+                namesList.add("Kati Patang");
+                namesList.add("Black Friday");
+                namesList.add("Gangs of Wasseypur");
+                namesList.add("Arth");
+                namesList.add("Kahaani");
+                namesList.add("Dabangg");
+                namesList.add("Black");
+                namesList.add("Bandit Queen");
+                namesList.add("Kabhie Kabhie");
+                namesList.add("Udaan");
+                namesList.add("Zubeidaa");
+                namesList.add("Teesri Kasam");
+                namesList.add("Naseeb");
+                namesList.add("Zanjeer");
+                namesList.add("Omkara");
+                namesList.add("Chhoti Si Baat");
+                namesList.add("Jewel Thief");
+                namesList.add("Madhumati");
+                namesList.add("Chandni");
+                namesList.add("Jagte Raho");
+                namesList.add("Secret Superstar");
+                namesList.add("Sharmeelee");
+                namesList.add("Parineeta");
+                namesList.add("Lootera");
+                namesList.add("Hum Hain Rahi Pyar Ke");
+                namesList.add("Garam Hawa");
+                namesList.add("Mr & Mrs ’55");
+                namesList.add("Aiyyaa");
+                namesList.add("Satyam Shivam Sundaram");
+                namesList.add("Baahubali");
+                namesList.add("Sahib Bibi Aur Ghulam");
+                namesList.add("Tezaab");
+                namesList.add("Sangam");
+                namesList.add("Rockstar");
+                namesList.add("Main Hoon Na");
+                namesList.add("Mera Naam Joker");
+                namesList.add("Kuch Kuch Hota Hai");
+                namesList.add("Velu Nayakan");
+                namesList.add("Parvarish");
+                namesList.add("Maine Pyar Kiya");
+                namesList.add("Khakee");
+                namesList.add("Dil Se");
+                namesList.add("Ghajini");
+                namesList.add("Kaala Patthar");
+                namesList.add("Chak De! India");
+                namesList.add("Ankur");
+                namesList.add("Gol Maal");
+                namesList.add("Prem Rog");
+                namesList.add("Silsila");
+                namesList.add("Anand");
+                namesList.add("Shaan");
+                namesList.add("Parinda");
+                namesList.add("Shree 420");
+                namesList.add("Om Shanti Om");
+                namesList.add("Dil To Pagal Hai");
+                namesList.add("Awaara");
+                namesList.add("Andaz Apna Apna");
+                namesList.add("Satya");
+                namesList.add("Mr India");
+                namesList.add("Bombay");
+                namesList.add("Kaagaz Ke Phool");
+                namesList.add("Deewaar");
+                namesList.add("Mughal-e-Azam");
+                namesList.add("Pink");
+                namesList.add("Udta Punjab");
+                namesList.add("Talvar");
+                namesList.add("Runway 34");
+                namesList.add("Gangubai Kathiawadi");
+                namesList.add("83");
+                namesList.add("Mughal-e-Azam");
+                namesList.add("Shershaah");
+                namesList.add("Dangal");
+                namesList.add("Special 26");
+                namesList.add("Sarfarosh");
+                namesList.add("PK");
+                namesList.add("Bajrangi Bhaijaan");
+                namesList.add("Baby");
+                namesList.add("Kal Ho Naa Ho");
+                namesList.add("My Name Is Khan");
+                namesList.add("Don");
+                namesList.add("Badla");
+                namesList.add("Raazi");
+                namesList.add("Band Baaja Baaraat");
+                namesList.add("Ishqiya");
+                namesList.add("Vicky Donor");
+                namesList.add("English Vinglish");
+                namesList.add("Highway");
+                namesList.add("Piku");
+                namesList.add("Dum Laga Ke Haisha");
+                namesList.add("Kapoor & Sons");
+                namesList.add("Newton");
+                namesList.add("Article 15");
+                namesList.add("Badhaai Ho");
+                namesList.add("Dil");
+                namesList.add("Ghayal");
+                namesList.add("Baazi");
+                namesList.add("Dil Hai Ke Manta Nahin");
+                namesList.add("Akele Hum Akele Tum");
+                namesList.add("Hum Dil De Chuke Sanam");
+                namesList.add("Agneepath");
+                namesList.add("Saajan");
+                namesList.add("Khiladi");
+                namesList.add("Duplicate");
+                namesList.add("Hum Saath-Saath Hain");
+                namesList.add("Judwaa");
+                namesList.add("Hum Hain Khalnayak");
+                namesList.add("Kabhi Haan Kabhi Naa");
+                namesList.add("Pyaar Kiya To Darna Kya");
+                namesList.add("Raja Hindustani");
+                namesList.add("Darr");
+                namesList.add("Khuda Gawah");
+                namesList.add("Rangeela");
+                namesList.add("Judaai");
+                namesList.add("Biwi No. 1");
+                namesList.add("Jaanwar");
+                namesList.add("Ishq");
+                namesList.add("Karun Arjun");
+                namesList.add("Jo jeeta eohi Sikandar");
+                namesList.add("Pades");
+                namesList.add("Hero No. 1");
+                namesList.add("Ghulam");
+                namesList.add("Khalnayak");
+                namesList.add("Border");
+                namesList.add("Jeet");
+                namesList.add("Gumrah");
+                namesList.add("Baadshah");
+                namesList.add("Coolie No. 1");
+                namesList.add("Koyla");
+                namesList.add("Haseena Maan Jaayegi");
+                namesList.add("Aashiqui");
+                namesList.add("Kaun");
+                namesList.add("Raja Babu");
+                namesList.add("Yes Boss");
+                namesList.add("Mujhse Dosti Karoge");
+                namesList.add("Koi… Mil Gaya");
+                namesList.add("Mohabbatein");
+                namesList.add("Rang De Basanti");
+                namesList.add("Munna Bhai M.B.B.S.");
+                namesList.add("Hera Pheri");
+                namesList.add("Baghban");
+                namesList.add("Rajneeti");
+                namesList.add("7 Khoon Maaf");
+                namesList.add("Bhootnath");
+                namesList.add("Chalte Chalte");
+                namesList.add("Mujhse Shaadi Karogi");
+                namesList.add("Namastey London");
+                namesList.add("Fashion");
+                namesList.add("Wanted");
+                namesList.add("Race");
+                namesList.add("No Entry");
+                namesList.add("Raaz");
+                namesList.add("Dhamaal");
+                namesList.add("Dhol");
+                namesList.add("Bhool Bhulaiyaa");
+                namesList.add("Rab Ne Bana Di Jodi");
+                namesList.add("Welcome");
+                namesList.add("Delhi Belly");
+                namesList.add("Padmaavat");
+                namesList.add("Madras Cafe");
+                namesList.add("Rockstar");
+                namesList.add("Badlapur");
+                namesList.add("Aankhon Dekhi");
+                namesList.add("Titli");
+                namesList.add("Ugly");
+                namesList.add("Fugly");
+                namesList.add("Fukrey");
+
+                Max = namesList.size();
+
+                rndNum = (int) (Math.random() * (Max - Min));
+
+                timerText.setVisibility(View.GONE);
+                foreheadText.setVisibility(View.GONE);
+                secondTimerText.setVisibility(View.VISIBLE);
+                guessesText.setVisibility(View.VISIBLE);
+
+                guessesText.setText(namesList.get(rndNum));
+                startTimer();
+
+                gyroscope = new Gyroscope(this);
+
+                gyroscope.register();
+
+                gyroscope.setListener(new Gyroscope.Listener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onRotation(float rx, float ry, float rz) {
+                        if (ry > 8.0) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                                backgroundColor = "red";
+                                textIncorrect = (String) guessesText.getText();
+                                guessesText.setText("Pass");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textIncorrect);
+                                        incorrectList.add(textIncorrect);
+                                        namesList.remove(index);
+                                        incorrectCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if (backgroundColor.equals("green")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                            }
+                        } else if (ry < -8.0f) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                                backgroundColor = "green";
+                                textCorrect = (String) guessesText.getText();
+                                guessesText.setText("Correct");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textCorrect);
+                                        correctList.add(textCorrect);
+                                        namesList.remove(index);
+                                        correctCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if(backgroundColor.equals("red")){
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                            }
+                        }
+                    }
+                });
+                break;
+            case "Indian Songs":
+                namesList = new ArrayList<>();
+
+                namesList.add("Pyar Kiya To Darna Kya");
+                namesList.add("Honton Mein Aisi Baat Main");
+                namesList.add("Piya Tu Ab To Aaja");
+                namesList.add("Ke Pag Ghungaroo Baandh");
+                namesList.add("I Am A Disco Dancer");
+                namesList.add("Humko Aaj Kal Hai Intezaar");
+                namesList.add("Ankhiyan Milaoon Kabhi Ankhiya");
+                namesList.add("Yaara O Yaara Milna Hamara");
+                namesList.add("Kisi Disco Mein Jaayen Kisi Hotel");
+                namesList.add("Dola Re Dola");
+                namesList.add("Khaike Paan Banaraswala");
+                namesList.add("Aaja Nachle");
+                namesList.add("Ghahra");
+                namesList.add("Prem Ratan Dhan Payo");
+                namesList.add("Pinga");
+                namesList.add("Joote De Do Paise Le Lo");
+                namesList.add("Chote Chote Bhaiyon Ke");
+                namesList.add("Wah Wah Ramji");
+                namesList.add("Sajan Tumse Pyar");
+                namesList.add("Tere Dware Pe Aayi Baraat");
+                namesList.add("Hamari Shaadi Mein");
+                namesList.add("Tenu Leke");
+                namesList.add("Genda Phool");
+                namesList.add("Sadi Gali");
+                namesList.add("London Thumakda");
+                namesList.add("Dheere Dheere Se Meri Zindagi Mein Aana");
+                namesList.add("Nazar Ke Samne Jigar Ke Paas");
+                namesList.add("Dil Ka Aalam");
+                namesList.add("Mujhe Neend Na Aaye");
+                namesList.add("Tumhe Apna Banane Ki Kasam");
+                namesList.add("Dil Hai Ke Manta Nahin");
+                namesList.add("Adayein Bhi Hain");
+                namesList.add("Dekha Teri Mast Nigahon Mein");
+                namesList.add("O Lal Dupatte Wali");
+                namesList.add("Ye Kaali Kaali Aankhen");
+                namesList.add("Dil Mera Churaya Kyun");
+                namesList.add("Ae Ajnabi");
+                namesList.add("Pehli Pehli Baar Mohabbat Ki Hai");
+                namesList.add("Mohabat Ki jhooti Kahani");
+                namesList.add("Ajeeb Dastan Hai Yeh");
+                namesList.add("O Mere Sanam");
+                namesList.add("Gulabi Ankhen Jo Teri");
+                namesList.add("Chura Liya Hai Tumne Jo Dil Ko");
+                namesList.add("Neele Neele Ambar Par");
+                namesList.add("Pehla Nasha");
+                namesList.add("Mere Rang Mein Rangne Wali");
+                namesList.add("Kabootar Ja Ja Ja");
+                namesList.add("Dil Deewana");
+                namesList.add("Tere Dard Se Dil");
+                namesList.add("Tera Jaana");
+                namesList.add("Dil Jab Se Toot Gaya");
+                namesList.add("Maiyya Yashoda");
+                namesList.add("Tum Dil Ki Dhadkan Mein");
+                namesList.add("Hum To Dil Se Haare");
+                namesList.add("Silsila Ye Chaahat Ka");
+                namesList.add("Ankh Hai Bhari Bhari");
+                namesList.add("Jaadu Hai Nasha Hai");
+                namesList.add("Kasam Ki Kasam");
+                namesList.add("Mujhe Haq Hai");
+                namesList.add("Do Anjaane Ajnabi");
+                namesList.add("Milan Abhi Aadha Adhura");
+                namesList.add("Lahu Munh Lag Gaya");
+                namesList.add("Laal Ishq");
+                namesList.add("Galliyan");
+                namesList.add("Jeeta Tha Jiske Liye");
+                namesList.add("Jaadu Teri Nazar");
+                namesList.add("Mera Dil Bhi Kitna Paagal Hai");
+                namesList.add("Bahut Pyaar Karte Hai");
+                namesList.add("Aitbaar Nahi Karna");
+                namesList.add("Lag Ja Gale");
+                namesList.add("Tum Hi Ho");
+                namesList.add("Soch Na Sake");
+                namesList.add("Sab Tera");
+                namesList.add("Humsafar");
+                namesList.add("Dilli Wali Girlfriend");
+                namesList.add("Aaj Ki Party");
+                namesList.add("Afgan Jalebi");
+                namesList.add("Selfie Le Le Re");
+                namesList.add("Nachan Farrate");
+                namesList.add("Chaar Shanivaar");
+                namesList.add("Dil Cheez Tujhe Dedi");
+                namesList.add("Akkad Bakkad");
+                namesList.add("Humne Pee Rakhi Hai");
+                namesList.add("Ki Kariye Nachna Aaonda Nahin");
+                namesList.add("High Heel Te Nachche");
+                namesList.add("Cheez Badi");
+                namesList.add("Lift Teri Bandh Hai");
+                namesList.add("Main Tera Boyfriend");
+                namesList.add("Badri Ki Dulhania");
+                namesList.add("Suit Suit");
+                namesList.add("Butterfly");
+                namesList.add("Nachange Saari Raat");
+                namesList.add("Tujhse Naraaz Nahi");
+                namesList.add("Tere Bina Zindagi se Koi");
+                namesList.add("Kun Faya Kun");
+                namesList.add("Pal Pal Dil Ke Paas");
+                namesList.add("Kisi ki Muskurahaton Pe Ho Nisar");
+                namesList.add("Main Kabhi Batlata Nahi (Maa)");
+                namesList.add("Taal Se Taal");
+                namesList.add("Badan Pe Sitare");
+                namesList.add("Hum Tum Ek Kamre Mein Band Ho");
+                namesList.add("Dheere Dheere Se Meri Zindagi Mein Aana");
+                namesList.add("O haseena Zulfo Waali");
+                namesList.add("Iktara");
+                namesList.add("Choli Ke Peeche");
+                namesList.add("Chhaiya Chhaiya");
+                namesList.add("Aaj Phir Jeene Ki Tamanna Hai");
+                namesList.add("Hoshwalon Ko Khabar Kya");
+                namesList.add("Tujhe Dekha Toh Ye Jaana Sanam");
+                namesList.add("Baahon ke Darmiya");
+                namesList.add("Pehli Nazar Mein");
+                namesList.add("Tere Liye");
+                namesList.add("Aankhon Mein Teri");
+                namesList.add("Yeh Dosti Hum Nahi Todenge");
+                namesList.add("Kajra Re");
+                namesList.add("Tip Tip Barsa Pani");
+                namesList.add("Sandese Aate Hai");
+                namesList.add("Baharon Phool Barsao");
+                namesList.add("Pyar Hua Iqrar Hua");
+                namesList.add("Munni Badnaam");
+                namesList.add("Bole Chudiyan");
+                namesList.add("Dum Maro Dum");
+                namesList.add("Didi Tera Devar Deewana");
+                namesList.add("Roop Tera Mastana");
+                namesList.add("Ude Jab Jab Zulfein Teri");
+                namesList.add("Chahe Koi Mujhe Junglee Kahe");
+                namesList.add("Dekha Hai Pehli Baar");
+                namesList.add("Beedi");
+                namesList.add("Babuji Dheere Chalna");
+                namesList.add("Jumma Chumma De De");
+                namesList.add("Ek Do Teen");
+                namesList.add("Piya Tu Ab To Aaja");
+                namesList.add("Raja Ki Aayegi Baraat");
+                namesList.add("Ankhiyan Milake");
+                namesList.add("Pe Loon");
+                namesList.add("Khaabon Ke Parinday");
+                namesList.add("Dl To Bachcha Hai Ji");
+                namesList.add("Tere Mast Mast Do Nain");
+                namesList.add("Chaar Kadam");
+                namesList.add("Andha Ishq");
+                namesList.add("Dil Meri Na Sune");
+                namesList.add("Toota Jo Kabhi Tara");
+                namesList.add("Mujhe Chaand Pe Le Chalo");
+                namesList.add("Nazar Na Lag Jaaye");
+                namesList.add("Cham Cham");
+                namesList.add("Bol Do Na Zara");
+                namesList.add("Hum Mar Jayenge");
+                namesList.add("Sun Le Sada");
+                namesList.add("Dhoonde Akhiyaan");
+                namesList.add("Kala Chashma");
+                namesList.add("Saanson Ko Saanson Mein");
+                namesList.add("Aankh Marey");
+                namesList.add("Swag Se Swagat");
+                namesList.add("Tum Dil Ki Dhadkan Mein");
+                namesList.add("Badtameez Dil");
+                namesList.add("Kar Gayi Chull");
+                namesList.add("Kamli");
+                namesList.add("Ram Chahe Leela");
+                namesList.add("Sheila Ki Jawaani");
+                namesList.add("Chittiyan Kalaiyaan");
+                namesList.add("Malang");
+                namesList.add("Abhi Toh Party Shuru Hui Hai");
+                namesList.add("Paani Wala Dance");
+                namesList.add("Bang Bang");
+                namesList.add("Char Baj Gaye Party Abhi Baki Hai");
+                namesList.add("Chammak Challo");
+                namesList.add("Chikni Chameli");
+                namesList.add("Nashe Si Chadh Gayi");
+                namesList.add("Lungi Dance");
+                namesList.add("Bheegey Hont");
+                namesList.add("Mashallah Mashallah");
+                namesList.add("Desi Girl");
+                namesList.add("Gandi Baat");
+                namesList.add("Dhink Chika");
+                namesList.add("Humko Humise Churalo");
+                namesList.add("Fevicol Se");
+                namesList.add("Tune Mari Entriyan");
+                namesList.add("Jhalak Dikhlaja");
+                namesList.add("Mauja hi Mauja");
+                namesList.add("Tamanche Pe Disco");
+                namesList.add("Dhoom Machale Dhoom");
+                namesList.add("Mauja hi Mauja");
+                namesList.add("Whistle Baja");
+                namesList.add("Kheech Meri Photo");
+                namesList.add("Do Peg Maar");
+                namesList.add("Hookah Bar");
+                namesList.add("Second Hand Jawaani");
+
+                Max = namesList.size();
+
+                rndNum = (int) (Math.random() * (Max - Min));
+
+                timerText.setVisibility(View.GONE);
+                foreheadText.setVisibility(View.GONE);
+                secondTimerText.setVisibility(View.VISIBLE);
+                guessesText.setVisibility(View.VISIBLE);
+
+                guessesText.setText(namesList.get(rndNum));
+                startTimer();
+
+                gyroscope = new Gyroscope(this);
+
+                gyroscope.register();
+
+                gyroscope.setListener(new Gyroscope.Listener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onRotation(float rx, float ry, float rz) {
+                        if (ry > 8.0) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                                backgroundColor = "red";
+                                textIncorrect = (String) guessesText.getText();
+                                guessesText.setText("Pass");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textIncorrect);
+                                        incorrectList.add(textIncorrect);
+                                        namesList.remove(index);
+                                        incorrectCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if (backgroundColor.equals("green")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                            }
+                        } else if (ry < -8.0f) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                                backgroundColor = "green";
+                                textCorrect = (String) guessesText.getText();
+                                guessesText.setText("Correct");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textCorrect);
+                                        correctList.add(textCorrect);
+                                        namesList.remove(index);
+                                        correctCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if(backgroundColor.equals("red")){
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                            }
+                        }
+                    }
+                });
+                break;
+            case "Famous People":
+                namesList = new ArrayList<>();
+
+                namesList.add("Jesus");
+                namesList.add("Napoleon");
+                namesList.add("Muhammad");
+                namesList.add("William Shakespeare");
+                namesList.add("Abraham Lincoln");
+                namesList.add("George Washington");
+                namesList.add("Adolf Hitler");
+                namesList.add("Aristotle");
+                namesList.add("Alexander the Great");
+                namesList.add("Thomas Jefferson");
+                namesList.add("Henry VIII");
+                namesList.add("Charles Darwin");
+                namesList.add("Elizabeth I");
+                namesList.add("Karl Marx");
+                namesList.add("Julius Caesar");
+                namesList.add("Queen Victoria");
+                namesList.add("Martin Luther");
+                namesList.add("Joseph Stalin");
+                namesList.add("Albert Einstein");
+                namesList.add("Christopher Columbus");
+                namesList.add("Isaac Newton");
+                namesList.add("Charlemagne");
+                namesList.add("Theodore Roosevelt");
+                namesList.add("Wolfgang Amadeus Mozart");
+                namesList.add("Plato");
+                namesList.add("Louis XIV");
+                namesList.add("Ludwig van Beethoven");
+                namesList.add("Ulysses S Grant");
+                namesList.add("Leonardo da Vinci");
+                namesList.add("Augustus");
+                namesList.add("Michelangelo");
+                namesList.add("Raphael");
+                namesList.add("Rembrandt");
+                namesList.add("Titian");
+                namesList.add("Francisco Goya");
+                namesList.add("El Greco");
+                namesList.add("Albrecht Dürer");
+                namesList.add("Hans Holbein the Younger");
+                namesList.add("Johannes Vermeer");
+                namesList.add("Jacques-Louis David");
+                namesList.add("Giotto");
+                namesList.add("Diego Velázquez");
+                namesList.add("Gustave Courbet");
+                namesList.add("Hieronymus Bosch");
+                namesList.add("Vincent van Gogh");
+                namesList.add("Pablo Picasso");
+                namesList.add("Claude Monet");
+                namesList.add("Henri Matisse");
+                namesList.add("Paul Cézanne");
+                namesList.add("Edgar Degas");
+                namesList.add("Andy Warhol");
+                namesList.add("Paul Gauguin");
+                namesList.add("Pierre-Auguste Renoir");
+                namesList.add("Auguste Rodin");
+                namesList.add("Wassily Kandinsky");
+                namesList.add("Edouard Manet");
+                namesList.add("Camille Pissarro");
+                namesList.add("Diego Rivera");
+                namesList.add("Edvard Munch");
+                namesList.add("James McNeill Whistler");
+                namesList.add("Jackson Pollock");
+                namesList.add("Salvador Dalí");
+                namesList.add("Piet Mondrian");
+                namesList.add("Georgia O'Keeffe");
+                namesList.add("Charles Dickens");
+                namesList.add("Mark Twain");
+                namesList.add("Edgar Allan Poe");
+                namesList.add("Voltaire");
+                namesList.add("Oscar Wilde");
+                namesList.add("Johann Wolfgang von Goethe");
+                namesList.add("Dante Alighieri");
+                namesList.add("Lewis Carroll");
+                namesList.add("Henry David Thoreau");
+                namesList.add("Jane Austen");
+                namesList.add("Samuel Johnson");
+                namesList.add("Homer");
+                namesList.add("Lord Byron");
+                namesList.add("Walt Whitman");
+                namesList.add("John Milton");
+                namesList.add("Geoffrey Chaucer");
+                namesList.add("Virgil");
+                namesList.add("William Wordsworth");
+                namesList.add("Stephen King");
+                namesList.add("Emily Dickinson");
+                namesList.add("Leo Tolstoy");
+                namesList.add("Victor Hugo");
+                namesList.add("George Bernard Shaw");
+                namesList.add("Nathaniel Hawthorne");
+                namesList.add("Fyodor Dostoyevsky");
+                namesList.add("Miguel de Cervantes");
+                namesList.add("Ernest Hemingway");
+                namesList.add("HG Wells");
+                namesList.add("Herman Melville");
+                namesList.add("Rudyard Kipling");
+                namesList.add("Sophocles");
+                namesList.add("Samuel Taylor Coleridge");
+                namesList.add("John Keats");
+                namesList.add("Robert Burns");
+                namesList.add("Petrarch");
+                namesList.add("Percy Bysshe Shelley");
+                namesList.add("George Orwell");
+                namesList.add("Christopher Marlowe");
+                namesList.add("Thomas Hardy");
+                namesList.add("Aeschylus");
+                namesList.add("Jonathan Swift");
+                namesList.add("Rabindranath Tagore");
+                namesList.add("Henrik Ibsen");
+                namesList.add("James Joyce");
+                namesList.add("Henry James");
+                namesList.add("Aristophanes");
+                namesList.add("Alexander Pushkin");
+                namesList.add("Ben Jonson");
+                namesList.add("TS Eliot");
+                namesList.add("Carl Linnaeus");
+                namesList.add("Ronald Reagan");
+                namesList.add("Benjamin Franklin");
+                namesList.add("George W. Bush");
+                namesList.add("Winston Churchill");
+                namesList.add("Genghis Khan");
+                namesList.add("Charles I of England");
+                namesList.add("Thomas Edison");
+                namesList.add("Friedrich Nietzsche");
+                namesList.add("Franklin D. Roosevelt");
+                namesList.add("Sigmund Freud");
+                namesList.add("Alexander Hamilton");
+                namesList.add("Mohandas Karamchand Gandhi");
+                namesList.add("Woodrow Wilson");
+                namesList.add("Johann Sebastian Bach");
+                namesList.add("Galileo Galilei");
+                namesList.add("Oliver Cromwell");
+                namesList.add("James Madison");
+                namesList.add("Gautama Buddha");
+                namesList.add("Edgar Allan Poe");
+                namesList.add("Joseph Smith, Jr.");
+                namesList.add("Adam Smith");
+                namesList.add("Immanuel Kant");
+                namesList.add("James Cook");
+                namesList.add("John Adams");
+                namesList.add("Richard Wagner");
+                namesList.add("Pyotr Ilyich Tchaikovsky");
+                namesList.add("Saint Peter");
+                namesList.add("Andrew Jackson");
+                namesList.add("Constantine the Great");
+                namesList.add("Socrates");
+                namesList.add("Elvis Presley");
+                namesList.add("John F. Kennedy");
+                namesList.add("Augustine of Hippo");
+                namesList.add("Nicolaus Copernicus");
+                namesList.add("Vladimir Lenin");
+                namesList.add("Robert E. Lee");
+                namesList.add("Cicero");
+                namesList.add("Jean-Jacques Rousseau");
+                namesList.add("Francis Bacon");
+                namesList.add("Richard Nixon");
+                namesList.add("King Arthur");
+                namesList.add("Thomas Aquinas");
+                namesList.add("René Descartes");
+                namesList.add("Nikola Tesla");
+                namesList.add("Harry S. Truman");
+                namesList.add("Joan of Arc");
+                namesList.add("Dante Alighieri");
+                namesList.add("Otto von Bismarck");
+                namesList.add("Grover Cleveland");
+                namesList.add("John Calvin");
+                namesList.add("John Locke");
+
+                Max = namesList.size();
+
+                rndNum = (int) (Math.random() * (Max - Min));
+
+                timerText.setVisibility(View.GONE);
+                foreheadText.setVisibility(View.GONE);
+                secondTimerText.setVisibility(View.VISIBLE);
+                guessesText.setVisibility(View.VISIBLE);
+
+                guessesText.setText(namesList.get(rndNum));
+                startTimer();
+
+                gyroscope = new Gyroscope(this);
+
+                gyroscope.register();
+
+                gyroscope.setListener(new Gyroscope.Listener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onRotation(float rx, float ry, float rz) {
+                        if (ry > 8.0) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                                backgroundColor = "red";
+                                textIncorrect = (String) guessesText.getText();
+                                guessesText.setText("Pass");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textIncorrect);
+                                        incorrectList.add(textIncorrect);
+                                        namesList.remove(index);
+                                        incorrectCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if (backgroundColor.equals("green")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                            }
+                        } else if (ry < -8.0f) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                                backgroundColor = "green";
+                                textCorrect = (String) guessesText.getText();
+                                guessesText.setText("Correct");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textCorrect);
+                                        correctList.add(textCorrect);
+                                        namesList.remove(index);
+                                        correctCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if(backgroundColor.equals("red")){
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                            }
+                        }
+                    }
+                });
+                break;
+
+            case "Pakistani Singers":
+                namesList = new ArrayList<>();
+
+                namesList.add("Nusrat Fateh Ali Khan");
+                namesList.add("Atif Aslam");
+                namesList.add("Adnan Sami");
+                namesList.add("Adnan Sami");
+                namesList.add("Nazia Hassan");
+                namesList.add("Bohemia");
+                namesList.add("Ali Zafar");
+                namesList.add("Imran Abbas");
+                namesList.add("Farhan Saeed");
+                namesList.add("Imran Khan");
+                namesList.add("Mehwish Hayat");
+                namesList.add("K. L. Saigal");
+                namesList.add("Attaullah Khan Esakhelvi");
+                namesList.add("Mehdi Hassan");
+                namesList.add("Abida Parveen");
+                namesList.add("Abida Parveen");
+                namesList.add("Nadia Ali");
+                namesList.add("Ayesha Omer");
+                namesList.add("Bushra Ansari");
+                namesList.add("Mustafa Zahid");
+                namesList.add("Shafqat Amanat Ali");
+                namesList.add("Sajjad Ali");
+                namesList.add("Ali Azmat");
+                namesList.add("Annie Khalid");
+                namesList.add("Arif Lohar");
+                namesList.add("Ghazala Javed");
+                namesList.add("Iqbal Bano");
+                namesList.add("Tipu Sharif");
+                namesList.add("Falak Shabir");
+                namesList.add("Ahmed Ali Butt");
+                namesList.add("Faraz haider");
+                namesList.add("Alamgir");
+                namesList.add("Abbas ali khan");
+                namesList.add("Aaroh");
+                namesList.add("Junoon");
+                namesList.add("Mekaal Hasan Band");
+                namesList.add("Noori");
+                namesList.add("Talal Qureshi");
+                namesList.add("Vital Signs");
+                namesList.add("Zeb and Haniya");
+                namesList.add("Aamir Zaki");
+                namesList.add("Abrar-ul-Haq");
+                namesList.add("Adil Omar");
+                namesList.add("Ahmed Jahanzeb");
+                namesList.add("Alam Lohar");
+                namesList.add("Ali Haider");
+                namesList.add("Shehzad Roy");
+                namesList.add("Junaid Khan");
+                namesList.add("Goher Mumtaz");
+                namesList.add("Bilal Saeed");
+                namesList.add("Bilal Khan");
+                namesList.add("Fariha Pervez");
+                namesList.add("Farrukh Fateh Ali Khan");
+                namesList.add("Ghulam Ali");
+                namesList.add("Gul Panra");
+                namesList.add("Hadiqa Kiani");
+                namesList.add("Haroon");
+                namesList.add("Hasan Jahangir");
+                namesList.add("Humera Arshad");
+                namesList.add("Jawad Ahmad");
+                namesList.add("Jawad Bashir");
+                namesList.add("Jehangir Aziz Hayat");
+                namesList.add("Komal Rizvi");
+                namesList.add("Momina Mustehsan");
+                namesList.add("Muhammad Asif Nakai");
+                namesList.add("Najam Sheraz");
+                namesList.add("Naseebo Lal");
+                namesList.add("Naser Mestarihi");
+                namesList.add("Nazia Iqbal");
+                namesList.add("Zayn Malik");
+                namesList.add("Zeek Afridi");
+                namesList.add("Zohaib Hassan");
+                namesList.add("Zeeshan Parwez (Sajid & Zeeshan)");
+                namesList.add("Ali sethi");
+                namesList.add("Ghulam Abbas");
+                namesList.add("Yatagan (Fakhre Alam)");
+                namesList.add("Waris Baig");
+                namesList.add("Waqar Ali");
+                namesList.add("Wajid Ali Nashad");
+                namesList.add("Ustad Muhammad Juman");
+                namesList.add("Taimur Rahman (Laal)");
+                namesList.add("Shallum Asher Xavier (Fuzön)");
+                namesList.add("Sain Zahoor");
+                namesList.add("Shahram Azhar (Laal)");
+                namesList.add("Ustad Amanat Ali Khan");
+                namesList.add("Seher");
+                namesList.add("Sarmad Sindhi");
+                namesList.add("Sanam Marvi");
+                namesList.add("Salman Ahmad");
+                namesList.add("Salma Agha");
+                namesList.add("Sajid Ghafoor (Sajid & Zeeshan)");
+                namesList.add("Rajab Ali");
+                namesList.add("Roxen");
+                namesList.add("Reshma");
+                namesList.add("Rahat Fateh Ali Khan");
+                namesList.add("Rahim Shah");
+                namesList.add("Rabi Pirzada");
+                namesList.add("Rohail Hyatt");
+                namesList.add("Pathanay Khan");
+                namesList.add("Overload (Pakistani band)");
+                namesList.add("Nayyara Noor");
+                namesList.add("Nusrat Hussain");
+                namesList.add("Nofel Izz");
+                namesList.add("Nisar Bazmi");
+                namesList.add("Niaz Ahmed");
+                namesList.add("Naser Mestarihi");
+                namesList.add("Naheed Akhtar");
+                namesList.add("Mekaal Hasan");
+                namesList.add("Meesha Shafi");
+                namesList.add("Laal");
+                namesList.add("Khawaja Khurshid Anwar");
+                namesList.add("Karavan");
+                namesList.add("JoSH");
+                namesList.add("Jupiters");
+                namesList.add("Junaid Khan");
+                namesList.add("Jehangir Aziz Hayat");
+                namesList.add("Jal");
+                namesList.add("Jay Dittamo (Junoon)");
+                namesList.add("Jawad Bashir (Dr. aur Billa)");
+                namesList.add("Imran Momina (Fuzön)");
+                namesList.add("Huma Khwaja");
+                namesList.add("Hashim");
+                namesList.add("Hasan Jahangir");
+                namesList.add("Haider Rahman (Laal)");
+                namesList.add("Ghulam Haider");
+                namesList.add("Dhun");
+                namesList.add("Faisal Kapadia (Strings)");
+                namesList.add("Deeba Sahar");
+                namesList.add("Danish Rahi");
+                namesList.add("Billy-X");
+                namesList.add("Brian O'Connell (Junoon)");
+                namesList.add("Bilal Maqsood (Strings)");
+                namesList.add("Benjamin Sisters");
+                namesList.add("Awaz");
+                namesList.add("Aziz Mian");
+                namesList.add("Asif Sinan");
+                namesList.add("Asad Amanat Ali Khan");
+                namesList.add("Arshad Mehmood");
+                namesList.add("Arieb Azhar");
+                namesList.add("Ammar Hassan");
+                namesList.add("Amjad Bobby");
+                namesList.add("Amir Jamal");
+                namesList.add("Amanat Ali");
+                namesList.add("Allan Fakir");
+                namesList.add("A Nayyar");
+                namesList.add("Ali Gul Pir");
+                namesList.add("Ali Alam");
+                namesList.add("Ahmed Rushdi");
+                namesList.add("Akash");
+                namesList.add("Ahmed Ghulamali Chagla");
+                namesList.add("Ahmed Mughal");
+                namesList.add("Rafaqat Ali Khan");
+                namesList.add("Sahir Ali Bagga");
+                namesList.add("Abdullah Qureshi");
+                namesList.add("Atish Raj");
+                namesList.add("Ali Baba Khan");
+                namesList.add("Aima Baig");
+                namesList.add("Badnaam (band)");
+                namesList.add("Bayaan");
+                namesList.add("Esta Livio");
+                namesList.add("Entity Paradigm");
+                namesList.add("Farhad Humayun");
+                namesList.add("Faakhir Mehmood");
+                namesList.add("Farooq Haider");
+                namesList.add("Ghulam Farid Sabri");
+                namesList.add("Hamid Ali Khan");
+                namesList.add("Irteassh");
+                namesList.add("Kami Paul");
+                namesList.add("Kashan Admani");
+                namesList.add("Laila Khan");
+                namesList.add("Leo Twins");
+                namesList.add("Mala");
+                namesList.add("Maqbool Ahmed Sabri");
+                namesList.add("Masood Rana");
+                namesList.add("Master Muhammad Ibrahim");
+                namesList.add("Mohammad Aizaz Sohail");
+                namesList.add("Mumtaz Ahmed");
+                namesList.add("Mohammed Ali Shehki");
+                namesList.add("Munni Begum");
+                namesList.add("Nabeel Shaukat Ali");
+                namesList.add("Naseer & Shahab");
+                namesList.add("Naser Mestarihi");
+                namesList.add("Natasha Khan");
+                namesList.add("Nouman Javaid");
+                namesList.add("Nusrat Hussain");
+                namesList.add("Qurat-ul-Ain Balouch");
+                namesList.add("Qayaas");
+                namesList.add("Rangeela");
+                namesList.add("Sabri Brothers");
+                namesList.add("Syed Zaheer Rizvi");
+                namesList.add("Sara Haider");
+                namesList.add("Sara Raza Khan");
+                namesList.add("Shahram Azhar ");
+                namesList.add("Shiraz Uppal");
+                namesList.add("Shani Arshad");
+                namesList.add("Shuja Haider");
+                namesList.add("Shamim Nazli");
+                namesList.add("The Band Call");
+                namesList.add("Ustad Muhammad Juman");
+                namesList.add("Ustad Muhammad Yousuf");
+                namesList.add("Umair Jaswal");
+                namesList.add("Uzair Jaswal");
+                namesList.add("Yasir Jaswal");
+                namesList.add("Zoe Viccaji");
+                namesList.add("Zulfiqar Jabbar Khan");
+                namesList.add("Zayn Javadd Malik");
+                namesList.add("Zubaida Khanum");
+
+                Max = namesList.size();
+
+                rndNum = (int) (Math.random() * (Max - Min));
+
+                timerText.setVisibility(View.GONE);
+                foreheadText.setVisibility(View.GONE);
+                secondTimerText.setVisibility(View.VISIBLE);
+                guessesText.setVisibility(View.VISIBLE);
+
+                guessesText.setText(namesList.get(rndNum));
+                startTimer();
+
+                gyroscope = new Gyroscope(this);
+
+                gyroscope.register();
+
+                gyroscope.setListener(new Gyroscope.Listener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onRotation(float rx, float ry, float rz) {
+                        if (ry > 8.0) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                                backgroundColor = "red";
+                                textIncorrect = (String) guessesText.getText();
+                                guessesText.setText("Pass");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textIncorrect);
+                                        incorrectList.add(textIncorrect);
+                                        namesList.remove(index);
+                                        incorrectCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if (backgroundColor.equals("green")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                            }
+                        } else if (ry < -8.0f) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                                backgroundColor = "green";
+                                textCorrect = (String) guessesText.getText();
+                                guessesText.setText("Correct");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textCorrect);
+                                        correctList.add(textCorrect);
+                                        namesList.remove(index);
+                                        correctCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if(backgroundColor.equals("red")){
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                            }
+                        }
+                    }
+                });
+                break;
+
+            case "Bollywood Singers":
+                namesList = new ArrayList<>();
+
+                namesList.add("Lata Mangeshkar");
+                namesList.add("S. P. Balasubrahmanyam");
+                namesList.add("Kishore Kumar");
+                namesList.add("Shreya Ghoshal");
+                namesList.add("Arijit Singh");
+                namesList.add("Sonu Nigam");
+                namesList.add("Neha Kakkar");
+                namesList.add("Armaan Malik");
+                namesList.add("Armaan Malik");
+                namesList.add("Mohammed Rafi");
+                namesList.add("Sunidhi Chauhan");
+                namesList.add("Alka Yagnik");
+                namesList.add("Kumar Sanu");
+                namesList.add("Diljit Dosanjh");
+                namesList.add("K. S. Chithra");
+                namesList.add("Udit Narayan");
+                namesList.add("Yo Yo Honey Singh");
+                namesList.add("K. J. Yesudas");
+                namesList.add("Sivakarthikeyan");
+                namesList.add("Sid Sriram");
+                namesList.add("Monali Thakur");
+                namesList.add("Yuvan Shankar Raja");
+                namesList.add("Shirley Setia");
+                namesList.add("Shankar Mahadevan");
+                namesList.add("Neeti Mohan");
+                namesList.add("Vijay Antony");
+                namesList.add("Kavya Madhavan");
+                namesList.add("Adnan Sami");
+                namesList.add("Jagjit Singh");
+                namesList.add("M. S. Subbulakshmi");
+                namesList.add("Palak Muchhal");
+                namesList.add("Shaan");
+                namesList.add("Krishnakumar Kunnath");
+                namesList.add("Tulsi Kumar");
+                namesList.add("Lucky Ali");
+                namesList.add("Mukesh");
+                namesList.add("Divine");
+                namesList.add("Himesh Reshammiya");
+                namesList.add("Anu Malik");
+                namesList.add("S. Janaki");
+                namesList.add("Anuradha Paudwal");
+                namesList.add("Pritam Chakraborty");
+                namesList.add("Usha Uthup");
+                namesList.add("Badshah");
+                namesList.add("Hariharan");
+                namesList.add("Kavita Krishnamurthy");
+                namesList.add("Daler Mehndi");
+                namesList.add("Raftaar");
+                namesList.add("Javed Ali");
+                namesList.add("Falguni Pathak");
+                namesList.add("Benny");
+                namesList.add("Dinesh Lal Yadav");
+                namesList.add("Kailash Kher");
+                namesList.add("Sadhana Sargam");
+                namesList.add("K. L. Saigal");
+                namesList.add("Ankit Tiwari");
+                namesList.add("Anusha Dandekar");
+                namesList.add("Usha Mangeshkar");
+                namesList.add("Manorama");
+                namesList.add("Amit Kumar");
+                namesList.add("Sukhwinder Singh");
+                namesList.add("Abhijeet Bhattacharya");
+                namesList.add("Vijay Prakash");
+                namesList.add("Mika Singh");
+                namesList.add("Suraiya");
+                namesList.add("Vyjayanthimala");
+                namesList.add("Zubeen Garg");
+                namesList.add("Mithoon");
+                namesList.add("Amrinder Gill");
+                namesList.add("Kalabhavan Mani");
+                namesList.add("Alisha Chinai");
+                namesList.add("Anuradha Sriram");
+                namesList.add("D. Imman");
+                namesList.add("Gippy Grewal");
+                namesList.add("Manoj Tiwari");
+                namesList.add("Sunitha Upadrashta");
+                namesList.add("Manna Dey");
+                namesList.add("Neha Bhasin");
+                namesList.add("Vijay Yesudas");
+                namesList.add("Piyush Mishra");
+                namesList.add("Mohammed Aziz");
+                namesList.add("Mohit Chauhan");
+                namesList.add("Ammy Virk");
+                namesList.add("Nitin Mukesh");
+                namesList.add("Harshdeep Kaur");
+                namesList.add("Peter Sarstedt");
+                namesList.add("Pankaj Udhas");
+                namesList.add("Shweta Mohan");
+                namesList.add("P. Susheela");
+                namesList.add("Sona Mohapatra");
+                namesList.add("Shalmali Kholgade");
+                namesList.add("Miss Pooja");
+                namesList.add("Rekha Bhardwaj");
+                namesList.add("Jazzy B");
+                namesList.add("Suresh Wadkar");
+                namesList.add("Sandeep Acharya");
+                namesList.add("Krish");
+                namesList.add("Baba Sehgal");
+                namesList.add("Geeta Dutt");
+                namesList.add("Shweta Pandit");
+                namesList.add("Mahendra Kapoor");
+                namesList.add("Anushka Manchanda");
+                namesList.add("Kunal Ganjawala");
+                namesList.add("Shakthisree Gopalan");
+                namesList.add("Begum Akhtar");
+                namesList.add("M. Balamuralikrishna");
+                namesList.add("Altaf Raja");
+                namesList.add("Mamta Mohandas");
+                namesList.add("M. G. Sreekumar");
+                namesList.add("Bombay Jayashri");
+                namesList.add("Bade Ghulam Ali Khan");
+                namesList.add("Ila Arun");
+                namesList.add("Antara Mitra");
+                namesList.add("Satinder Sartaaj");
+                namesList.add("Ganesh Hegde");
+                namesList.add("Vinod Rathod");
+                namesList.add("Gauhar Jaan");
+                namesList.add("T. M. Soundararajan");
+                namesList.add("Master Saleem");
+                namesList.add("Malaysia Vasudevan");
+                namesList.add("Shabbir Kumar");
+                namesList.add("Suman Kalyanpur");
+                namesList.add("Shamshad Begum");
+                namesList.add("Shaan Rahman");
+                namesList.add("Talat Mahmood");
+                namesList.add("Kumar Gandharva");
+                namesList.add("Hemlata");
+                namesList.add("Hemant Kumar");
+                namesList.add("Kuldeep Manak");
+                namesList.add("Abhay Jodhpurkar");
+                namesList.add("Suresh Peters");
+                namesList.add("J. P. Chandrababu");
+                namesList.add("Kavi Pradeep");
+                namesList.add("Unni Menon");
+                namesList.add("Siddharth Mahadevan");
+                namesList.add("N. C. Karunya");
+                namesList.add("Sharon Prabhakar");
+                namesList.add("Manjari");
+                namesList.add("Yugendran");
+                namesList.add("Jasbir Jassi");
+                namesList.add("Minmini");
+                namesList.add("Raveendran");
+                namesList.add("Sahana Bajpaie");
+                namesList.add("Parthiv Gohil");
+                namesList.add("Ananda Shankar");
+                namesList.add("K. B. Sundarambal");
+                namesList.add("Shubha Mudgal");
+                namesList.add("Gangubai Hangal");
+                namesList.add("C. Ramachandra");
+                namesList.add("Prashant Tamang");
+                namesList.add("Ishmeet Singh");
+                namesList.add("Bhupinder Singh");
+                namesList.add("Anil Biswas");
+                namesList.add("Prashanthini");
+                namesList.add("Akshaya Mohanty");
+                namesList.add("Abdul Rashid Khan");
+                namesList.add("Shobha Gurtu");
+                namesList.add("M. Srisha");
+                namesList.add("Aminuddin Dagar");
+                namesList.add("Vinit Singh");
+                namesList.add("Anne Hills");
+                namesList.add("Esther Eden");
+                namesList.add("A. R. Rahman");
+                namesList.add("Jubin Nautiyal");
+                namesList.add("Ayushmann Khurrana");
+                namesList.add("Vinod Rathod");
+                namesList.add("Darshan Raval");
+                namesList.add("Vishal Dadlani");
+                namesList.add("Papon");
+                namesList.add("Mohammed Irfan Ali");
+                namesList.add("Baabul Supriyo");
+                namesList.add("B Praak");
+                namesList.add("Benny Dayal");
+                namesList.add("Alla Rakha");
+                namesList.add("Nakash Aziz");
+                namesList.add("Amit Trivedi");
+                namesList.add("Bhimsen Joshi");
+                namesList.add("Ali Akbar Khan");
+                namesList.add("Sudesh Bhonsle");
+                namesList.add("Rashid Khan");
+                namesList.add("Roopkumar Rathod");
+                namesList.add("Mahesh Kale");
+                namesList.add("Omkarnath Thakur");
+                namesList.add("Babbu Maan");
+                namesList.add("Rahul Deshpande");
+                namesList.add("Ravi Shankar");
+                namesList.add("Pandit Jasraj");
+                namesList.add("Ustad Abdul Karim Khan");
+                namesList.add("Ustad Faiyaz Khan");
+                namesList.add("Jayateerth Mevundi");
+                namesList.add("Sanjeev Abhyankar");
+                namesList.add("Aditya Narayan");
+                namesList.add("Arko Pravo Mukherjee");
+                namesList.add("Rabbi Shergil");
+                namesList.add("D. V. Paluskar");
+                namesList.add("Ajoy Chakrabarty");
+                namesList.add("Amaal Mallik");
+                namesList.add("Ulhas Kashalkar");
+                namesList.add("Brodha V");
+                namesList.add("Siddharth Mahadevan");
+                namesList.add("Piyush Mishra");
+                namesList.add("Rahul Vaidya");
+                namesList.add("Rajesh Krishnan");
+                namesList.add("Puttur Narasimha Nayak");
+
+                Max = namesList.size();
+
+                rndNum = (int) (Math.random() * (Max - Min));
+
+                timerText.setVisibility(View.GONE);
+                foreheadText.setVisibility(View.GONE);
+                secondTimerText.setVisibility(View.VISIBLE);
+                guessesText.setVisibility(View.VISIBLE);
+
+                guessesText.setText(namesList.get(rndNum));
+                startTimer();
+
+                gyroscope = new Gyroscope(this);
+
+                gyroscope.register();
+
+                gyroscope.setListener(new Gyroscope.Listener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onRotation(float rx, float ry, float rz) {
+                        if (ry > 8.0) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                                backgroundColor = "red";
+                                textIncorrect = (String) guessesText.getText();
+                                guessesText.setText("Pass");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textIncorrect);
+                                        incorrectList.add(textIncorrect);
+                                        namesList.remove(index);
+                                        incorrectCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if (backgroundColor.equals("green")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                            }
+                        } else if (ry < -8.0f) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                                backgroundColor = "green";
+                                textCorrect = (String) guessesText.getText();
+                                guessesText.setText("Correct");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textCorrect);
+                                        correctList.add(textCorrect);
+                                        namesList.remove(index);
+                                        correctCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if(backgroundColor.equals("red")){
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                            }
+                        }
+                    }
+                });
+                break;
+
+            case "Hollywood Singers":
+                namesList = new ArrayList<>();
+
+                namesList.add("Taylor Swift");
+                namesList.add("Ariana Grande");
+                namesList.add("Shawn Mendes");
+                namesList.add("Selena Gomez");
+                namesList.add("Ed Sheeran");
+                namesList.add("Dua Lipa");
+                namesList.add("Lady Gaga");
+                namesList.add("Camila Cabello");
+                namesList.add("The Weeknd");
+                namesList.add("Beyonce");
+                namesList.add("Bruno Mars");
+                namesList.add("Halsey");
+                namesList.add("Katy Perry");
+                namesList.add("Justin Beiber");
+                namesList.add("Post Malone");
+                namesList.add("Khalid");
+                namesList.add("Demi Lovato");
+                namesList.add("Sia");
+                namesList.add("Charlie Puth");
+                namesList.add("Nick Jonas");
+                namesList.add("Zayn Malik");
+                namesList.add("John Legend");
+                namesList.add("Sam Smith");
+                namesList.add("Anne-Marie");
+                namesList.add("Lizzo");
+                namesList.add("Ava Max");
+                namesList.add("Pink");
+                namesList.add("Jenifer Lopez");
+                namesList.add("Miley Cyrus");
+                namesList.add("Sabrina Carpenter");
+                namesList.add("Ellie Goulding");
+                namesList.add("Nial Horan");
+                namesList.add("Bebe Rexha");
+                namesList.add("Christina Aguilera");
+                namesList.add("Alicia Keys");
+                namesList.add("Lana Del Rey");
+                namesList.add("Jason Derulo");
+                namesList.add("Alec Benjamin");
+                namesList.add("Avril Lavigne");
+                namesList.add("Normani");
+                namesList.add("Brendon Urie");
+                namesList.add("Charli XCX");
+                namesList.add("Christina Perri");
+                namesList.add("Chris Brown");
+                namesList.add("Lauv");
+                namesList.add("Carly Rae Jepsen");
+                namesList.add("Swae Lee");
+                namesList.add("Enrique Iglesias");
+                namesList.add("Kylie Minogue");
+                namesList.add("Luke Bryan");
+                namesList.add("Miranda Lambert");
+                namesList.add("Ty Dolla $ign");
+                namesList.add("Lauren Jauregui");
+                namesList.add("Tove Lo");
+                namesList.add("Ella Mai");
+                namesList.add("Kacey Musgraves");
+                namesList.add("SZA");
+                namesList.add("Tori Kelly");
+                namesList.add("Bazzi");
+                namesList.add("Mary J. Blige");
+                namesList.add("Chris Stapleton");
+                namesList.add("Maggie Rogers");
+                namesList.add("Chester Bennington");
+                namesList.add("6LACK");
+                namesList.add("Jorja Smith");
+                namesList.add("Daniel Caesar");
+                namesList.add("Justin Moore");
+                namesList.add("Summer Walker");
+                namesList.add("Dierks Bentley");
+                namesList.add("Kelly Rowland");
+                namesList.add("Jared Leto");
+                namesList.add("David Gilmour");
+                namesList.add("Roger Waters");
+                namesList.add("Axl Rose");
+                namesList.add("Freddie Mercury");
+                namesList.add("Daya");
+                namesList.add("Sigrid");
+                namesList.add("Kane Brown");
+                namesList.add("Marren Morris");
+                namesList.add("Luke Combs");
+                namesList.add("Blake Shelton");
+                namesList.add("Troye Sivan");
+                namesList.add("Blackbear");
+                namesList.add("Kelly Clarkson");
+                namesList.add("Elvis Presley");
+                namesList.add("Tyler Joseph");
+                namesList.add("Shakira");
+                namesList.add("J Balvin");
+                namesList.add("Mabel");
+                namesList.add("Chris Lane");
+                namesList.add("Cheryl");
+                namesList.add("Ciara");
+                namesList.add("Ruel");
+                namesList.add("Mike Shinoda");
+                namesList.add("Harry Styles");
+                namesList.add("Britney Spears");
+                namesList.add("Adam Lambert");
+                namesList.add("Luis Fonsi");
+                namesList.add("Eminem");
+                namesList.add("Billie Eilish");
+                namesList.add("Rihanna");
+                namesList.add("Jon Bon Jovi");
+                namesList.add("Madonna");
+                namesList.add("Jennifer Lopez");
+                namesList.add("Nicki Minaj");
+                namesList.add("Christina Perri");
+                namesList.add("Justin Timberlake");
+                namesList.add("Adele");
+                namesList.add("Pitbull");
+                namesList.add("Usher");
+                namesList.add("Christina Grimmie");
+                namesList.add("Steven Tyler");
+                namesList.add("Michael Jackson");
+                namesList.add("Akon");
+                namesList.add("Ashley Tisdale");
+                namesList.add("Vanessa Hudgens");
+                namesList.add("Willow Smith");
+                namesList.add("Jaden Smith");
+                namesList.add("Snoop Dogg");
+                namesList.add("Stevie Nicks");
+                namesList.add("Joe Cocker");
+                namesList.add("B.B. King");
+                namesList.add("Patti LaBelle");
+                namesList.add("Annie Lennox");
+                namesList.add("Morrissey");
+                namesList.add("Levon Helm");
+                namesList.add("The Everly Brothers");
+                namesList.add("Solomon Burke");
+                namesList.add("Willie Nelson");
+                namesList.add("Don Henley");
+                namesList.add("Art Garfunkel");
+                namesList.add("Sam Moore");
+                namesList.add("Darlene Love");
+                namesList.add("Patti Smith");
+                namesList.add("Tom Waits");
+                namesList.add("John Lee Hooker");
+                namesList.add("Frankie Valli");
+                namesList.add("Mariah Carey");
+                namesList.add("Sly Stone");
+                namesList.add("Merle Haggard");
+                namesList.add("Steve Perry");
+                namesList.add("Iggy Pop");
+                namesList.add("James Taylor");
+                namesList.add("Dolly Parton");
+                namesList.add("John Fogerty");
+                namesList.add("Toots Hibbert");
+                namesList.add("Gregg Allman");
+                namesList.add("Ronnie Spector");
+                namesList.add("Wilson Pickett");
+                namesList.add("Jerry Lee Lewis");
+                namesList.add("Thom Yorke");
+                namesList.add("David Ruffin");
+                namesList.add("Dion");
+                namesList.add("Lou Reed");
+                namesList.add("Roger Daltrey");
+                namesList.add("Björk");
+                namesList.add("Rod Stewart");
+                namesList.add("Eric Burdon");
+                namesList.add("Mavis Staples");
+                namesList.add("Paul Rodgers");
+                namesList.add("Luther Vandross");
+                namesList.add("Muddy Waters");
+                namesList.add("Brian Wilson");
+                namesList.add("Gladys Knight");
+                namesList.add("Maren Morris");
 
                 Max = namesList.size();
 
