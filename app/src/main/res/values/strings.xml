@@ -17,7 +17,8 @@
     <string name="custom_category">Custom Category</string>
     <string name="guess_the_word">- Guess the word -</string>
     <string name="create_custom_deck">Create Custom Deck!</string>
-    <string name="enter_the_words_one_below_the_other_using_enter_key">Enter the words one below the other using enter key.</string>
-    <string name="red_n_blue_n_yellow_n_green_n_purple">red \n blue \n yellow \n green \n purple \n…</string>
-    <string name="done">Play</string>
+    <string name="enter_the_words_one_below_the_other_using_enter_key">Enter the words, one below the other using enter key.</string>
+    <string name="red_n_blue_n_yellow_n_green_n_purple">Type Here…</string>
+    <string name="play">Play</string>
+    <string name="back">Back</string>
 </resources>

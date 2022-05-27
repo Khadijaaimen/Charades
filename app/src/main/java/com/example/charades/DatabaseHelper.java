@@ -11,10 +11,9 @@ import androidx.annotation.Nullable;
 public class DatabaseHelper  extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Category.db";
-    public static final String TABLE_NAME = "custom_category_name";
+    public static final String TABLE_NAME = "custom_category";
     public static final String COL_1 = "ID";
-    public static final String COL_2 = "CATEGORY_NAME";
-    public static final String COL_3 = "CATEGORY_LIST";
+    public static final String COL_2 = "CATEGORY_LIST";
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -22,7 +21,7 @@ public class DatabaseHelper  extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,CATEGORY_NAME TEXT,CATEGORY_LIST TEXT)");
+        sqLiteDatabase.execSQL("create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,CATEGORY_LIST TEXT)");
     }
 
     @Override
@@ -30,18 +29,17 @@ public class DatabaseHelper  extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
     }
 
-    public boolean addData(String name, String list){
+    public boolean addData(String list){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_2, name);
-        contentValues.put(COL_3, list);
+        contentValues.put(COL_2, list);
 
         long result = db.insert(TABLE_NAME, null, contentValues);
 
         return result != -1;
     }
 
-    public Cursor getListComtents(){
+    public Cursor getListContents(){
         SQLiteDatabase db = this.getWritableDatabase();
         return db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
     }

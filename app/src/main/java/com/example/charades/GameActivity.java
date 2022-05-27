@@ -34,6 +34,7 @@ public class GameActivity extends AppCompatActivity {
     long mTimeLeftInMillis = START_TIME_IN_MILLIS;
     ArrayList<String> incorrectList = new ArrayList<>();
     ArrayList<String> correctList = new ArrayList<>();
+    ArrayList<String> item = new ArrayList<>();
     TextView warning;
 
     @Override
@@ -50,6 +51,9 @@ public class GameActivity extends AppCompatActivity {
         Intent intent = getIntent();
         name = intent.getStringExtra("category");
 
+        Bundle bundle = getIntent().getExtras();
+        item = (ArrayList<String>) bundle.getSerializable("test");
+
         foreheadText = findViewById(R.id.forehead);
         timerText = findViewById(R.id.timer);
         guessesText = findViewById(R.id.guesses);
@@ -60,8 +64,7 @@ public class GameActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(GameActivity.this, MainActivity.class));
-
+                onBackPressed();
             }
         });
 
@@ -7342,6 +7345,84 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
 
+            case "Custom":
+                namesList = item;
+                Max = namesList.size();
+
+                rndNum = (int) (Math.random() * (Max - Min));
+
+                timerText.setVisibility(View.GONE);
+                foreheadText.setVisibility(View.GONE);
+                secondTimerText.setVisibility(View.VISIBLE);
+                guessesText.setVisibility(View.VISIBLE);
+
+                guessesText.setText(namesList.get(rndNum));
+                startTimer();
+
+                gyroscope = new Gyroscope(this);
+
+                gyroscope.register();
+
+                gyroscope.setListener(new Gyroscope.Listener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onRotation(float rx, float ry, float rz) {
+                        if (ry > 8.0) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                                backgroundColor = "red";
+                                textIncorrect = (String) guessesText.getText();
+                                guessesText.setText("Pass");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textIncorrect);
+                                        incorrectList.add(textIncorrect);
+                                        namesList.remove(index);
+                                        incorrectCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if (backgroundColor.equals("green")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                            }
+                        } else if (ry < -8.0f) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                                backgroundColor = "green";
+                                textCorrect = (String) guessesText.getText();
+                                guessesText.setText("Correct");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textCorrect);
+                                        correctList.add(textCorrect);
+                                        namesList.remove(index);
+                                        correctCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if(backgroundColor.equals("red")){
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                            }
+                        }
+                    }
+                });
+                break;
             case "Custom Category":
                 startActivity(new Intent(GameActivity.this, CustomCategoryActivity.class));
                 break;
@@ -7381,6 +7462,7 @@ public class GameActivity extends AppCompatActivity {
         super.onBackPressed();
 
         startActivity(new Intent(GameActivity.this, MainActivity.class));
+        finish();
     }
 }
 
