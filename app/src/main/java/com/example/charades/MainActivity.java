@@ -45,6 +45,16 @@ public class MainActivity extends AppCompatActivity {
         categoryNames.add("Indian Songs");
         categoryNames.add("Famous People");
         categoryNames.add("Famous Places");
+        categoryNames.add("Cars");
+        categoryNames.add("Youtube Gamers");
+        categoryNames.add("Makeup Items");
+        categoryNames.add("Fruits");
+        categoryNames.add("Body Parts");
+        categoryNames.add("Tools");
+        categoryNames.add("Disney Characters");
+        categoryNames.add("Brands");
+        categoryNames.add("Cricket Players");
+        categoryNames.add("Football Players");
 
         // set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.categoryRv);

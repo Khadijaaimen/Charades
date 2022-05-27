@@ -2583,7 +2583,7 @@ public class GameActivity extends AppCompatActivity {
                 namesList.add("Scale");
                 namesList.add("Sewing Machine");
                 namesList.add("Smart TV");
-                namesList.add("PEncil Sharpener");
+                namesList.add("Pencil Sharpener");
                 namesList.add("Electric Guitar");
                 namesList.add("Timer");
                 namesList.add("Speaker");
@@ -5159,6 +5159,2096 @@ public class GameActivity extends AppCompatActivity {
                 namesList.add("Brian Wilson");
                 namesList.add("Gladys Knight");
                 namesList.add("Maren Morris");
+
+                Max = namesList.size();
+
+                rndNum = (int) (Math.random() * (Max - Min));
+
+                timerText.setVisibility(View.GONE);
+                foreheadText.setVisibility(View.GONE);
+                secondTimerText.setVisibility(View.VISIBLE);
+                guessesText.setVisibility(View.VISIBLE);
+
+                guessesText.setText(namesList.get(rndNum));
+                startTimer();
+
+                gyroscope = new Gyroscope(this);
+
+                gyroscope.register();
+
+                gyroscope.setListener(new Gyroscope.Listener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onRotation(float rx, float ry, float rz) {
+                        if (ry > 8.0) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                                backgroundColor = "red";
+                                textIncorrect = (String) guessesText.getText();
+                                guessesText.setText("Pass");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textIncorrect);
+                                        incorrectList.add(textIncorrect);
+                                        namesList.remove(index);
+                                        incorrectCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if (backgroundColor.equals("green")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                            }
+                        } else if (ry < -8.0f) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                                backgroundColor = "green";
+                                textCorrect = (String) guessesText.getText();
+                                guessesText.setText("Correct");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textCorrect);
+                                        correctList.add(textCorrect);
+                                        namesList.remove(index);
+                                        correctCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if(backgroundColor.equals("red")){
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                            }
+                        }
+                    }
+                });
+                break;
+
+            case "Cars":
+                namesList = new ArrayList<>();
+
+                namesList.add("1963 Volkswagen Beetle Herbie");
+                namesList.add("1959 Cadillac Miller-Meteor ambulance Ecto-1");
+                namesList.add("Lotus Esprit S1 Wet Nellie");
+                namesList.add("1973 Ford Falcon XB GT Pursuit Special");
+                namesList.add("1961 Ferrari 250 GT SWB California Spyder");
+                namesList.add("1977 Pontiac Firebird Trans AM");
+                namesList.add("1968 Ford Mustang Fastback");
+                namesList.add("DeLorean DMC-12 Time Machine");
+                namesList.add("James Bond's 1964 Aston Martin DB5");
+                namesList.add("The Batmobile");
+                namesList.add("1964 Aston Martin DB5");
+                namesList.add("1932 Ford Coupe");
+                namesList.add("1970 Dodge Challenger R/T");
+                namesList.add("1970 Dodge Charger");
+                namesList.add("1969 Mustang");
+                namesList.add("The Gigahorse");
+                namesList.add("Bluesmobile, 1974 Dodge Monaco");
+                namesList.add("1958 Plymouth Fury");
+                namesList.add("1992 Ford Explorer XLT UN46");
+                namesList.add("Mirthmobile, 1976 AMC Pacer");
+                namesList.add("Ectomobile, 1959 Cadillac Miller-Meteor");
+                namesList.add("1967 Chevy Camaro SS");
+                namesList.add("1973 Ford Gran Torino");
+                namesList.add("1985 Modena GT Spyder California");
+                namesList.add("1979 Ford LTD Country Squire");
+                namesList.add("1967 Plymouth Belvedere GTX");
+                namesList.add("1984 Ford Econoline");
+                namesList.add("1966 Ford Thunderbird");
+                namesList.add("6000 SUX");
+                namesList.add("1966 Alfa Romeo 1600 Duetto Spider");
+                namesList.add("1971 Chevrolet Nova SS");
+                namesList.add("1971 Volkswagen T2 Microbus");
+                namesList.add("1948 Ford De Luxe Convertible");
+                namesList.add("1976 Ford Gran Torino");
+                namesList.add("1997 Chevrolet 2500 Silverado Fleetside");
+                namesList.add("1967 Shelby GT500");
+                namesList.add("1973 Chevrolet Chevelle Malibu");
+                namesList.add("1969 Dodge Charger");
+                namesList.add("2008 Audi R8");
+                namesList.add("1967 Austin Mini Cooper S 1275");
+                namesList.add("2007 Chevrolet Camaro Replica");
+                namesList.add("Chitty Chitty Bang Bang");
+                namesList.add("1968 Mustang GT 390");
+                namesList.add("The Shaggin’ Wagon");
+                namesList.add("1963 Volkswagen Beetle Model 117 Deluxe");
+                namesList.add("Subaru Impreza WRX");
+                namesList.add("1936 Bugatti Type 57SC Atlantic");
+                namesList.add("1948 Tucker Torpedo");
+                namesList.add("1963 Chevrolet Corvette Sting Ray Coupe");
+                namesList.add("Ford GT40");
+                namesList.add("1967 Alfa Romeo 33 Stradale");
+                namesList.add("BMW M1");
+                namesList.add("AC Shelby Cobra 427");
+                namesList.add("Acura NSX");
+                namesList.add("Jaguar E-Type");
+                namesList.add("Lamborghini Countach");
+                namesList.add("Mazda Miata");
+                namesList.add("Volvo P1800");
+                namesList.add("Maserati 3500 GT Vignale Spyder");
+                namesList.add("Audi Quattro");
+                namesList.add("Datsun 240Z-280Z");
+                namesList.add("Nissan Skyline GTR r34");
+                namesList.add("Porsche 959");
+                namesList.add("4 Daytona Spyder");
+                namesList.add("Rolls-Royce Phantom");
+                namesList.add("Toyota 2000GT");
+                namesList.add("BMW 2002");
+                namesList.add("Mini");
+                namesList.add("McLaren F1");
+                namesList.add("Jeep Willys");
+                namesList.add("Austin Healey 3000");
+                namesList.add("Ford Shelby Mustang GT350");
+                namesList.add("Ferrari F40");
+                namesList.add("Mercedes-Benz 300 SL");
+                namesList.add("Citroen DS");
+                namesList.add("Porsche 356 Speedster");
+                namesList.add("1969 Mercedes-Benz 280SL Roadster");
+                namesList.add("Acura Legend");
+                namesList.add("Land Rover Defender");
+                namesList.add("Ferrari 250 GTO");
+                namesList.add("Lamborghini Miura");
+                namesList.add("Bugatti Veyron EB 16.4");
+                namesList.add("Porsche 911");
+                namesList.add("Volkswagen Golf");
+                namesList.add("Ferrari Enzo");
+                namesList.add("Lamborghini LM002");
+                namesList.add("Bentley Blower");
+                namesList.add("Lancia Stratos");
+                namesList.add("Ferrari 288 GTO");
+                namesList.add("Bonus: Alfa Romeo 8C Competizione");
+                namesList.add("Porsche 928 S4");
+                namesList.add("Bentley Embiricos");
+                namesList.add("Jaguar XJ220");
+                namesList.add("1969 Chevrolet Camaro");
+                namesList.add("Ford Model T");
+                namesList.add("Porsche 550 Spyder");
+                namesList.add("1957 Chevrolet Bel-Air");
+                namesList.add("Bentley Continental");
+                namesList.add("Ferrari Dino");
+                namesList.add("Ford F100");
+                namesList.add("1953 Chevrolet Corvette");
+                namesList.add("1960 Ford Bronco");
+                namesList.add("1978 Firebird Trans Am Special Edition");
+                namesList.add("Jaguar XJ6");
+                namesList.add("Maserati Merak");
+                namesList.add("Lotus Esprit Turbo");
+                namesList.add("Lamborghini 350GT");
+                namesList.add("BMW 507");
+                namesList.add("Mercedes McLaren SLR");
+                namesList.add("1959 Cadillac Eldorado");
+                namesList.add("Acura Integra");
+                namesList.add("Honda Civic");
+                namesList.add("Lamborghini Murcielago");
+                namesList.add("Lamborghini Aventador");
+                namesList.add("BMW M5");
+                namesList.add("Jaguar XK120");
+                namesList.add("1959 Pontiac Bonneville");
+                namesList.add("Ferrari F50");
+                namesList.add("1970 Plymouth Hemi Cuda");
+                namesList.add("Rolls-Royce Dawn Drophead");
+                namesList.add("Mercedes SL 300 Gullwing");
+                namesList.add("BMW 3.0 CSL");
+                namesList.add("Shelby GT350");
+                namesList.add("Dodge Viper GTS");
+                namesList.add("DeTomaso Pantera");
+                namesList.add("Cizeta-Moroder V16T");
+                namesList.add("Ferrari 308 GTS");
+                namesList.add("Fiat 124 Spider");
+                namesList.add("Austin-Healey 3000");
+                namesList.add("Vintage Jeep");
+
+                Max = namesList.size();
+
+                rndNum = (int) (Math.random() * (Max - Min));
+
+                timerText.setVisibility(View.GONE);
+                foreheadText.setVisibility(View.GONE);
+                secondTimerText.setVisibility(View.VISIBLE);
+                guessesText.setVisibility(View.VISIBLE);
+
+                guessesText.setText(namesList.get(rndNum));
+                startTimer();
+
+                gyroscope = new Gyroscope(this);
+
+                gyroscope.register();
+
+                gyroscope.setListener(new Gyroscope.Listener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onRotation(float rx, float ry, float rz) {
+                        if (ry > 8.0) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                                backgroundColor = "red";
+                                textIncorrect = (String) guessesText.getText();
+                                guessesText.setText("Pass");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textIncorrect);
+                                        incorrectList.add(textIncorrect);
+                                        namesList.remove(index);
+                                        incorrectCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if (backgroundColor.equals("green")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                            }
+                        } else if (ry < -8.0f) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                                backgroundColor = "green";
+                                textCorrect = (String) guessesText.getText();
+                                guessesText.setText("Correct");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textCorrect);
+                                        correctList.add(textCorrect);
+                                        namesList.remove(index);
+                                        correctCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if(backgroundColor.equals("red")){
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                            }
+                        }
+                    }
+                });
+                break;
+            case "Youtube Gamers":
+                namesList = new ArrayList<>();
+
+                namesList.add("PewDiePie");
+                namesList.add("JuegaGerman");
+                namesList.add("ElRubius’s");
+                namesList.add("MrBeast");
+                namesList.add("Fernanfloo");
+                namesList.add("VEGETTA777");
+                namesList.add("rezendeevil");
+                namesList.add("Markiplier");
+                namesList.add("VanossGaming ");
+                namesList.add("Jacksepticeye");
+                namesList.add("Ninja");
+                namesList.add("DanTDM");
+                namesList.add("CarryMinati");
+                namesList.add("Sssniperwolf");
+                namesList.add("A4");
+                namesList.add("AuthenticGames");
+                namesList.add("Jelly");
+                namesList.add("TheWillyrex");
+                namesList.add("Ali-A");
+                namesList.add("PopularMMOs");
+                namesList.add("EeOneGuy");
+                namesList.add("TheDonato");
+                namesList.add("Mikecrack");
+                namesList.add("Jess No Limit");
+                namesList.add("Faze Rug");
+                namesList.add("Clash of Clans");
+                namesList.add("FGTeeV");
+                namesList.add("Guava Juice");
+                namesList.add("Willyrex");
+                namesList.add("W2S");
+                namesList.add("LazarBeam");
+                namesList.add("SQUEEZIE");
+                namesList.add("SSundee");
+                namesList.add("TheGrefg");
+                namesList.add("Minecraft");
+                namesList.add("IGN");
+                namesList.add("CookieSwirlC");
+                namesList.add("AM3NIC");
+                namesList.add("Lachlan");
+                namesList.add("Marmok");
+                namesList.add("PDK Films");
+                namesList.add("Kwebbelkop");
+                namesList.add("Makiman131");
+                namesList.add("Enes Batur");
+                namesList.add("The Game Theorists");
+                namesList.add("Antrax");
+                namesList.add("League of Legends");
+                namesList.add("H2ODelirious");
+                namesList.add("AzzyLand");
+                namesList.add("iTownGamePlay");
+                namesList.add("Frost Diamond");
+                namesList.add("Tfue");
+                namesList.add("TazerCraft");
+                namesList.add("Robin Hood Gamer");
+                namesList.add("theRadBrad");
+                namesList.add("Alan Becker");
+                namesList.add("RobleisIUTU");
+                namesList.add("PlayHard");
+                namesList.add("Zbing z.");
+                namesList.add("Morgz");
+                namesList.add("Playstation");
+                namesList.add("luzugames");
+                namesList.add("CaptainSparklez");
+                namesList.add("MiawAug");
+                namesList.add("Arab Games Network");
+                namesList.add("DaniRep");
+                namesList.add("BCC Trolling");
+                namesList.add("Coisa de Nerd");
+                namesList.add("BuzzFeedBlue");
+                namesList.add("Jazzghost");
+                namesList.add("The Syndicate Project");
+                namesList.add("Dudu Moura");
+                namesList.add("Piuzinho");
+                namesList.add("stampylonghead");
+                namesList.add("ElTrollino");
+                namesList.add("Typical Gamer");
+                namesList.add("Unspeakable Gaming");
+                namesList.add("Fortnite");
+                namesList.add("JJ Olatunji");
+                namesList.add("Lipao Gamer");
+                namesList.add("Muselk");
+                namesList.add("RocketJump");
+                namesList.add("Raditya Dika");
+                namesList.add("FROST");
+                namesList.add("Kuplinov");
+                namesList.add("Cris Devil Gamer");
+                namesList.add("Miniminter");
+                namesList.add("JP Plays");
+                namesList.add("Denis");
+                namesList.add("ПОЗЗИ");
+                namesList.add("ALEXBY11");
+                namesList.add("BRKsEDU");
+                namesList.add("Hueva");
+                namesList.add("VyacheslavOO");
+                namesList.add("NOBRU");
+                namesList.add("TheBrainDit");
+                namesList.add("Slogoman");
+                namesList.add("Total Gaming");
+                namesList.add("Gameplayrj");
+                namesList.add("GamesEduUu");
+                namesList.add("Panda");
+                namesList.add("JoshDub");
+                namesList.add("TommyInnit");
+                namesList.add("BoomSniper");
+                namesList.add("InquisitorMaster");
+                namesList.add("WiederDude");
+                namesList.add("Rendy Rangers");
+                namesList.add("LetDa Hyper");
+                namesList.add("Julia MineGirl");
+                namesList.add("Mythpat");
+                namesList.add("MrStiven Tc");
+                namesList.add("WILDCAT");
+                namesList.add("Antronixx G");
+                namesList.add("AWE me");
+                namesList.add("GeorgeNotFound");
+                namesList.add("KjraGaming");
+                namesList.add("Thinknoodles");
+                namesList.add("Crainer");
+                namesList.add("GamingWithKev");
+                namesList.add("ItsFunneh");
+                namesList.add("TWO SIDE GAMERS");
+                namesList.add("Fresh");
+                namesList.add("Mumbo Jumbo");
+                namesList.add("Black Plasma Studios");
+                namesList.add("Technoblade");
+                namesList.add("MikelTube");
+                namesList.add("YOGSCAST Lewis & Simon");
+                namesList.add("Vikkstar123");
+                namesList.add("LankyBox");
+                namesList.add("alanzoka");
+                namesList.add("iHasCupquake");
+                namesList.add("MoreAliA");
+                namesList.add("McCreamy");
+                namesList.add("DjMaRiiO");
+                namesList.add("Shroud");
+                namesList.add("Ceeday");
+                namesList.add("Vіdеоgаmеdunkеу");
+                namesList.add("Pokimane");
+                namesList.add("Grian");
+                namesList.add("Sernandoe");
+                namesList.add("Gameranx");
+                namesList.add("Gloom");
+                namesList.add("MortaL");
+                namesList.add("Daz Games");
+                namesList.add("Faze Apex");
+                namesList.add("TobyGames");
+                namesList.add("Speedyw03");
+                namesList.add("Manucraft");
+                namesList.add("LispyJimmy");
+                namesList.add("LDShadowLady");
+
+                Max = namesList.size();
+
+                rndNum = (int) (Math.random() * (Max - Min));
+
+                timerText.setVisibility(View.GONE);
+                foreheadText.setVisibility(View.GONE);
+                secondTimerText.setVisibility(View.VISIBLE);
+                guessesText.setVisibility(View.VISIBLE);
+
+                guessesText.setText(namesList.get(rndNum));
+                startTimer();
+
+                gyroscope = new Gyroscope(this);
+
+                gyroscope.register();
+
+                gyroscope.setListener(new Gyroscope.Listener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onRotation(float rx, float ry, float rz) {
+                        if (ry > 8.0) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                                backgroundColor = "red";
+                                textIncorrect = (String) guessesText.getText();
+                                guessesText.setText("Pass");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textIncorrect);
+                                        incorrectList.add(textIncorrect);
+                                        namesList.remove(index);
+                                        incorrectCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if (backgroundColor.equals("green")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                            }
+                        } else if (ry < -8.0f) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                                backgroundColor = "green";
+                                textCorrect = (String) guessesText.getText();
+                                guessesText.setText("Correct");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textCorrect);
+                                        correctList.add(textCorrect);
+                                        namesList.remove(index);
+                                        correctCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if(backgroundColor.equals("red")){
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                            }
+                        }
+                    }
+                });
+                break;
+            case "Makeup Items":
+                namesList = new ArrayList<>();
+
+                namesList.add("Face primers");
+                namesList.add("Foundation");
+                namesList.add("CC cream");
+                namesList.add("Concealer");
+                namesList.add("Blush");
+                namesList.add("Highlighter");
+                namesList.add("Bronzer");
+                namesList.add("Setting Spray");
+                namesList.add("Loose Powder");
+                namesList.add("Contour");
+                namesList.add("Eye primer");
+                namesList.add("EyeShadow");
+                namesList.add("Mascara");
+                namesList.add("Eyeliner");
+                namesList.add("Eyebrow Gel");
+                namesList.add("Lip gloss");
+                namesList.add("Lipstick");
+                namesList.add("Brush");
+                namesList.add("Sponge");
+                namesList.add("Mirror");
+                namesList.add("Nail Polish");
+                namesList.add("Lip liner");
+                namesList.add("Lashes");
+                namesList.add("Kajal");
+                namesList.add("Eyelash curler");
+                namesList.add("Q-tips");
+                namesList.add("Color Correctors");
+                namesList.add("Lotion");
+                namesList.add("Cream");
+
+                Max = namesList.size();
+
+                rndNum = (int) (Math.random() * (Max - Min));
+
+                timerText.setVisibility(View.GONE);
+                foreheadText.setVisibility(View.GONE);
+                secondTimerText.setVisibility(View.VISIBLE);
+                guessesText.setVisibility(View.VISIBLE);
+
+                guessesText.setText(namesList.get(rndNum));
+                startTimer();
+
+                gyroscope = new Gyroscope(this);
+
+                gyroscope.register();
+
+                gyroscope.setListener(new Gyroscope.Listener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onRotation(float rx, float ry, float rz) {
+                        if (ry > 8.0) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                                backgroundColor = "red";
+                                textIncorrect = (String) guessesText.getText();
+                                guessesText.setText("Pass");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textIncorrect);
+                                        incorrectList.add(textIncorrect);
+                                        namesList.remove(index);
+                                        incorrectCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if (backgroundColor.equals("green")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                            }
+                        } else if (ry < -8.0f) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                                backgroundColor = "green";
+                                textCorrect = (String) guessesText.getText();
+                                guessesText.setText("Correct");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textCorrect);
+                                        correctList.add(textCorrect);
+                                        namesList.remove(index);
+                                        correctCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if(backgroundColor.equals("red")){
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                            }
+                        }
+                    }
+                });
+                break;
+            case "Fruits":
+                namesList = new ArrayList<>();
+
+                namesList.add("Apple");
+                namesList.add("Watermelon");
+                namesList.add("Orange");
+                namesList.add("Pear");
+                namesList.add("Cherry");
+                namesList.add("Strawberry");
+                namesList.add("Nectarine");
+                namesList.add("Grape");
+                namesList.add("Mango");
+                namesList.add("Blueberry");
+                namesList.add("Pomegranate");
+                namesList.add("Plum");
+                namesList.add("Banana");
+                namesList.add("Raspberry");
+                namesList.add("Mandarin");
+                namesList.add("Jackfruit");
+                namesList.add("Papaya");
+                namesList.add("Kiwi");
+                namesList.add("Pineapple");
+                namesList.add("Lime");
+                namesList.add("Lemon");
+                namesList.add("Apricot");
+                namesList.add("Grapefruit");
+                namesList.add("Melon");
+                namesList.add("Coconut");
+                namesList.add("Avocado");
+                namesList.add("Peach");
+                namesList.add("Blackcurrant");
+                namesList.add("Cherry");
+                namesList.add("Fig");
+                namesList.add("Lychee");
+                namesList.add("Quince");
+                namesList.add("Guava");
+                namesList.add("Pomelo");
+                namesList.add("Tamarillo");
+                namesList.add("Curuba");
+                namesList.add("Soursop");
+                namesList.add("Uchuva");
+                namesList.add("Rambutan");
+                namesList.add("Amla");
+                namesList.add("Butternut squash");
+                namesList.add("Clementines");
+                namesList.add("Dates");
+                namesList.add("Olives");
+                namesList.add("Peppers");
+                namesList.add("Pumpkins");
+                namesList.add("Raisins");
+                namesList.add("Tomatoes");
+                namesList.add("Zucchini");
+                namesList.add("Sugarcane");
+
+                Max = namesList.size();
+
+                rndNum = (int) (Math.random() * (Max - Min));
+
+                timerText.setVisibility(View.GONE);
+                foreheadText.setVisibility(View.GONE);
+                secondTimerText.setVisibility(View.VISIBLE);
+                guessesText.setVisibility(View.VISIBLE);
+
+                guessesText.setText(namesList.get(rndNum));
+                startTimer();
+
+                gyroscope = new Gyroscope(this);
+
+                gyroscope.register();
+
+                gyroscope.setListener(new Gyroscope.Listener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onRotation(float rx, float ry, float rz) {
+                        if (ry > 8.0) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                                backgroundColor = "red";
+                                textIncorrect = (String) guessesText.getText();
+                                guessesText.setText("Pass");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textIncorrect);
+                                        incorrectList.add(textIncorrect);
+                                        namesList.remove(index);
+                                        incorrectCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if (backgroundColor.equals("green")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                            }
+                        } else if (ry < -8.0f) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                                backgroundColor = "green";
+                                textCorrect = (String) guessesText.getText();
+                                guessesText.setText("Correct");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textCorrect);
+                                        correctList.add(textCorrect);
+                                        namesList.remove(index);
+                                        correctCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if(backgroundColor.equals("red")){
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                            }
+                        }
+                    }
+                });
+                break;
+            case "Body Parts":
+                namesList = new ArrayList<>();
+
+                namesList.add("Head");
+                namesList.add("Face");
+                namesList.add("Hair");
+                namesList.add("Ear");
+                namesList.add("Neck");
+                namesList.add("Forehead");
+                namesList.add("Beard");
+                namesList.add("Eye");
+                namesList.add("Nose");
+                namesList.add("Mouth");
+                namesList.add("Chin");
+                namesList.add("Shoulder");
+                namesList.add("Elbow");
+                namesList.add("Arm");
+                namesList.add("Chest");
+                namesList.add("Armpit");
+                namesList.add("Forearm");
+                namesList.add("Wrist");
+                namesList.add("Back");
+                namesList.add("Navel");
+                namesList.add("Toes");
+                namesList.add("Ankle");
+                namesList.add("Instep");
+                namesList.add("Toenail");
+                namesList.add("Waist");
+                namesList.add("Abdomen");
+                namesList.add("Buttock");
+                namesList.add("Hip");
+                namesList.add("Leg");
+                namesList.add("Thigh");
+                namesList.add("Knee");
+                namesList.add("Foot");
+                namesList.add("Hand");
+                namesList.add("Thumb");
+                namesList.add("Eyelash");
+                namesList.add("Temple");
+                namesList.add("Iris");
+                namesList.add("Cheek");
+                namesList.add("Nostril");
+                namesList.add("Lip");
+                namesList.add("Eyebrow");
+                namesList.add("Eyelid");
+                namesList.add("Jaw");
+                namesList.add("Moustache");
+                namesList.add("Mole");
+                namesList.add("Thumb");
+                namesList.add("Index finger");
+                namesList.add("Middle finger");
+                namesList.add("Ring finger");
+                namesList.add("Little finger");
+                namesList.add("Palm");
+                namesList.add("Knuckle");
+                namesList.add("Fingernail");
+                namesList.add("Heart");
+                namesList.add("Lungs");
+                namesList.add("Liver");
+                namesList.add("Stomach");
+                namesList.add("Kidneys");
+                namesList.add("Tongue");
+                namesList.add("Teeth");
+                namesList.add("Earlobe");
+                namesList.add("Heel");
+                namesList.add("Sideburns");
+                namesList.add("Throat");
+
+                Max = namesList.size();
+
+                rndNum = (int) (Math.random() * (Max - Min));
+
+                timerText.setVisibility(View.GONE);
+                foreheadText.setVisibility(View.GONE);
+                secondTimerText.setVisibility(View.VISIBLE);
+                guessesText.setVisibility(View.VISIBLE);
+
+                guessesText.setText(namesList.get(rndNum));
+                startTimer();
+
+                gyroscope = new Gyroscope(this);
+
+                gyroscope.register();
+
+                gyroscope.setListener(new Gyroscope.Listener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onRotation(float rx, float ry, float rz) {
+                        if (ry > 8.0) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                                backgroundColor = "red";
+                                textIncorrect = (String) guessesText.getText();
+                                guessesText.setText("Pass");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textIncorrect);
+                                        incorrectList.add(textIncorrect);
+                                        namesList.remove(index);
+                                        incorrectCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if (backgroundColor.equals("green")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                            }
+                        } else if (ry < -8.0f) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                                backgroundColor = "green";
+                                textCorrect = (String) guessesText.getText();
+                                guessesText.setText("Correct");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textCorrect);
+                                        correctList.add(textCorrect);
+                                        namesList.remove(index);
+                                        correctCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if(backgroundColor.equals("red")){
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                            }
+                        }
+                    }
+                });
+                break;
+            case "Tools":
+                namesList = new ArrayList<>();
+
+                namesList.add("Bolt");
+                namesList.add("Nail");
+                namesList.add("Screwdriver");
+                namesList.add("Bradawl");
+                namesList.add("Handsaw");
+                namesList.add("Nut");
+                namesList.add("Screw");
+                namesList.add("Wrench");
+                namesList.add("Backsaw");
+                namesList.add("Mallet");
+                namesList.add("Hammer");
+                namesList.add("Coping saw");
+                namesList.add("Hacksaw");
+                namesList.add("Spirit level");
+                namesList.add("Pocketknife");
+                namesList.add("Scissors");
+                namesList.add("Chainsaw");
+                namesList.add("Brace");
+                namesList.add("Lineman’s pliers");
+                namesList.add("Toolbox");
+                namesList.add("Electric drill");
+                namesList.add("Corkscrew");
+                namesList.add("Diagonal pliers");
+                namesList.add("Tape measure");
+                namesList.add("Plunger");
+                namesList.add("Caulking gun");
+                namesList.add("Caulking gun");
+                namesList.add("Stepladder");
+                namesList.add("Needle nose pliers");
+                namesList.add("Axe");
+                namesList.add("Saw");
+                namesList.add("Chisel");
+                namesList.add("Tape measure");
+                namesList.add("Circular saw");
+                namesList.add("Soldering iron");
+                namesList.add("Nail gun");
+                namesList.add("Spade");
+                namesList.add("Shovel");
+                namesList.add("Hoe");
+                namesList.add("Trowel");
+                namesList.add("Lawnmower");
+                namesList.add("Pruning shears");
+                namesList.add("Monkey wrench");
+                namesList.add("Plane");
+                namesList.add("Scraper");
+                namesList.add("Coping saw");
+                namesList.add("Paint thinner");
+                namesList.add("Anvil");
+                namesList.add("Sandpaper");
+                namesList.add("Workbench");
+                namesList.add("Sharpening stone");
+                namesList.add("Vise / clamp");
+                namesList.add("Lathes");
+                namesList.add("Compressor");
+                namesList.add("Tool belts");
+                namesList.add("Drywall anchors");
+                namesList.add("Lawn edging");
+                namesList.add("Utility Knife");
+                namesList.add("Moisture Meter");
+                namesList.add("Sliding Bevel");
+                namesList.add("Layout Square");
+                namesList.add("Safety goggles");
+                namesList.add("Thickness gauge");
+                namesList.add("Torch lighter");
+                namesList.add("Wire strippers");
+                namesList.add("Grafting tool");
+                namesList.add("Compass");
+                namesList.add("Broom");
+                namesList.add("Crow Bar");
+                namesList.add("Clippers");
+                namesList.add("Diamond Point");
+                namesList.add("Edger");
+                namesList.add("Fire Extinguisher");
+                namesList.add("Glue Gun");
+                namesList.add("Gavel");
+                namesList.add("Gimlet");
+                namesList.add("Icebreaker");
+                namesList.add("Jigsaw");
+                namesList.add("Roller");
+                namesList.add("Rake");
+                namesList.add("Stapler");
+                namesList.add("Tweezers");
+                namesList.add("Wimble");
+                namesList.add("Spanner");
+                namesList.add("File");
+                namesList.add("Fork");
+                namesList.add("Tester");
+                namesList.add("Allen key");
+                namesList.add("Teflon tape");
+                namesList.add("Flange");
+                namesList.add("Jumper");
+                namesList.add("Centre punch");
+                namesList.add("Sander");
+                namesList.add("Lug nuts");
+                namesList.add("Wheelbarrow");
+                namesList.add("Jackhammer");
+                namesList.add("Box cutter");
+                namesList.add("Grinder");
+                namesList.add("Lathe");
+
+                Max = namesList.size();
+
+                rndNum = (int) (Math.random() * (Max - Min));
+
+                timerText.setVisibility(View.GONE);
+                foreheadText.setVisibility(View.GONE);
+                secondTimerText.setVisibility(View.VISIBLE);
+                guessesText.setVisibility(View.VISIBLE);
+
+                guessesText.setText(namesList.get(rndNum));
+                startTimer();
+
+                gyroscope = new Gyroscope(this);
+
+                gyroscope.register();
+
+                gyroscope.setListener(new Gyroscope.Listener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onRotation(float rx, float ry, float rz) {
+                        if (ry > 8.0) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                                backgroundColor = "red";
+                                textIncorrect = (String) guessesText.getText();
+                                guessesText.setText("Pass");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textIncorrect);
+                                        incorrectList.add(textIncorrect);
+                                        namesList.remove(index);
+                                        incorrectCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if (backgroundColor.equals("green")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                            }
+                        } else if (ry < -8.0f) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                                backgroundColor = "green";
+                                textCorrect = (String) guessesText.getText();
+                                guessesText.setText("Correct");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textCorrect);
+                                        correctList.add(textCorrect);
+                                        namesList.remove(index);
+                                        correctCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if(backgroundColor.equals("red")){
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                            }
+                        }
+                    }
+                });
+                break;
+            case "Disney Characters":
+                namesList = new ArrayList<>();
+
+                namesList.add("Abby — Chicken Little");
+                namesList.add("Abigail — The Aristocats");
+                namesList.add("Abu — Aladdin");
+                namesList.add("Adelaide — The Aristocats");
+                namesList.add("Adella — The Little Mermaid");
+                namesList.add("Akela — The Jungle Book");
+                namesList.add("Aladdin — Aladdin");
+                namesList.add("Alcmene — Hercules");
+                namesList.add("Alice — Alice in Wonderland");
+                namesList.add("Amelia — The Aristocats");
+                namesList.add("Amos — The Fox and the Hound");
+                namesList.add("Andrina — The Little Mermaid");
+                namesList.add("Andy — Toy Story");
+                namesList.add("Anna — Frozen");
+                namesList.add("Antonio — Encanto");
+                namesList.add("Apollo — Hercules");
+                namesList.add("Aquata — The Little Mermaid");
+                namesList.add("Ariel —The Little Mermaid");
+                namesList.add("Arthur — The Sword in the Stone");
+                namesList.add("Aurora — Sleeping Beauty");
+                namesList.add("Babette — Beauty and the Beast");
+                namesList.add("Bagheera — The Jungle Book");
+                namesList.add("Bailey — Finding Nemo");
+                namesList.add("Bambi — Bambi");
+                namesList.add("Banzai — The Lion King");
+                namesList.add("Bashful — Snow White and the Seven Dwarfs");
+                namesList.add("Beast — Beauty and the Beast");
+                namesList.add("Beatrice — Cinderella");
+                namesList.add("Beaver — Lady and the Tramp");
+                namesList.add("Belle — Beauty and the Beast");
+                namesList.add("Ben — Descendants");
+                namesList.add("Berlioz — The Aristocats");
+                namesList.add("Bert — Mary Poppins");
+                namesList.add("Bolt — Bolt");
+                namesList.add("Bruce — Finding Nemo");
+                namesList.add("Bruno — Encanto");
+                namesList.add("Buster — Lady and the Tramp");
+                namesList.add("Buzz Lightyear— Toy Story");
+                namesList.add("Camilo — Encanto");
+                namesList.add("Candlewick — Pinocchio");
+                namesList.add("Captain Hook — Peter Pan");
+                namesList.add("Chad — Descendants");
+                namesList.add("Charles — Up");
+                namesList.add("Charlotte — The Princess and the Frog");
+                namesList.add("Chernabog — Fantasia");
+                namesList.add("Chief — The Fox and the Hound");
+                namesList.add("Chien-Po — Mulan");
+                namesList.add("Chip — Beauty and the Beast");
+                namesList.add("Christopher Robin — Winnie the Pooh");
+                namesList.add("Chuck — Amphibia");
+                namesList.add("Cinderella — Cinderella");
+                namesList.add("Clayton — Tarzan");
+                namesList.add("Cleo — Pinocchio");
+                namesList.add("Coco — Coco");
+                namesList.add("Cogsworth — Beauty and the Beast");
+                namesList.add("Colette — Lady and the Tramp II");
+                namesList.add("Cookie — Atlantis: The Lost Empire");
+                namesList.add("Copper — The Fox and the Hound");
+                namesList.add("Count Frollo — The Hunchback of Notre Dame");
+                namesList.add("Cruella de Vil — 101 Dalmatians");
+                namesList.add("Daisy — Classic Disney cartoon");
+                namesList.add("Darla — Finding Nemo");
+                namesList.add("Destiny — Finding Nemo");
+                namesList.add("Dewey — Mickey Mouse Universe");
+                namesList.add("Dinah — Alice in Wonderland");
+                namesList.add("Dizzy — Descendants");
+                namesList.add("Doc — Snow White and the Seven Dwarfs");
+                namesList.add("Dodger — Oliver & Company");
+                namesList.add("Donald — Mickey Mouse Universe");
+                namesList.add("Dopey — Snow White and the Seven Dwarfs");
+                namesList.add("Dory — Finding Nemo");
+                namesList.add("Drizella — Cinderella");
+                namesList.add("Duchess — The Aristocats");
+                namesList.add("Duey — DuckTales");
+                namesList.add("Duke — Zootopia");
+                namesList.add("Dumbo — Dumbo");
+                namesList.add("Ed — The Lion King");
+                namesList.add("Eeyore — Winnie the Pooh");
+                namesList.add("Ellie — Up");
+                namesList.add("Elliot — Pete’s Dragon");
+                namesList.add("Elsa — Frozen");
+                namesList.add("Enesto — Coco");
+                namesList.add("Esmeralda — The Hunchback of Notre Dame");
+                namesList.add("Eudora — The Princess and the Frog");
+                namesList.add("Eugene — Tangled");
+                namesList.add("Evie — Descendants");
+                namesList.add("Evil Queen — Snow White and the Seven Dwarves");
+                namesList.add("Fauna — Sleeping Beauty");
+                namesList.add("Fa Zhou — Mulan");
+                namesList.add("Felix – Wreck-It Ralph");
+                namesList.add("Figaro — Pinocchio");
+                namesList.add("Finnick — Zootopia");
+                namesList.add("Flit — Pocahontas");
+                namesList.add("Flora — Sleeping Beauty");
+                namesList.add("Flounder — The Little Mermaid");
+                namesList.add("Flower — Bambi");
+                namesList.add("Flynn — Tangled");
+                namesList.add("Gaston — Beauty and the Beast");
+                namesList.add("Genie — Aladdin");
+                namesList.add("George Banks — Mary Poppins");
+                namesList.add("Geppetto — Pinocchio");
+                namesList.add("Giselle — Enchanted");
+                namesList.add("Goofy — Classic Disney cartoons");
+                namesList.add("Grumpy — Snow White and the Seven Dwarfs");
+                namesList.add("Gus — Cinderella");
+                namesList.add("Hamm — Toy Story");
+                namesList.add("Hans — Frozen");
+                namesList.add("Happy — Snow White and the Seven Dwarfs");
+                namesList.add("Hector — Coco");
+                namesList.add("Hei Hei — Moana");
+                namesList.add("Hercules — Hercules");
+                namesList.add("Hewey — DuckTales");
+                namesList.add("Hiro — Big Hero 6");
+                namesList.add("Horace — 101 Dalmatians");
+                namesList.add("Hugo — The Hunchback of Notre Dome");
+                namesList.add("Iago — Aladdin");
+                namesList.add("Imelda — Coco");
+                namesList.add("Isabela — Encanto");
+                namesList.add("Jack — The Nightmare Before Christmas");
+                namesList.add("Jafer — Aladdin");
+                namesList.add("Jane — Tarzan");
+                namesList.add("Jane Banks — Mary Poppins");
+                namesList.add("Jaq — Cinderella");
+                namesList.add("Jasmine — Aladdin");
+                namesList.add("Jasper — 101 Dalmatians");
+                namesList.add("Jessie — Toy Story 2");
+                namesList.add("Jim Hawkins — Treasure Planet");
+                namesList.add("Jimmy — Pinocchio");
+                namesList.add("John Smith — Pocahontas");
+                namesList.add("Judy — Zootopia");
+                namesList.add("Kaa — The Jungle Book");
+                namesList.add("Kala — Tarzan");
+                namesList.add("Kanga — Winnie the Pooh");
+                namesList.add("Kristoff — Frozen");
+                namesList.add("Kuzco — The Emperor’s New Groove");
+                namesList.add("Lady — Lady and the Tramp");
+                namesList.add("Lady Kluck — Robin Hood");
+                namesList.add("LeFou — Beauty and the Beast");
+                namesList.add("Li Shang — Mulan");
+                namesList.add("Lilo — Lilo & Stitch");
+                namesList.add("Ling — Mulan");
+                namesList.add("Linguini — Ratatouille");
+                namesList.add("Louie — DuckTales");
+                namesList.add("Louis — The Princess and the Frog");
+                namesList.add("Lucky — 101 Dalmatians");
+                namesList.add("Luisa — Encanto");
+                namesList.add("Lumière — Beauty and the Beast");
+                namesList.add("Mal — The Descendants");
+                namesList.add("Mary Poppins — Mary Poppins");
+                namesList.add("Mad Hatter — Alice in Wonderland");
+                namesList.add("Marlin — Finding Nemo");
+                namesList.add("Maurice — Beauty and the Beast");
+                namesList.add("Maui — Moana");
+                namesList.add("Max — The Little Mermaid");
+                namesList.add("Meeko — Pocahontas");
+                namesList.add("Megara — Hercules ");
+                namesList.add("Meilin Lee — Turning Red");
+                namesList.add("Merida — Brave");
+                namesList.add("Merryweather — Sleeping Beauty");
+                namesList.add("Mickey — Classic Disney cartoons");
+                namesList.add("Michael Banks — Mary Poppins");
+                namesList.add("Mim — The Sword in the Stone");
+                namesList.add("Minnie — Classic Disney cartoons");
+                namesList.add("Moana — Moana");
+                namesList.add("Mowgli — The Jungle Book");
+                namesList.add("Mr. Potato Head — Toy Story");
+                namesList.add("Mrs. Potts — Beauty and the Beast");
+                namesList.add("Mufasa — The Lion King");
+                namesList.add("Mulan — Mulan");
+                namesList.add("Mushu — Mulan");
+                namesList.add("Nala — The Lion King");
+                namesList.add("Nana — Peter Pan");
+                namesList.add("Nani — Lilo & Stitch");
+                namesList.add("Nash — The Good Dinosaur");
+                namesList.add("Naveen — The Princess and the Frog");
+                namesList.add("Nemo — Finding Nemo");
+                namesList.add("Nora — Pete’s Dragon");
+                namesList.add("Oliver — Oliver & Company");
+                namesList.add("Oaken — Frozen");
+                namesList.add("Olaf — Frozen");
+                namesList.add("Pabbie — Frozen");
+                namesList.add("Pacha — The Emperor’s New Groove");
+                namesList.add("Pascal — Tangled");
+                namesList.add("Patch — 101 Dalmatians");
+                namesList.add("Peg — Landy and the Tramp");
+                namesList.add("Pegasus — Hercules");
+                namesList.add("Pepa — Encanto");
+                namesList.add("Peter Pan — Peter Pan");
+                namesList.add("Perdita — 101 Dalmatians");
+                namesList.add("Phoebus — The Hunchback of Notre Dame");
+                namesList.add("Piglet — Winnie the Pooh");
+                namesList.add("Pluto — Classic Disney cartoons");
+                namesList.add("Pocahontas — Pocahontas");
+                namesList.add("Pongo — 101 Dalmatians");
+                namesList.add("Prince Charming — Cinderella");
+                namesList.add("Prince Edward — Enchanted");
+                namesList.add("Prince Eric — The Little Mermaid");
+                namesList.add("Prince Philip — Sleeping Beauty");
+                namesList.add("Prudence — Cinderella");
+                namesList.add("Pua — Moana");
+                namesList.add("Pumbaa — The Lion King");
+                namesList.add("Quasimodo — The Hunchback of Notre Dame");
+                namesList.add("Queen of Hearts — Alice in Wonderland");
+                namesList.add("Rafiki — The Lion King");
+                namesList.add("Rajah — Aladdin");
+                namesList.add("Rapunzel — Tangled");
+                namesList.add("Raya — Raya and the Last Dragon");
+                namesList.add("Remy — Ratatouille");
+                namesList.add("Rex — Toy Story");
+                namesList.add("Roger — 101 Dalmatians");
+                namesList.add("Rolly — 101 Dalmatians");
+                namesList.add("Roo — Winnie the Pooh");
+                namesList.add("Russell — Up");
+                namesList.add("Sally — The Nightmare Before Christmas");
+                namesList.add("Sarafina —The Lion King");
+                namesList.add("Scar — The Lion King");
+                namesList.add("Scuttle — The Little Mermaid");
+                namesList.add("Sebastian — The Little Mermaid");
+                namesList.add("Sgt. Tibbs — 101 Dalmatians");
+                namesList.add("Shenzi — The Lion King");
+                namesList.add("Shere Khan — The Jungle Book");
+                namesList.add("Sid — Toy Story");
+                namesList.add("Simba — The Lion King");
+                namesList.add("Sleepy — Snow White and the Seven Dwarfs");
+                namesList.add("Slink — Toy StorySmee — Peter Pan");
+                namesList.add("Sneezy — Snow White and the Seven Dwarfs");
+                namesList.add("Snow — Snow White and the Seven Dwarfs");
+                namesList.add("Stella — The Princess and the Frog");
+                namesList.add("Sven — Frozen");
+                namesList.add("Thumper— Bambi");
+                namesList.add("Tiana — The Princess and the Frog");
+                namesList.add("Tigger — Winnie the Pooh");
+                namesList.add("Timon — The Lion King");
+                namesList.add("Timothy Q. Mouse — Dumbo");
+                namesList.add("Tinker Bell — Peter Pan");
+                namesList.add("Triton — The Little Mermaid");
+                namesList.add("Tweedledum — Alice in Wonderland");
+                namesList.add("Ursula — The Little Mermaid");
+                namesList.add("Wendy — Peter Pan");
+                namesList.add("White Rabbit — Alice in Wonderland");
+                namesList.add("Winnie — Winnie the Pooh");
+                namesList.add("Woody — Toy Story");
+                namesList.add("Yzma — The Emperor’s New Groove");
+                namesList.add("Zazu — The Lion King");
+
+                Max = namesList.size();
+
+                rndNum = (int) (Math.random() * (Max - Min));
+
+                timerText.setVisibility(View.GONE);
+                foreheadText.setVisibility(View.GONE);
+                secondTimerText.setVisibility(View.VISIBLE);
+                guessesText.setVisibility(View.VISIBLE);
+
+                guessesText.setText(namesList.get(rndNum));
+                startTimer();
+
+                gyroscope = new Gyroscope(this);
+
+                gyroscope.register();
+
+                gyroscope.setListener(new Gyroscope.Listener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onRotation(float rx, float ry, float rz) {
+                        if (ry > 8.0) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                                backgroundColor = "red";
+                                textIncorrect = (String) guessesText.getText();
+                                guessesText.setText("Pass");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textIncorrect);
+                                        incorrectList.add(textIncorrect);
+                                        namesList.remove(index);
+                                        incorrectCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if (backgroundColor.equals("green")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                            }
+                        } else if (ry < -8.0f) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                                backgroundColor = "green";
+                                textCorrect = (String) guessesText.getText();
+                                guessesText.setText("Correct");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textCorrect);
+                                        correctList.add(textCorrect);
+                                        namesList.remove(index);
+                                        correctCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if(backgroundColor.equals("red")){
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                            }
+                        }
+                    }
+                });
+                break;
+            case "Brands":
+                namesList = new ArrayList<>();
+
+                namesList.add("Gucci");
+                namesList.add("Amazon");
+                namesList.add("Apple");
+                namesList.add("Google");
+                namesList.add("Microsoft");
+                namesList.add("Facebook");
+                namesList.add("Alibaba");
+                namesList.add("Visa");
+                namesList.add("McDonald's");
+                namesList.add("Mastercard");
+                namesList.add("Nike");
+                namesList.add("Coca-Cola");
+                namesList.add("Adidas");
+                namesList.add("Intel");
+                namesList.add("Canon");
+                namesList.add("Lego");
+                namesList.add("Nintendo");
+                namesList.add("Skype");
+                namesList.add("Adobe");
+                namesList.add("Nokia");
+                namesList.add("Sony");
+                namesList.add("Volkswagen");
+                namesList.add("ebay");
+                namesList.add("IBM");
+                namesList.add("Nikon");
+                namesList.add("Reebok");
+                namesList.add("Starbucks");
+                namesList.add("Virgin");
+                namesList.add("Durex");
+                namesList.add("Fanta");
+                namesList.add("Nivea");
+                namesList.add("HP");
+                namesList.add("Toyota");
+                namesList.add("Cisco");
+                namesList.add("Budweiser");
+                namesList.add("Disney");
+                namesList.add("AT&T");
+                namesList.add("Oracle");
+                namesList.add("Verizon");
+                namesList.add("Walmart");
+                namesList.add("SAP");
+                namesList.add("Mercedes-Benz");
+                namesList.add("Marlboro");
+                namesList.add("BMW");
+                namesList.add("American Express");
+                namesList.add("Honda");
+                namesList.add("L'Oréal");
+                namesList.add("Hermès");
+                namesList.add("Nescafe");
+                namesList.add("Home Depot");
+                namesList.add("Accenture");
+                namesList.add("Pepsi");
+                namesList.add("Frito-Lay");
+                namesList.add("IKEA");
+                namesList.add("Zara");
+                namesList.add("Gillette");
+                namesList.add("HSBC");
+                namesList.add("Audi");
+                namesList.add("J.P.Morgan");
+                namesList.add("Deloitte");
+                namesList.add("UPS");
+                namesList.add("Bank of America");
+                namesList.add("Chase");
+                namesList.add("Instagram");
+                namesList.add("Louis Vuitton");
+                namesList.add("General Electric");
+                namesList.add("YouTube");
+                namesList.add("Tesla");
+                namesList.add("Nissan");
+                namesList.add("Salesforce");
+                namesList.add("Philips");
+                namesList.add("Kellogg's");
+                namesList.add("Morgan Stanely");
+                namesList.add("Spotify");
+                namesList.add("Ferrari");
+                namesList.add("LinkedIn");
+                namesList.add("Johnson & Johnson");
+                namesList.add("Kia");
+                namesList.add("Panasonic");
+                namesList.add("Dior");
+                namesList.add("DHL");
+                namesList.add("Jack Daniel's");
+                namesList.add("Land Rover");
+                namesList.add("Tiffany & Co.");
+                namesList.add("Mini");
+                namesList.add("Uber");
+                namesList.add("Burberry");
+                namesList.add("Johnnie Walker");
+                namesList.add("Prada");
+                namesList.add("Zoom");
+                namesList.add("Verizon");
+                namesList.add("China Mobile");
+                namesList.add("Vodafone");
+                namesList.add("Shell");
+                namesList.add("Chevron");
+                namesList.add("Hitachi Group");
+                namesList.add("Target");
+                namesList.add("SoftBank");
+                namesList.add("Tesco");
+                namesList.add("Walgreens");
+                namesList.add("Tata");
+                namesList.add("Total");
+                namesList.add("Airbus");
+                namesList.add("Barclays");
+                namesList.add("Toshiba");
+                namesList.add("LG Group");
+                namesList.add("Cadbury");
+
+                Max = namesList.size();
+
+                rndNum = (int) (Math.random() * (Max - Min));
+
+                timerText.setVisibility(View.GONE);
+                foreheadText.setVisibility(View.GONE);
+                secondTimerText.setVisibility(View.VISIBLE);
+                guessesText.setVisibility(View.VISIBLE);
+
+                guessesText.setText(namesList.get(rndNum));
+                startTimer();
+
+                gyroscope = new Gyroscope(this);
+
+                gyroscope.register();
+
+                gyroscope.setListener(new Gyroscope.Listener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onRotation(float rx, float ry, float rz) {
+                        if (ry > 8.0) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                                backgroundColor = "red";
+                                textIncorrect = (String) guessesText.getText();
+                                guessesText.setText("Pass");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textIncorrect);
+                                        incorrectList.add(textIncorrect);
+                                        namesList.remove(index);
+                                        incorrectCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if (backgroundColor.equals("green")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                            }
+                        } else if (ry < -8.0f) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                                backgroundColor = "green";
+                                textCorrect = (String) guessesText.getText();
+                                guessesText.setText("Correct");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textCorrect);
+                                        correctList.add(textCorrect);
+                                        namesList.remove(index);
+                                        correctCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if(backgroundColor.equals("red")){
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                            }
+                        }
+                    }
+                });
+                break;
+            case "Cricket Players":
+                namesList = new ArrayList<>();
+
+                namesList.add("Virat Kohli");
+                namesList.add("Sachin Tendulkar");
+                namesList.add("M. S. Dhoni");
+                namesList.add("AB de Villiers");
+                namesList.add("Kapil Dev");
+                namesList.add("Shane Warne");
+                namesList.add("Sir Donald Bradman");
+                namesList.add("Viv Richards");
+                namesList.add("Wasim Akram");
+                namesList.add("Sunil Gavaskar");
+                namesList.add("Brian Lara");
+                namesList.add("Muttiah Muralitharan");
+                namesList.add("Ricky Ponting");
+                namesList.add("Kumar Sangakkara");
+                namesList.add("James Anderson");
+                namesList.add("Chris Gayle");
+                namesList.add("Jacques Kallis");
+                namesList.add("Anil Kumble");
+                namesList.add("Steve Smith");
+                namesList.add("Rohit Sharma");
+                namesList.add("Imran Khan");
+                namesList.add("Glenn McGrath");
+                namesList.add("Andrew Flintoff");
+                namesList.add("David Warner");
+                namesList.add("Dale Steyn");
+                namesList.add("Ian Botham");
+                namesList.add("Kane Williamson");
+                namesList.add("Adam Gilchrist");
+                namesList.add("Ben Stokes");
+                namesList.add("Curtly Ambrose");
+                namesList.add("Waqar Younis");
+                namesList.add("Yuvraj Singh");
+                namesList.add("Hashim Amla");
+                namesList.add("Alastair Cook");
+                namesList.add("Stuart Broad");
+                namesList.add("Usman Khawaja");
+                namesList.add("Mitchell Starc");
+                namesList.add("Phillip Hughes");
+                namesList.add("Jos Buttler");
+                namesList.add("Mohammad Azharuddin");
+                namesList.add("Lasith Malinga");
+                namesList.add("Ellyse Perry");
+                namesList.add("Courtney Walsh");
+                namesList.add("Glenn Maxwell");
+                namesList.add("Michael Clarke");
+                namesList.add("Rahul Dravid");
+                namesList.add("Brendon McCullum");
+                namesList.add("Faf du Plessis");
+                namesList.add("Sourav Ganguly");
+                namesList.add("Shikhar Dhawan");
+                namesList.add("Hansie Cronje");
+                namesList.add("Dennis Lillee");
+                namesList.add("Kevin Pietersen");
+                namesList.add("Sanath Jayasuriya");
+                namesList.add("Jonny Bairstow");
+                namesList.add("Ravichandran Ashwin");
+                namesList.add("Jasprit Bumrah");
+                namesList.add("Suresh Raina");
+                namesList.add("Dwayne Bravo");
+                namesList.add("Dinesh Karthik");
+                namesList.add("Mithali Raj");
+                namesList.add("Allan Border");
+                namesList.add("Sunil Narine");
+                namesList.add("Ravindra Jadeja");
+                namesList.add("Greg Chappell");
+                namesList.add("Allan Donald");
+                namesList.add("Virender Sehwag");
+                namesList.add("Steve Waugh");
+                namesList.add("Babar Azam");
+                namesList.add("Matthew Hayden");
+                namesList.add("Kagiso Rabada");
+                namesList.add("Jofra Archer");
+                namesList.add("Sir Garfield Sobers");
+                namesList.add("Andre Russell");
+                namesList.add("Shaheen Afridi");
+                namesList.add("Alyssa Healy");
+                namesList.add("Aaron Finch");
+                namesList.add("Kieron Pollard");
+                namesList.add("Andrew Symonds");
+                namesList.add("Ashleigh Barty");
+                namesList.add("Richard Hadlee");
+                namesList.add("Harbhajan Singh");
+                namesList.add("Shreyas Iyer");
+                namesList.add("Gautam Gambhir");
+                namesList.add("Martin Crowe");
+                namesList.add("Martin Guptill");
+                namesList.add("Malcolm Marshall");
+                namesList.add("Tillakaratne Dilshan");
+                namesList.add("Hardik Pandya");
+                namesList.add("Michael Hussey");
+                namesList.add("Shivnarine Chanderpaul");
+                namesList.add("Eoin Morgan");
+                namesList.add("Shane Watson");
+                namesList.add("Trent Boult");
+                namesList.add("Marnus Labuschagne");
+                namesList.add("Prithvi Shaw");
+                namesList.add("Mitchell Marsh");
+                namesList.add("Mohammed Shami");
+                namesList.add("Brett Lee");
+                namesList.add("Joe Root");
+                namesList.add("Ajinkya Rahane");
+                namesList.add("Ravi Shastri");
+                namesList.add("Shubman Gill");
+                namesList.add("Justin Langer");
+                namesList.add("Pat Cummins");
+                namesList.add("Bhuvneshwar Kumar");
+                namesList.add("Rashid Khan");
+                namesList.add("S. Sreesanth");
+                namesList.add("Shaun Marsh");
+                namesList.add("Imran Tahir");
+                namesList.add("Ajaz Patel");
+                namesList.add("Shaun Pollock");
+                namesList.add("Mohammad Hafeez");
+                namesList.add("Mujeeb Zadran");
+                namesList.add("Mansoor Ali Khan Pataudi");
+                namesList.add("Sandeep Lamichhane");
+                namesList.add("Shahid Afridi");
+                namesList.add("William Gilbert Grace");
+                namesList.add("David Gower");
+                namesList.add("Ross Taylor");
+                namesList.add("Yuzvendra Chahal");
+                namesList.add("Daniel Vettori");
+                namesList.add("Clive Lloyd");
+                namesList.add("Angelo Mathews");
+                namesList.add("Mark Boucher");
+                namesList.add("Graeme Smith");
+                namesList.add("Jason Holder");
+                namesList.add("Irfan Pathan");
+                namesList.add("Jonty Rhodes");
+                namesList.add("Geoffrey Boycott");
+                namesList.add("Tim Southee");
+                namesList.add("Morné Morkel");
+                namesList.add("Navjot Singh Sidhu");
+                namesList.add("Mohammad Nabi");
+                namesList.add("Michael Bevan");
+                namesList.add("Dean Jones");
+                namesList.add("Bob Willis");
+                namesList.add("Shoaib Akhtar");
+                namesList.add("Alex Carey");
+                namesList.add("Sanju Samson");
+                namesList.add("Bob Woolmer");
+                namesList.add("Rod Marsh");
+                namesList.add("Monty Panesar");
+                namesList.add("Andrew Strauss");
+                namesList.add("Darren Bravo");
+                namesList.add("Gary Kirsten");
+                namesList.add("Adam Zampa");
+                namesList.add("Mohammad Amir");
+                namesList.add("Shaun Tait");
+                namesList.add("JP Duminy");
+                namesList.add("Mark Waugh");
+                namesList.add("Mickey Arthur");
+                namesList.add("Chris Jordan");
+                namesList.add("Javed Miandad");
+                namesList.add("Devon Conway");
+                namesList.add("Robin Uthappa");
+                namesList.add("Mohammad Shahzad");
+                namesList.add("Javagal Srinath");
+                namesList.add("Ajantha Mendis");
+                namesList.add("Tony Greig");
+                namesList.add("Vinod Kambli");
+                namesList.add("Asghar Stanikzai");
+                namesList.add("Shardul Thakur");
+                namesList.add("James Pattinson");
+                namesList.add("Ian Healy");
+                namesList.add("Umesh Yadav");
+                namesList.add("Umesh Yadav");
+                namesList.add("Marvan Atapattu");
+                namesList.add("Rachin Ravindra");
+                namesList.add("Vernon Philander");
+                namesList.add("Jeff Thomson");
+                namesList.add("Lance Klusener");
+                namesList.add("Ashish Nehra");
+                namesList.add("Marlon Samuels");
+                namesList.add("Steve Bucknor");
+                namesList.add("Fred Trueman");
+                namesList.add("Damien Martyn");
+                namesList.add("David Lloyd");
+                namesList.add("Peter Siddle");
+                namesList.add("Murali Vijay");
+                namesList.add("Cheteshwar Pujara");
+                namesList.add("Mark Taylor");
+                namesList.add("Roger Binny");
+                namesList.add("Andrew Johns");
+                namesList.add("Michael Atherton");
+                namesList.add("Tim David");
+                namesList.add("Brad Hogg");
+                namesList.add("Mohammad Kaif");
+                namesList.add("Krishnamachari Srikkanth");
+                namesList.add("Shimron Hetmyer");
+                namesList.add("Inzamam-ul-Haq");
+                namesList.add("Ashton Agar");
+                namesList.add("K. L. Rahul");
+                namesList.add("David Boon");
+                namesList.add("Makhaya Ntini");
+                namesList.add("Rahkeem Cornwall");
+                namesList.add("Temba Bavuma");
+                namesList.add("Aravinda de Silva");
+                namesList.add("Kedar Jadhav");
+                namesList.add("Shane Bond");
+                namesList.add("Nasser Hussain");
+                namesList.add("Graeme Swann");
+                namesList.add("Shoaib Malik");
+                namesList.add("Chris Cairns");
+                namesList.add("Adam Voges");
+                namesList.add("Carlos Brathwaite");
+                namesList.add("Ambati Rayudu");
+                namesList.add("Sean Abbott");
+                namesList.add("Manish Pandey");
+                namesList.add("Stuart Binny");
+                namesList.add("Nathan Lyon");
+                namesList.add("Zaheer Khan");
+                namesList.add("Ish Sodhi");
+                namesList.add("Michael Holding");
+
+                Max = namesList.size();
+
+                rndNum = (int) (Math.random() * (Max - Min));
+
+                timerText.setVisibility(View.GONE);
+                foreheadText.setVisibility(View.GONE);
+                secondTimerText.setVisibility(View.VISIBLE);
+                guessesText.setVisibility(View.VISIBLE);
+
+                guessesText.setText(namesList.get(rndNum));
+                startTimer();
+
+                gyroscope = new Gyroscope(this);
+
+                gyroscope.register();
+
+                gyroscope.setListener(new Gyroscope.Listener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onRotation(float rx, float ry, float rz) {
+                        if (ry > 8.0) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                                backgroundColor = "red";
+                                textIncorrect = (String) guessesText.getText();
+                                guessesText.setText("Pass");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textIncorrect);
+                                        incorrectList.add(textIncorrect);
+                                        namesList.remove(index);
+                                        incorrectCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if (backgroundColor.equals("green")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                            }
+                        } else if (ry < -8.0f) {
+                            timerPause();
+                            if (backgroundColor.equals("purple")) {
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
+                                backgroundColor = "green";
+                                textCorrect = (String) guessesText.getText();
+                                guessesText.setText("Correct");
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int index = namesList.indexOf(textCorrect);
+                                        correctList.add(textCorrect);
+                                        namesList.remove(index);
+                                        correctCount++;
+                                        startTimer();
+                                        Max = namesList.size();
+                                        secondTimerText.setVisibility(View.VISIBLE);
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        backgroundColor = "purple";
+                                        int rndNum2 = (int) (Math.random() * (Max - Min));
+                                        guessesText.setText(namesList.get(rndNum2));
+                                    }
+                                }, 1000);
+                            } else if(backgroundColor.equals("red")){
+                                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
+                            }
+                        }
+                    }
+                });
+                break;
+
+            case "Football Players":
+                namesList = new ArrayList<>();
+
+                namesList.add("Lionel Messi");
+                namesList.add("Cristiano Ronaldo");
+                namesList.add("Xavi");
+                namesList.add("Andres Iniesta");
+                namesList.add("Zlatan Ibrahimovic");
+                namesList.add("Radamel Falcao");
+                namesList.add("Robin van Persie");
+                namesList.add("Andrea Pirlo");
+                namesList.add("Yaya Toure");
+                namesList.add("Edinson Cavani");
+                namesList.add("Sergio Aguero");
+                namesList.add("Vincent Kompany");
+                namesList.add("Gerard Pique");
+                namesList.add("Philipp Lahm");
+                namesList.add("Willian");
+                namesList.add("Marco Reus");
+                namesList.add("Franck Ribery");
+                namesList.add("Manuel Neuer");
+                namesList.add("Ashley Cole");
+                namesList.add("Wayne Rooney");
+                namesList.add("Juan Mata");
+                namesList.add("Thomas Muller");
+                namesList.add("Mario Götze");
+                namesList.add("Karim Benzema");
+                namesList.add("Cesc Fabregas");
+                namesList.add("Oscar");
+                namesList.add("Fernandinho");
+                namesList.add("Javier Mascherano");
+                namesList.add("Gareth Bale");
+                namesList.add("Javier Zanetti");
+                namesList.add("Daniele De Rossi");
+                namesList.add("Dani Alves");
+                namesList.add("Petr Cech");
+                namesList.add("Mats Hummels");
+                namesList.add("Carles Puyol");
+                namesList.add("Angel Di Maria");
+                namesList.add("Carlos Tevez");
+                namesList.add("Didier Drogba");
+                namesList.add("Giorgio Chiellini");
+                namesList.add("Marcelo");
+                namesList.add("Stephan El Shaarawy");
+                namesList.add("Toni Kroos");
+                namesList.add("Samuel Eto’o");
+                namesList.add("Jordi Alba");
+                namesList.add("Mario Gomez");
+                namesList.add("Arturo Vidal");
+                namesList.add("Eden Hazard");
+                namesList.add("James Rodriguez");
+                namesList.add("Ramires");
+                namesList.add("David Villa");
+                namesList.add("Klaas Jan Huntelaar");
+                namesList.add("Nemanja Vidic");
+                namesList.add("Joe Hart");
+                namesList.add("Arjen Robben");
+                namesList.add("Mario Balotelli");
+                namesList.add("Mathieu Valbuena");
+                namesList.add("Pierre-Emerick Aubameyang");
+                namesList.add("Robert Lewandowski");
+                namesList.add("Hernanes");
+                namesList.add("Pedro");
+                namesList.add("Santi Cazorla");
+                namesList.add("Christian Eriksen");
+                namesList.add("Ezequiel Lavezzi");
+                namesList.add("Joao Moutinho");
+                namesList.add("Mario Mandžukić");
+                namesList.add("Patrice Evra");
+                namesList.add("David Luiz");
+                namesList.add("Luka Modric");
+                namesList.add("Victor Wanyama");
+                namesList.add("Mapou Yanga-M'Biwa");
+                namesList.add("Hulk");
+                namesList.add("Darijo Srna");
+                namesList.add("Emmanuel Mayuka");
+                namesList.add("John Terry");
+                namesList.add("Kwadwo Asamoah");
+                namesList.add("Leonardo Bonucci");
+                namesList.add("Javier Pastore");
+                namesList.add("Henrikh Mkhitaryan");
+                namesList.add("Moussa Dembele");
+                namesList.add("Hatem Ben Arfa");
+                namesList.add("Samir Nasri");
+                namesList.add("Shinji Kagawa");
+                namesList.add("Wesley Sneijder");
+                namesList.add("Wesley Sneijder");
+                namesList.add("Pepe");
+                namesList.add("Marek Hamsik");
+                namesList.add("Javi Martinez");
+                namesList.add("Diego Forlan");
+                namesList.add("Paulinho");
+                namesList.add("Joe Hart");
+                namesList.add("Bastian Schweinsteiger");
+                namesList.add("Gianluigi Buffon");
+                namesList.add("Luis Suarez");
+                namesList.add("Sergio Ramos");
+                namesList.add("David Silva");
+                namesList.add("Mesut Ozil");
+                namesList.add("Thiago Silva");
+                namesList.add("Xabi Alonso");
+                namesList.add("Sergio Busquets");
+                namesList.add("Neymar");
+                namesList.add("Iker Casillas");
+                namesList.add("David Beckham");
+                namesList.add("Diego Maradona");
+                namesList.add("Harry Kane");
+                namesList.add("Ronaldinho");
+                namesList.add("Zinedine Zidane");
+                namesList.add("Pep Guardiola");
+                namesList.add("Thierry Henry");
+                namesList.add("Luka Modrić");
+                namesList.add("Kaká");
+                namesList.add("Andrés Iniesta");
+                namesList.add("Johan Cruyff");
+                namesList.add("George Best");
+                namesList.add("Francesco Totti");
+                namesList.add("Paolo Maldini");
+                namesList.add("Eric Cantona");
+                namesList.add("Alan Shearer");
+                namesList.add("Roy Keane");
+                namesList.add("Gary Lineker");
+                namesList.add("Peter Schmeichel");
+                namesList.add("Radamel Falcao");
+                namesList.add("Michael Owen");
+                namesList.add("Patrick Vieira");
+                namesList.add("Bobby Charlton");
+                namesList.add("Rivaldo");
+                namesList.add("Alessandro Del Piero");
+                namesList.add("Luís Figo");
+                namesList.add("Roberto Carlos");
+                namesList.add("Ruud Gullit");
+                namesList.add("Romário");
+                namesList.add("Roberto Baggio");
+                namesList.add("Dennis Bergkamp");
+                namesList.add("Franz Beckenbauer");
+                namesList.add("Gerd Müller");
+                namesList.add("Kylian Mbappé");
+                namesList.add("Mohamed Salah");
+                namesList.add("Clarence Seedorf");
+                namesList.add("Paul Pogba");
+                namesList.add("Marco van Basten");
+                namesList.add("Romelu Lukaku");
+                namesList.add("Ferenc Puskás");
+                namesList.add("Marcus Rashford");
+                namesList.add("Jamie Vardy");
+                namesList.add("Jadon Sancho");
+                namesList.add("Antoine Griezmann");
+                namesList.add("Lev Yashin");
+                namesList.add("Raheem Sterling");
+                namesList.add("Alfredo Di Stéfano");
+                namesList.add("Sadio Mané");
+                namesList.add("Philippe Coutinho");
+                namesList.add("Kevin De Bruyne");
+                namesList.add("Ole Gunnar Solskjær");
+                namesList.add("N'Golo Kante");
+                namesList.add("Steven Gerrard");
+                namesList.add("Frank Lampard");
+                namesList.add("Gabriel Batistuta");
+                namesList.add("Bill Goldberg");
+                namesList.add("Jesse Lingard");
+                namesList.add("Alisson Becker");
+                namesList.add("Pavel Nedvěd");
+                namesList.add("Virgil van Dijk");
+                namesList.add("Lothar Matthäus");
+                namesList.add("Ryan Giggs");
+                namesList.add("Riyad Mahrez");
+                namesList.add("Paulo Dybala");
+                namesList.add("Oliver Kahn");
+                namesList.add("Roberto Firmino");
+                namesList.add("Hristo Stoichkov");
+                namesList.add("Frank Rijkaard");
+                namesList.add("Olivier Giroud");
+                namesList.add("Robin van Persie");
+                namesList.add("Jack Grealish");
+                namesList.add("Son Heung-min");
+                namesList.add("George Weah");
+                namesList.add("Didier Deschamps");
+                namesList.add("Christian Pulisic");
+                namesList.add("David de Gea");
+                namesList.add("Gareth Southgate");
+                namesList.add("Memphis Depay");
+                namesList.add("Thiago Alcântara");
+                namesList.add("Peter Crouch");
+                namesList.add("Trent Alexander-Arnold");
+                namesList.add("Tammy Abraham");
+                namesList.add("Fernando Torres");
+                namesList.add("Kasper Schmeichel");
+                namesList.add("Ian Wright");
+                namesList.add("Harry Maguire");
+                namesList.add("Mauro Icardi");
+                namesList.add("Timo Werner");
+                namesList.add("Franck Ribéry");
+                namesList.add("Daniel Sturridge");
+                namesList.add("Thibaut Courtois");
+                namesList.add("Alvaro Morata");
+                namesList.add("Raúl González");
+                namesList.add("James Milner");
+                namesList.add("Marcelo Vieira");
+                namesList.add("Aaron Ramsey");
+                namesList.add("Javier Hernández");
+                namesList.add("Dele Alli");
+                namesList.add("Serge Gnabry");
+                namesList.add("Gabriel Jesus");
 
                 Max = namesList.size();
 
