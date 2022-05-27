@@ -6,49 +6,43 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_gravity="center"
-    android:padding="20dp"
+    android:background="@drawable/pink_part"
     tools:context=".MainActivity">
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/guess_the_word"
+        android:textColor="@color/white"
+        android:fontFamily="@font/hobo"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:background="@drawable/guess_bg"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:padding="5dp"
+        />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginBottom="10dp"
-        android:text="@string/charades"
+        android:src="@drawable/charades"
         android:layout_gravity="center"
         android:gravity="center"
-        android:textSize="48sp"
-        android:fontFamily="@font/vanilla"
-        android:textColor="#7307BF" />
-
-
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:orientation="vertical"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:gravity="center"-->
-<!--        android:layout_height="wrap_content">-->
-<!--        <ImageView-->
-<!--            android:id="@+id/icon"-->
-<!--            android:layout_width="120dp"-->
-<!--            android:layout_height="120dp"-->
-<!--            android:src="@drawable/add_new_word"-->
-<!--            />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/name"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/custom_category"-->
-<!--            android:layout_gravity="center_vertical"-->
-<!--            android:gravity="center"-->
-<!--            android:textSize="18sp"-->
-<!--            android:textStyle="bold"-->
-<!--            />-->
-<!--    </LinearLayout>-->
-
+        android:contentDescription="@string/app_name" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:background="@drawable/yellow_part"
         android:id="@+id/categoryRv"
+        android:elevation="5dp"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/category_recyclerview"

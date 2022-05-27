@@ -9,5 +9,13 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#D63434</color>
     <color name="green">#44D14A</color>
+    <color name="orange">#f46d1e</color>
+    <color name="mustard">#f9ae21</color>
+    <color name="purple">#a344f3</color>
+    <color name="tapioca">#fff5ba</color>
+    <color name="light_blue">#96bfe0</color>
+    <color name="sky_blue">#d5ecf5</color>
+    <color name="dark_blue">#2d7cbd</color>
     <color name="blue">#3DD3E6</color>
+    <color name="peach">#ff925c</color>
 </resources>

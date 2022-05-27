@@ -10,6 +10,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.Serializable;
@@ -29,6 +30,7 @@ public class GameActivity extends AppCompatActivity {
     List<String> namesList;
     int Min = 1, Max;
     Random random;
+    ImageView backButton;
     long mTimeLeftInMillis = START_TIME_IN_MILLIS;
     ArrayList<String> incorrectList = new ArrayList<>();
     ArrayList<String> correctList = new ArrayList<>();
@@ -53,22 +55,35 @@ public class GameActivity extends AppCompatActivity {
         guessesText = findViewById(R.id.guesses);
         secondTimerText = findViewById(R.id.secondTimer);
         warning = findViewById(R.id.verticalWarning);
+        backButton = findViewById(R.id.backBtn);
 
-        countDownTimer = new CountDownTimer(5000, 1000) {
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onTick(long l) {
-                timerText.setText(String.valueOf(count));
-                count--;
-                if (count < 2) {
-                    foreheadText.setText("Get Ready!");
+            public void onClick(View view) {
+                startActivity(new Intent(GameActivity.this, MainActivity.class));
+
+            }
+        });
+
+        if(name.equals("Custom Category")){
+            displayData();
+        } else {
+            countDownTimer = new CountDownTimer(5000, 1000) {
+                @Override
+                public void onTick(long l) {
+                    timerText.setText(String.valueOf(count));
+                    count--;
+                    if (count < 2) {
+                        foreheadText.setText("Get Ready!");
+                    }
                 }
-            }
 
-            @Override
-            public void onFinish() {
-                displayData();
-            }
-        }.start();
+                @Override
+                public void onFinish() {
+                    displayData();
+                }
+            }.start();
+        }
     }
 
     private void startTimer() {
@@ -7326,6 +7341,10 @@ public class GameActivity extends AppCompatActivity {
                     }
                 });
                 break;
+
+            case "Custom Category":
+                startActivity(new Intent(GameActivity.this, CustomCategoryActivity.class));
+                break;
         }
 
     }
@@ -7355,6 +7374,13 @@ public class GameActivity extends AppCompatActivity {
         gyroscope.unRegister();
         finish();
         finishAffinity();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        startActivity(new Intent(GameActivity.this, MainActivity.class));
     }
 }
 

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pink_part"
+    tools:context=".CustomCategoryActivity"
+    android:weightSum="3"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/guess_the_word"
+        android:textColor="@color/white"
+        android:fontFamily="@font/hobo"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:background="@drawable/guess_bg"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:padding="5dp"
+        />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/charades"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:contentDescription="@string/app_name" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="2"
+        android:padding="20dp"
+        android:background="@drawable/yellow_part"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/create_custom_deck"
+            android:textSize="22sp"
+            android:fontFamily="@font/hobo"
+            android:gravity="center"
+            android:textColor="#403E3E"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/enter_the_words_one_below_the_other_using_enter_key"
+            android:textSize="22sp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:textColor="#403E3E"
+            />
+
+        <EditText
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textStyle="italic"
+            android:fontFamily="sans-serif"
+            android:hint="@string/red_n_blue_n_yellow_n_green_n_purple"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@null"
+            android:inputType="text"
+            android:lineSpacingExtra="10dp"
+            android:importantForAutofill="no" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/done"
+            android:fontFamily="@font/hobo"
+            android:backgroundTint="#E8296A"
+            />
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -32,6 +32,7 @@ public class CorrectAnswersAdapter extends RecyclerView.Adapter<CorrectAnswersAd
     @Override
     public void onBindViewHolder(@NonNull CorrectHolderView holder, int position) {
         holder.correctText.setText(correctList.get(position));
+
     }
 
 

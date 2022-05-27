@@ -17,10 +17,12 @@ import java.util.ArrayList;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryHolderView> {
 
     ArrayList<String> categoryList;
+    ArrayList<Integer> categoryIconsList;
     Context context;
 
-    public CategoryAdapter(ArrayList<String> nameList, Context context) {
+    public CategoryAdapter(ArrayList<String> nameList, ArrayList<Integer> categoryIcons, Context context) {
         this.categoryList = nameList;
+        this.categoryIconsList = categoryIcons;
         this.context = context;
     }
 
@@ -34,6 +36,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     @Override
     public void onBindViewHolder(@NonNull CategoryHolderView holder, int position) {
         holder.categoryName.setText(categoryList.get(position));
+        holder.categoryName.setVisibility(View.GONE);
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,6 +45,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                 context.startActivity(intent);
             }
         });
+
+        holder.categoryIcon.setImageResource(categoryIconsList.get(position));
     }
 
     @Override
