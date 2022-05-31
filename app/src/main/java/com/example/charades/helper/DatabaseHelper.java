@@ -1,4 +1,4 @@
-package com.example.charades;
+package com.example.charades.helper;
 
 import android.content.ContentValues;
 import android.content.Context;

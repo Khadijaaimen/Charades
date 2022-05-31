@@ -1,4 +1,4 @@
-package com.example.charades;
+package com.example.charades.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,12 +13,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.Serializable;
+import com.example.charades.R;
+import com.example.charades.helper.DatabaseHelper;
+
 import java.util.ArrayList;
 
 public class CustomCategoryActivity extends AppCompatActivity {

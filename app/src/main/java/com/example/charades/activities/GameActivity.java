@@ -1,4 +1,4 @@
-package com.example.charades;
+package com.example.charades.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,8 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.charades.R;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +23,7 @@ import java.util.Random;
 public class GameActivity extends AppCompatActivity {
 
     private static final long START_TIME_IN_MILLIS = 60000;
-    private Gyroscope gyroscope;
+    Gyroscope gyroscope;
     TextView foreheadText, timerText, guessesText, secondTimerText;
     String name, textCorrect = "", textIncorrect = "", backgroundColor = "purple";
     CountDownTimer countDownTimer;

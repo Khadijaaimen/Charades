@@ -1,16 +1,18 @@
-package com.example.charades;
+package com.example.charades.activities;
 
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.widget.Toast;
 
-public class Accelerometer {
+public class Gyroscope {
 
-    private SensorManager sensorManager;
-    private Sensor sensor;
-    private SensorEventListener sensorEventListener;
+    private final SensorManager sensorManager;
+    private final Sensor sensor;
+    private final SensorEventListener sensorEventListener;
+
     private Listener listener;
 
     public void setListener(Listener l){
@@ -18,18 +20,20 @@ public class Accelerometer {
     }
 
     public interface Listener{
-        void onTranslation(float tx, float ty,  float tz);
+        void onRotation(float rx, float ry,  float rz);
     }
 
-    Accelerometer(Context context){
+    Gyroscope(Context context){
         sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+        if(sensor == null){
+            Toast.makeText(context.getApplicationContext(), "Gyroscope not found!", Toast.LENGTH_SHORT).show();
+        }
         sensorEventListener = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
                 if(listener !=null){
-                    listener.onTranslation(sensorEvent.values[0], sensorEvent.values[1], sensorEvent.values[2]);
-
+                    listener.onRotation(sensorEvent.values[0], sensorEvent.values[1], sensorEvent.values[2]);
                 }
             }
 
@@ -41,7 +45,7 @@ public class Accelerometer {
     }
 
     public void register(){
-        sensorManager.registerListener(sensorEventListener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(sensorEventListener, sensor, SensorManager.SENSOR_DELAY_FASTEST);
     }
 
     public void unRegister(){

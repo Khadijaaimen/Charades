@@ -7,7 +7,7 @@
     android:padding="30dp"
     android:weightSum="6"
     android:orientation="vertical"
-    tools:context=".GameActivity">
+    tools:context=".activities.GameActivity">
 
     <RelativeLayout
         android:layout_height="0dp"

@@ -1,4 +1,4 @@
-package com.example.charades;
+package com.example.charades.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,6 +10,10 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.charades.R;
+import com.example.charades.adapter.CorrectAnswersAdapter;
+import com.example.charades.adapter.IncorrectAnswersAdapter;
 
 import java.util.ArrayList;
 

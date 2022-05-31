@@ -1,16 +1,16 @@
-package com.example.charades;
+package com.example.charades.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Window;
 import android.view.WindowManager;
+
+import com.example.charades.R;
+import com.example.charades.adapter.CategoryAdapter;
 
 import java.util.ArrayList;
 

@@ -7,7 +7,7 @@
     android:background="@drawable/pink_part"
     android:orientation="vertical"
     android:weightSum="5"
-    tools:context=".CustomCategoryActivity">
+    tools:context=".activities.CustomCategoryActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.example.charades;
+package com.example.charades.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.charades.activities.GameActivity;
+import com.example.charades.R;
 
 import java.util.ArrayList;
 
