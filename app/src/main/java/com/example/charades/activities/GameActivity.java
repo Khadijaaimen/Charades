@@ -44,7 +44,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#A344f3"));
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         gyroscope = new Gyroscope(this);
@@ -345,7 +345,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -371,7 +371,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -622,7 +622,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -648,7 +648,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -775,7 +775,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -801,7 +801,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -932,7 +932,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -958,7 +958,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -1211,7 +1211,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -1237,7 +1237,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -1379,7 +1379,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -1405,7 +1405,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -1535,7 +1535,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -1561,7 +1561,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -1656,7 +1656,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -1682,7 +1682,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -1781,7 +1781,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -1807,7 +1807,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -1910,7 +1910,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -1936,7 +1936,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -2033,7 +2033,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -2059,7 +2059,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -2177,7 +2177,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -2203,7 +2203,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -2385,7 +2385,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -2411,7 +2411,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -2515,7 +2515,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -2541,7 +2541,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -2665,7 +2665,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -2691,7 +2691,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -3109,7 +3109,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -3135,7 +3135,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -3280,7 +3280,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -3306,7 +3306,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -3593,7 +3593,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -3619,7 +3619,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -3886,7 +3886,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -3912,7 +3912,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -4153,7 +4153,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -4179,7 +4179,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -4398,7 +4398,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -4424,7 +4424,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -4686,7 +4686,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -4712,7 +4712,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -4971,7 +4971,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -4997,7 +4997,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -5217,7 +5217,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -5243,7 +5243,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -5428,7 +5428,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -5454,7 +5454,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -5658,7 +5658,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -5684,7 +5684,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -5767,7 +5767,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -5793,7 +5793,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -5897,7 +5897,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -5923,7 +5923,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -6041,7 +6041,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -6067,7 +6067,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -6220,7 +6220,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -6246,7 +6246,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -6544,7 +6544,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -6570,7 +6570,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -6731,7 +6731,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -6757,7 +6757,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -7025,7 +7025,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -7051,7 +7051,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -7307,7 +7307,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -7333,7 +7333,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -7386,7 +7386,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));
@@ -7412,7 +7412,7 @@ public class GameActivity extends AppCompatActivity {
                                         startTimer();
                                         Max = namesList.size();
                                         secondTimerText.setVisibility(View.VISIBLE);
-                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFBB86FC"));
+                                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
                                         backgroundColor = "purple";
                                         int rndNum2 = (int) (Math.random() * (Max - Min));
                                         guessesText.setText(namesList.get(rndNum2));

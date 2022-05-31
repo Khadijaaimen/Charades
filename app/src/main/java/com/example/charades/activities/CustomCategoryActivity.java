@@ -2,6 +2,8 @@ package com.example.charades.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,15 +31,14 @@ public class CustomCategoryActivity extends AppCompatActivity {
     EditText customListText;
     Button playBtn, backBtn;
     ImageView deleteBtn;
+    String name;
     ListView listView;
-    ArrayList<String> customList = new ArrayList<>();
     ArrayAdapter<String> arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_category);
-
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -49,22 +51,48 @@ public class CustomCategoryActivity extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(this);
         Cursor data = databaseHelper.getListContents();
 
-        int count = data.getCount();
-        if (count != 0) {
-            while (data.moveToNext()){
-                customList.add(data.getString(1));
-                arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
-                        android.R.layout.simple_list_item_1, customList);
-                listView.setAdapter(arrayAdapter);
-            }
+        ArrayList<String> customList = new ArrayList<>();
+
+        while (data.moveToNext()) {
+            customList.add(data.getString(1));
+            arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
+                    android.R.layout.simple_list_item_1, customList);
+            listView.setAdapter(arrayAdapter);
         }
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+                name = a.getItemAtPosition(position).toString();
+                AlertDialog.Builder adb = new AlertDialog.Builder(CustomCategoryActivity.this);
+                adb.setTitle("Delete Item");
+                adb.setMessage("Are you sure you want to delete?");
+                final int positionToRemove = position;
+                adb.setNegativeButton("Cancel", null);
+                adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Cursor data = databaseHelper.getListContents();
+                        int itemID = -1;
+                        while (data.moveToNext()) {
+                            itemID = data.getInt(0);
+                            databaseHelper.deleteName(itemID, name);
+                            arrayAdapter.remove(String.valueOf(positionToRemove));
+                            customList.remove(positionToRemove);
+                            arrayAdapter.notifyDataSetChanged();
+                        }
+                    }
+                });
+                adb.show();
+            }
+        });
 
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                databaseHelper.deleteAll();
                 customList.clear();
-                customListText.setText("");
+                arrayAdapter.notifyDataSetChanged();
+                listView.setAdapter(arrayAdapter);
             }
         });
 
@@ -73,8 +101,8 @@ public class CustomCategoryActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(CustomCategoryActivity.this, GameActivity.class);
                 intent.putExtra("category", "Custom");
-                Bundle bundle=new Bundle();
-                bundle.putSerializable("test",customList);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("test", customList);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -97,7 +125,7 @@ public class CustomCategoryActivity extends AppCompatActivity {
                 if (actionId == EditorInfo.IME_ACTION_SEND) {
                     String text = String.valueOf(customListText.getText());
                     if (!text.equals("")) {
-                        customList.add(text);
+                        customList.add(0, text);
                         customListText.setText("");
                         addData(text);
                         listView.setAdapter(arrayAdapter);
@@ -121,5 +149,6 @@ public class CustomCategoryActivity extends AppCompatActivity {
         super.onBackPressed();
 
         startActivity(new Intent(CustomCategoryActivity.this, MainActivity.class));
+        finish();
     }
 }

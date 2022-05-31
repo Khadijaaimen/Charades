@@ -5,8 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.SimpleCursorAdapter;
 
 import androidx.annotation.Nullable;
+
+import com.example.charades.R;
 
 public class DatabaseHelper  extends SQLiteOpenHelper {
 
@@ -21,15 +24,15 @@ public class DatabaseHelper  extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,CATEGORY_LIST TEXT)");
+        sqLiteDatabase.execSQL("create table " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,CATEGORY_LIST TEXT)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
     }
 
-    public boolean addData(String list){
+    public boolean addData(String list) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2, list);
@@ -39,9 +42,22 @@ public class DatabaseHelper  extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    public Cursor getListContents(){
+    public Cursor getListContents() {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
     }
 
+    public void deleteName(int id, String name){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "DELETE FROM " + TABLE_NAME + " WHERE " + COL_1 + " = '" + id + "'" +
+                " AND " + COL_2 + " = '" + name + "'";
+        db.execSQL(query);
+
+    }
+
+    public void deleteAll(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "DELETE FROM " + TABLE_NAME;
+        db.execSQL(query);
+    }
 }
