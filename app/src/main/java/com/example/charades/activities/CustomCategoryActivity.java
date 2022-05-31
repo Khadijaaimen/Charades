@@ -123,7 +123,7 @@ public class CustomCategoryActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 boolean handled = false;
                 if (actionId == EditorInfo.IME_ACTION_SEND) {
-                    String text = String.valueOf(customListText.getText());
+                    String text = String.valueOf(customListText.getText()).trim();
                     if (!text.equals("")) {
                         customList.add(0, text);
                         customListText.setText("");

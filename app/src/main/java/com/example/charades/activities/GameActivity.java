@@ -1,6 +1,7 @@
 package com.example.charades.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -8,12 +9,17 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.androidadvance.topsnackbar.TSnackbar;
 import com.example.charades.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,9 +30,10 @@ public class GameActivity extends AppCompatActivity {
 
     private static final long START_TIME_IN_MILLIS = 60000;
     Gyroscope gyroscope;
-    TextView foreheadText, timerText, guessesText, secondTimerText;
+    TextView foreheadText, timerText, guessesText, secondTimerText, correctTextview, backTextView;
     String name, textCorrect = "", textIncorrect = "", backgroundColor = "purple";
     CountDownTimer countDownTimer;
+    LinearLayout linearLayout;
     int count = 5;
     int correctCount = 0, incorrectCount = 0;
     List<String> namesList;
@@ -62,6 +69,8 @@ public class GameActivity extends AppCompatActivity {
         secondTimerText = findViewById(R.id.secondTimer);
         warning = findViewById(R.id.verticalWarning);
         backButton = findViewById(R.id.backBtn);
+        linearLayout = findViewById(R.id.linearLayout);
+        backTextView = findViewById(R.id.backText);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +94,24 @@ public class GameActivity extends AppCompatActivity {
 
                 @Override
                 public void onFinish() {
+//                    TSnackbar snackbar = TSnackbar.make(linearLayout, "TILT UP TO PASS, DOWN TO CORRECT", TSnackbar.LENGTH_LONG);
+//                    View snackbarView = getLayoutInflater().inflate(R.layout.custom_snackbar, null);
+//                    correctTextview = snackbarView.findViewById(R.id.correctText);
+//                    snackbar.show();
+
+                    Snackbar snackbar = Snackbar.make(linearLayout, "", Snackbar.LENGTH_LONG);
+                    View view = getLayoutInflater().inflate(R.layout.custom_snackbar, null);
+                    Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbar.getView();
+                    correctTextview = view.findViewById(R.id.correctText);
+
+//                    FrameLayout.LayoutParams params2 =(FrameLayout.LayoutParams)view.getLayoutParams();
+//                    params2.gravity = Gravity.TOP;
+////                    params2.setMargins(0,50,0,0);
+//                    view.setLayoutParams(params2);
+
+                    snackbarLayout.addView(view, 0);
+                    snackbar.show();
+
                     displayData();
                 }
             }.start();
@@ -125,9 +152,11 @@ public class GameActivity extends AppCompatActivity {
 
 
     public void displayData() {
+        backTextView.setVisibility(View.VISIBLE);
         switch (name) {
             case "Hollywood Celebrities":
 
+                correctTextview.setTextColor(Color.parseColor("#f46d1e"));
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
 
                 namesList = new ArrayList<>();
@@ -389,6 +418,7 @@ public class GameActivity extends AppCompatActivity {
                 break;
             case "Science":
 
+                correctTextview.setTextColor(Color.parseColor("#3DD3E6"));
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
 
                 namesList = new ArrayList<>();
@@ -669,6 +699,7 @@ public class GameActivity extends AppCompatActivity {
                 break;
             case "Hollywood Movies":
 
+                correctTextview.setTextColor(Color.parseColor("#2d7cbd"));
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
 
                 namesList = new ArrayList<>();
@@ -826,6 +857,7 @@ public class GameActivity extends AppCompatActivity {
                 break;
             case "Activities":
 
+                correctTextview.setTextColor(Color.parseColor("#a344f3"));
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
 
                 namesList = new ArrayList<>();
@@ -986,6 +1018,7 @@ public class GameActivity extends AppCompatActivity {
 
             case "English Songs":
 
+                correctTextview.setTextColor(Color.parseColor("#f9ae21"));
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
 
                 namesList = new ArrayList<>();
@@ -1268,6 +1301,7 @@ public class GameActivity extends AppCompatActivity {
                 break;
             case "Miscellaneous Items":
 
+                correctTextview.setTextColor(Color.parseColor("#f46d1e"));
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
 
                 namesList = new ArrayList<>();
@@ -1440,6 +1474,8 @@ public class GameActivity extends AppCompatActivity {
                 break;
             case "Animals":
 
+                correctTextview.setTextColor(Color.parseColor("#3dd3e6"));
+
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
 
                 namesList = new ArrayList<>();
@@ -1599,6 +1635,8 @@ public class GameActivity extends AppCompatActivity {
                 break;
             case "Sports/Leisure Activities":
 
+                correctTextview.setTextColor(Color.parseColor("#2d7cbd"));
+
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
 
                 namesList = new ArrayList<>();
@@ -1721,6 +1759,8 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Jobs/Personalities":
+
+                correctTextview.setTextColor(Color.parseColor("#a344f3"));
 
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
 
@@ -1850,6 +1890,8 @@ public class GameActivity extends AppCompatActivity {
 
                 break;
             case "Musical Instruments":
+
+                correctTextview.setTextColor(Color.parseColor("#f9ae21"));
 
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
 
@@ -1983,6 +2025,8 @@ public class GameActivity extends AppCompatActivity {
                 break;
             case "Emotions":
 
+                correctTextview.setTextColor(Color.parseColor("#f46d1e"));
+
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
 
                 namesList = new ArrayList<>();
@@ -2108,6 +2152,8 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "TV Shows":
+
+                correctTextview.setTextColor(Color.parseColor("#3dd3e6"));
 
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
 
@@ -2256,6 +2302,8 @@ public class GameActivity extends AppCompatActivity {
 
                 break;
             case "Books":
+
+                correctTextview.setTextColor(Color.parseColor("#2d7cbd"));
 
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
 
@@ -2469,6 +2517,8 @@ public class GameActivity extends AppCompatActivity {
 
             case "Famous Places":
 
+                correctTextview.setTextColor(Color.parseColor("#a344f3"));
+
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
 
                 namesList = new ArrayList<>();
@@ -2600,6 +2650,8 @@ public class GameActivity extends AppCompatActivity {
                 break;
 
             case "Gadgets":
+
+                correctTextview.setTextColor(Color.parseColor("#f9ae21"));
 
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
 
@@ -2752,6 +2804,8 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Pakistani Celebrities":
+
+                correctTextview.setTextColor(Color.parseColor("#f46d1e"));
 
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
 
@@ -3200,6 +3254,8 @@ public class GameActivity extends AppCompatActivity {
                 break;
             case "Pakistani Dramas":
 
+                correctTextview.setTextColor(Color.parseColor("#3dd3e6"));
+
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
 
                 namesList = new ArrayList<>();
@@ -3373,6 +3429,8 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Bollywood Celebrities":
+
+                correctTextview.setTextColor(Color.parseColor("#2d7cbd"));
 
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
 
@@ -3690,6 +3748,8 @@ public class GameActivity extends AppCompatActivity {
                 break;
             case "Bollywood Movies":
 
+                correctTextview.setTextColor(Color.parseColor("#a344f3"));
+
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
 
                 namesList = new ArrayList<>();
@@ -3986,6 +4046,8 @@ public class GameActivity extends AppCompatActivity {
                 break;
             case "Indian Songs":
 
+                correctTextview.setTextColor(Color.parseColor("#f9ae21"));
+
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
 
                 namesList = new ArrayList<>();
@@ -4256,6 +4318,8 @@ public class GameActivity extends AppCompatActivity {
                 break;
             case "Famous People":
 
+                correctTextview.setTextColor(Color.parseColor("#f46d1e"));
+
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
 
                 namesList = new ArrayList<>();
@@ -4504,6 +4568,8 @@ public class GameActivity extends AppCompatActivity {
                 break;
 
             case "Pakistani Singers":
+
+                correctTextview.setTextColor(Color.parseColor("#3dd3e6"));
 
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
 
@@ -4796,6 +4862,8 @@ public class GameActivity extends AppCompatActivity {
 
             case "Bollywood Singers":
 
+                correctTextview.setTextColor(Color.parseColor("#2d7cbd"));
+
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
 
                 namesList = new ArrayList<>();
@@ -5084,6 +5152,8 @@ public class GameActivity extends AppCompatActivity {
 
             case "Hollywood Singers":
 
+                correctTextview.setTextColor(Color.parseColor("#a344f3"));
+
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
 
                 namesList = new ArrayList<>();
@@ -5333,6 +5403,8 @@ public class GameActivity extends AppCompatActivity {
 
             case "Cars":
 
+                correctTextview.setTextColor(Color.parseColor("#f9ae21"));
+
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
 
                 namesList = new ArrayList<>();
@@ -5545,6 +5617,7 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Youtube Gamers":
+                correctTextview.setTextColor(Color.parseColor("#f46d1e"));
 
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
 
@@ -5779,6 +5852,8 @@ public class GameActivity extends AppCompatActivity {
                 break;
             case "Makeup Items":
 
+                correctTextview.setTextColor(Color.parseColor("#3dd3e6"));
+
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
 
                 namesList = new ArrayList<>();
@@ -5890,6 +5965,8 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Fruits":
+
+                correctTextview.setTextColor(Color.parseColor("#2d7cbd"));
 
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
 
@@ -6023,6 +6100,8 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Body Parts":
+
+                correctTextview.setTextColor(Color.parseColor("#a344f3"));
 
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
 
@@ -6170,6 +6249,8 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Tools":
+
+                correctTextview.setTextColor(Color.parseColor("#f9ae21"));
 
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
 
@@ -6353,6 +6434,8 @@ public class GameActivity extends AppCompatActivity {
                 break;
 
             case "Disney Characters":
+
+                correctTextview.setTextColor(Color.parseColor("#f46d1e"));
 
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
 
@@ -6681,6 +6764,8 @@ public class GameActivity extends AppCompatActivity {
                 break;
             case "Brands":
 
+                correctTextview.setTextColor(Color.parseColor("#3dd3e6"));
+
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
 
                 namesList = new ArrayList<>();
@@ -6870,6 +6955,8 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Cricket Players":
+
+                correctTextview.setTextColor(Color.parseColor("#2d7cbd"));
 
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
 
@@ -7169,6 +7256,8 @@ public class GameActivity extends AppCompatActivity {
 
             case "Football Players":
 
+                correctTextview.setTextColor(Color.parseColor("#a344f3"));
+
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
 
                 namesList = new ArrayList<>();
@@ -7454,6 +7543,8 @@ public class GameActivity extends AppCompatActivity {
 
             case "Custom":
 
+                correctTextview.setTextColor(Color.parseColor("#f9ae21"));
+
                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
 
                 namesList = item;
@@ -7573,6 +7664,7 @@ public class GameActivity extends AppCompatActivity {
 
         startActivity(new Intent(GameActivity.this, MainActivity.class));
         finish();
+        finishAffinity();
     }
 }
 

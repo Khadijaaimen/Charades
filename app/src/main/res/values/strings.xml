@@ -22,4 +22,6 @@
     <string name="play">Play</string>
     <string name="back">Back</string>
     <string name="name">Name</string>
+    <string name="tilt_up_to_pass">TILT UP TO PASS,</string>
+    <string name="down_to_correct">DOWN TO CORRECT</string>
 </resources>
