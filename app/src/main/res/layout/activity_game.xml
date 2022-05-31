@@ -9,10 +9,46 @@
     android:orientation="vertical"
     tools:context=".activities.GameActivity">
 
+
+    <TextView
+        android:id="@+id/forehead"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:fontFamily="@font/vanilla"
+        android:text="@string/please_place_your_device_on_forehead"
+        android:textColor="@color/white"
+        android:textSize="32sp" />
+
+
+    <TextView
+        android:id="@+id/timer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:fontFamily="@font/vanilla"
+        android:gravity="center"
+        android:text="@string/_5"
+        android:textColor="@color/white"
+        android:textSize="62sp" />
+
+    <TextView
+        android:id="@+id/guesses"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:visibility="gone"
+        android:fontFamily="@font/vanilla"
+        android:gravity="center"
+        android:text="@string/guesses"
+        android:textColor="@color/white"
+        android:textSize="62sp" />
+
     <RelativeLayout
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_gravity="center"
+        android:gravity="center_vertical"
         android:layout_width="match_parent">
 
         <ImageView
@@ -24,14 +60,14 @@
             app:tint="@color/white" />
 
         <TextView
-            android:id="@+id/forehead"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/vanilla"
-            android:gravity="center"
-            android:layout_centerVertical="true"
+            android:id="@+id/backText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="@string/please_place_your_device_on_forehead"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/backBtn"
+            android:fontFamily="@font/vanilla"
+            android:text="@string/back"
             android:textColor="@color/white"
             android:textSize="32sp" />
 
@@ -48,32 +84,6 @@
             android:textSize="42sp"
             android:textStyle="bold" />
     </RelativeLayout>
-
-
-    <TextView
-        android:id="@+id/timer"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
-        android:fontFamily="@font/vanilla"
-        android:gravity="center"
-        android:text="@string/_5"
-        android:textColor="@color/white"
-        android:textSize="62sp" />
-
-
-
-    <TextView
-        android:id="@+id/guesses"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
-        android:fontFamily="@font/vanilla"
-        android:gravity="center"
-        android:text="@string/guesses"
-        android:visibility="gone"
-        android:textColor="@color/white"
-        android:textSize="62sp" />
 
     <TextView
         android:id="@+id/verticalWarning"

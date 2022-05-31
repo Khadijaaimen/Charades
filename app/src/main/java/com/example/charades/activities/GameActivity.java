@@ -70,7 +70,7 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        if(name.equals("Custom Category")){
+        if (name.equals("Custom Category")) {
             displayData();
         } else {
             countDownTimer = new CountDownTimer(5000, 1000) {
@@ -120,13 +120,16 @@ public class GameActivity extends AppCompatActivity {
 
     private void updateCountDownText() {
         int seconds = (int) mTimeLeftInMillis / 1000;
-        secondTimerText.setText(String.valueOf(seconds));
+        secondTimerText.setText(String.valueOf(seconds) + " sec");
     }
 
 
     public void displayData() {
         switch (name) {
             case "Hollywood Celebrities":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Arnold Schwarzenegger");
@@ -377,7 +380,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -385,6 +388,9 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Science":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Abdomen");
@@ -654,7 +660,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -662,6 +668,9 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Hollywood Movies":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Vertigo");
@@ -807,7 +816,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -816,6 +825,9 @@ public class GameActivity extends AppCompatActivity {
 
                 break;
             case "Activities":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Dancing a ballet");
@@ -964,14 +976,18 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
                     }
                 });
                 break;
+
             case "English Songs":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Baby");
@@ -1243,7 +1259,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -1251,6 +1267,9 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Miscellaneous Items":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Dance");
@@ -1411,7 +1430,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -1420,6 +1439,9 @@ public class GameActivity extends AppCompatActivity {
 
                 break;
             case "Animals":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Dog");
@@ -1567,7 +1589,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -1576,6 +1598,9 @@ public class GameActivity extends AppCompatActivity {
 
                 break;
             case "Sports/Leisure Activities":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Skiing");
@@ -1688,7 +1713,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -1696,6 +1721,9 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Jobs/Personalities":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Cashier");
@@ -1813,7 +1841,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -1822,6 +1850,9 @@ public class GameActivity extends AppCompatActivity {
 
                 break;
             case "Musical Instruments":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Violin");
@@ -1942,7 +1973,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -1951,7 +1982,11 @@ public class GameActivity extends AppCompatActivity {
 
                 break;
             case "Emotions":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
+
                 namesList = new ArrayList<>();
+
                 namesList.add("Afraid");
                 namesList.add("Anxious/Worried");
                 namesList.add("Cautious");
@@ -2065,7 +2100,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -2073,6 +2108,9 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "TV Shows":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Supernatural");
@@ -2209,7 +2247,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -2218,6 +2256,9 @@ public class GameActivity extends AppCompatActivity {
 
                 break;
             case "Books":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Harry Potter");
@@ -2417,7 +2458,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -2427,6 +2468,9 @@ public class GameActivity extends AppCompatActivity {
                 break;
 
             case "Famous Places":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("The Eiffel Tower");
@@ -2547,7 +2591,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -2556,6 +2600,9 @@ public class GameActivity extends AppCompatActivity {
                 break;
 
             case "Gadgets":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Alarm clock");
@@ -2697,7 +2744,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -2705,6 +2752,9 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Pakistani Celebrities":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Aaminah Haq");
@@ -3141,7 +3191,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -3149,6 +3199,9 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Pakistani Dramas":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Dil Lagi");
@@ -3312,7 +3365,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -3320,6 +3373,9 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Bollywood Celebrities":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Priyanka Chopra");
@@ -3625,7 +3681,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -3633,6 +3689,9 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Bollywood Movies":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Dilwale Dulhania Le Jayenge");
@@ -3918,7 +3977,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -3926,6 +3985,9 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Indian Songs":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Pyar Kiya To Darna Kya");
@@ -4185,7 +4247,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -4193,6 +4255,9 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Famous People":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Jesus");
@@ -4430,7 +4495,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -4439,6 +4504,9 @@ public class GameActivity extends AppCompatActivity {
                 break;
 
             case "Pakistani Singers":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Nusrat Fateh Ali Khan");
@@ -4718,7 +4786,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -4727,6 +4795,9 @@ public class GameActivity extends AppCompatActivity {
                 break;
 
             case "Bollywood Singers":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Lata Mangeshkar");
@@ -5003,7 +5074,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -5012,6 +5083,9 @@ public class GameActivity extends AppCompatActivity {
                 break;
 
             case "Hollywood Singers":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Taylor Swift");
@@ -5249,7 +5323,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -5258,6 +5332,9 @@ public class GameActivity extends AppCompatActivity {
                 break;
 
             case "Cars":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("1963 Volkswagen Beetle Herbie");
@@ -5460,7 +5537,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -5468,6 +5545,9 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Youtube Gamers":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("PewDiePie");
@@ -5690,7 +5770,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -5698,6 +5778,9 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Makeup Items":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Face primers");
@@ -5799,7 +5882,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -5807,6 +5890,9 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Fruits":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Apple");
@@ -5929,7 +6015,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -5937,6 +6023,9 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Body Parts":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Head");
@@ -6073,7 +6162,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -6081,6 +6170,9 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Tools":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Bolt");
@@ -6252,14 +6344,18 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
                     }
                 });
                 break;
+
             case "Disney Characters":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f46d1e"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Abby — Chicken Little");
@@ -6576,7 +6672,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -6584,6 +6680,9 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Brands":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3DD3E6"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Gucci");
@@ -6763,7 +6862,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -6771,6 +6870,9 @@ public class GameActivity extends AppCompatActivity {
                 });
                 break;
             case "Cricket Players":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#2d7cbd"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Virat Kohli");
@@ -7057,7 +7159,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -7066,6 +7168,9 @@ public class GameActivity extends AppCompatActivity {
                 break;
 
             case "Football Players":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#a344f3"));
+
                 namesList = new ArrayList<>();
 
                 namesList.add("Lionel Messi");
@@ -7339,7 +7444,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
@@ -7348,6 +7453,9 @@ public class GameActivity extends AppCompatActivity {
                 break;
 
             case "Custom":
+
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor("#f9ae21"));
+
                 namesList = item;
                 Max = namesList.size();
 
@@ -7418,7 +7526,7 @@ public class GameActivity extends AppCompatActivity {
                                         guessesText.setText(namesList.get(rndNum2));
                                     }
                                 }, 1000);
-                            } else if(backgroundColor.equals("red")){
+                            } else if (backgroundColor.equals("red")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                             }
                         }
