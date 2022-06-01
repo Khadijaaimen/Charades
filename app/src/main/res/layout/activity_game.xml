@@ -2,27 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="30dp"
-    android:id="@+id/linearLayout"
-    android:weightSum="6"
     android:orientation="vertical"
+    android:padding="20dp"
+    android:weightSum="6"
     tools:context=".activities.GameActivity">
 
     <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_width="match_parent">
+        android:layout_weight="1"
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/backBtn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/back60"
             android:contentDescription="@string/app_name"
+            android:src="@drawable/back60"
             app:tint="@color/white" />
 
         <TextView
@@ -30,13 +30,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
-            android:gravity="center_vertical"
             android:layout_toEndOf="@id/backBtn"
             android:fontFamily="@font/gothic"
-            android:visibility="gone"
+            android:gravity="center_vertical"
             android:text="@string/back"
             android:textColor="@color/white"
-            android:textSize="32sp" />
+            android:textSize="32sp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/secondTimer"
@@ -46,30 +46,29 @@
             android:fontFamily="@font/gothic"
             android:gravity="center"
             android:text="@string/_60"
-            android:visibility="gone"
             android:textColor="@color/white"
-            android:textSize="32sp" />
-
+            android:textSize="32sp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/forehead"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_toEndOf="@id/backBtn"
             android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/backBtn"
             android:fontFamily="@font/gothic"
+            android:gravity="center"
             android:text="@string/please_place_your_device_on_forehead"
             android:textColor="@color/white"
             android:textSize="32sp" />
+
     </RelativeLayout>
-
-
 
     <TextView
         android:id="@+id/timer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
         android:layout_weight="5"
         android:fontFamily="@font/gothic"
         android:gravity="center"
@@ -81,15 +80,14 @@
         android:id="@+id/guesses"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
         android:layout_weight="5"
-        android:visibility="gone"
         android:fontFamily="@font/gothic"
         android:gravity="center"
         android:text="@string/guesses"
         android:textColor="@color/white"
-        android:textSize="62sp" />
-
-
+        android:textSize="62sp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/verticalWarning"
@@ -97,9 +95,9 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
-        android:visibility="gone"
         android:text="@string/please_hold_mobile_vertically"
         android:textColor="@color/white"
-        android:textSize="28sp" />
+        android:textSize="28sp"
+        android:visibility="gone" />
 
 </LinearLayout>
