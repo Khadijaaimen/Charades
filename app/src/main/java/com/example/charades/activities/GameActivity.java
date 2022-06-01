@@ -7688,8 +7688,6 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-
         startActivity(new Intent(GameActivity.this, MainActivity.class));
         finish();
         finishAffinity();
