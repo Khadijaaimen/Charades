@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="start"
-        android:fontFamily="@font/hobo"
+        android:fontFamily="@font/gothic"
         android:text="@string/aamir_khan"
         android:textColor="#788179"
         android:layout_marginTop="5dp"
