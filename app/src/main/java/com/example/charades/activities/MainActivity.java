@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     CategoryAdapter adapter;
     ImageView imageView;
     TextView textView;
-    RecyclerView recyclerView;
     Animation topAnim, bottomAnim;
 
     @Override
@@ -98,13 +97,6 @@ public class MainActivity extends AppCompatActivity {
 
         textView.setAnimation(topAnim);
         imageView.setAnimation(topAnim);
-//        recyclerView.setAnimation(bottomAnim);
-
-        Pair[] pairs = new Pair[2];
-        pairs[0] = new Pair<View, String>(textView, "logo_image");
-        pairs[1] = new Pair<View, String>(imageView, "logo_text");
-
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, pairs);
     }
 
     @Override
