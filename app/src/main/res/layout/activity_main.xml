@@ -11,6 +11,7 @@
 
 
     <TextView
+        android:id="@+id/guess_word"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/guess_the_word"
@@ -26,6 +27,7 @@
         />
 
     <ImageView
+        android:id="@+id/logo"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginEnd="20dp"

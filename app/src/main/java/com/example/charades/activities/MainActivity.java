@@ -4,10 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Pair;
+import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.charades.R;
 import com.example.charades.adapter.CategoryAdapter;
@@ -19,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> categoryNames = new ArrayList<>();
     ArrayList<Integer> categoryIcons = new ArrayList<>();
     CategoryAdapter adapter;
+    ImageView imageView;
+    TextView textView;
+    RecyclerView recyclerView;
+    Animation topAnim, bottomAnim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
+        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
 
         categoryNames.add("Custom Category");
         categoryNames.add("Hollywood Celebrities");
@@ -73,6 +92,19 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
         adapter = new CategoryAdapter(categoryNames, categoryIcons, this);
         recyclerView.setAdapter(adapter);
+
+        imageView = findViewById(R.id.logo);
+        textView = findViewById(R.id.guess_word);
+
+        textView.setAnimation(topAnim);
+        imageView.setAnimation(topAnim);
+//        recyclerView.setAnimation(bottomAnim);
+
+        Pair[] pairs = new Pair[2];
+        pairs[0] = new Pair<View, String>(textView, "logo_image");
+        pairs[1] = new Pair<View, String>(imageView, "logo_text");
+
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, pairs);
     }
 
     @Override
