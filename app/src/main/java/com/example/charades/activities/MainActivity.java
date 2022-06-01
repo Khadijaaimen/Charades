@@ -1,39 +1,43 @@
 package com.example.charades.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Pair;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.charades.R;
 import com.example.charades.adapter.CategoryAdapter;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final float END_SCALE = 0.7F;
     ArrayList<String> categoryNames = new ArrayList<>();
     ArrayList<Integer> categoryIcons = new ArrayList<>();
     CategoryAdapter adapter;
-    ImageView imageView;
+    ImageView imageView, navigationBar;
     TextView textView;
     Animation topAnim, bottomAnim;
+    DrawerLayout drawerLayout;
+    LinearLayout contentView;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,13 @@ public class MainActivity extends AppCompatActivity {
 
         topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
         bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
+
+        navigationBar = findViewById(R.id.navBar);
+        drawerLayout = findViewById(R.id.drawerLayout);
+        navigationView = findViewById(R.id.navView);
+        contentView = findViewById(R.id.content);
+
+        navigationDrawer();
 
         categoryNames.add("Custom Category");
         categoryNames.add("Hollywood Celebrities");
@@ -99,26 +110,93 @@ public class MainActivity extends AppCompatActivity {
         imageView.setAnimation(topAnim);
     }
 
+    private void navigationDrawer() {
+        navigationView.bringToFront();
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(R.id.home);
+
+        navigationBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(drawerLayout.isDrawerVisible(GravityCompat.START)){
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                } else{
+                    drawerLayout.openDrawer(GravityCompat.START);
+                }
+            }
+        });
+
+        animateNavigationDrawer();
+    }
+
+    private void animateNavigationDrawer() {
+
+        drawerLayout.setScrimColor(getResources().getColor(R.color.teal_200));
+        drawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
+            @Override
+            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+
+                final float diffScaleOffSet = slideOffset * (1 - END_SCALE);
+                final float offSetScale = 1 - diffScaleOffSet;
+
+                contentView.setScaleX(offSetScale);
+                contentView.setScaleY(offSetScale);
+
+                final float xOffset = drawerLayout.getWidth() * slideOffset;
+                final float xOffsetDiff = contentView.getWidth() * diffScaleOffSet / 2;
+                final float xTranslation = xOffset - xOffsetDiff;
+                contentView.setTranslationX(xTranslation);
+
+
+            }
+        });
+    }
+
     @Override
     public void onBackPressed() {
-        new AlertDialog.Builder(this)
-                .setTitle("Exit App")
-                .setCancelable(true)
-                .setMessage("Are you sure you want to exit?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        MainActivity.this.finish();
-                        finishAffinity();
-                    }
+        if (drawerLayout.isDrawerVisible(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+            new AlertDialog.Builder(this)
+                    .setTitle("Exit App")
+                    .setCancelable(true)
+                    .setMessage("Are you sure you want to exit?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            MainActivity.this.finish();
+                            finishAffinity();
+                        }
 
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .show();
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).show();
+        }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.home:
+                startActivity(new Intent(MainActivity.this, MainActivity.class));
+                break;
+            case R.id.favourites:
+                startActivity(new Intent(MainActivity.this, FavoritesActivity.class));
+                break;
+            case R.id.settings:
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                break;
+            case R.id.rating:
+                break;
+            case R.id.share:
+                break;
+        }
+        return false;
     }
 }

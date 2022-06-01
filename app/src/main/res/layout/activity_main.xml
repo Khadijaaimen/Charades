@@ -1,56 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_gravity="center"
-    android:background="@drawable/pink_part"
     tools:context=".activities.MainActivity">
 
-
-    <TextView
-        android:id="@+id/guess_word"
+    <com.google.android.material.navigation.NavigationView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/guess_the_word"
-        android:textColor="@color/white"
-        android:fontFamily="@font/hobo"
-        android:gravity="center"
-        android:textSize="22sp"
-        android:background="@drawable/guess_bg"
-        android:layout_marginEnd="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
-        android:padding="5dp"
-        />
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:theme="@style/navigation_theme"
+        android:id="@+id/navView"
+        android:background="@color/tapioca"
+        app:menu="@menu/nav_options" />
 
-    <ImageView
-        android:id="@+id/logo"
+    <LinearLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="10dp"
-        android:src="@drawable/charades"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:contentDescription="@string/app_name" />
+        android:layout_height="match_parent"
+        android:background="@drawable/pink_part"
+        android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:background="@drawable/yellow_part"
-        android:id="@+id/categoryRv"
-        android:elevation="5dp"
-        android:paddingEnd="20dp"
-        android:paddingStart="20dp"
-        android:paddingTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/category_recyclerview"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
-        />
+        <ImageView
+            android:id="@+id/navBar"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/menu"
+            app:tint="@color/white" />
 
+        <TextView
+            android:id="@+id/guess_word"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/guess_bg"
+            android:fontFamily="@font/hobo"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/guess_the_word"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:contentDescription="@string/app_name"
+            android:gravity="center"
+            android:src="@drawable/charades" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categoryRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/yellow_part"
+            android:elevation="5dp"
+            android:paddingStart="20dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="20dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            tools:listitem="@layout/category_recyclerview" />
+    </LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

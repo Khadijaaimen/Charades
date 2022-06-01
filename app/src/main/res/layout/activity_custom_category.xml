@@ -53,7 +53,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/hobo"
+            android:fontFamily="@font/gothic"
             android:gravity="center"
             android:text="@string/create_custom_deck"
             android:textColor="#403E3E"
@@ -73,59 +73,63 @@
             android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
-            android:imeOptions="actionSend"
-            android:inputType="text|textCapWords"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/gothic_light"
             android:gravity="center"
             android:hint="@string/red_n_blue_n_yellow_n_green_n_purple"
+            android:imeOptions="actionSend"
             android:importantForAutofill="no"
+            android:inputType="text|textCapWords"
             android:lineSpacingExtra="10dp"
+            android:textSize="20sp"
             android:textStyle="italic" />
 
         <ListView
-            android:layout_gravity="center"
+            android:id="@+id/listview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/listview"
-            />
+            android:layout_gravity="center" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:weightSum="3"
-        android:padding="10dp"
-        android:layout_weight="0.5"
         android:layout_width="match_parent"
-        android:layout_height="0dp">
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:weightSum="3">
+
         <Button
             android:id="@+id/backButton"
             android:layout_width="0dp"
+            android:layout_height="55dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
             android:backgroundTint="@color/orange"
-            android:fontFamily="@font/hobo"
-            android:text="@string/back" />
+            android:fontFamily="@font/gothic"
+            android:text="@string/back"
+            android:textSize="20sp"
+            tools:ignore="NestedWeights" />
 
         <ImageView
             android:id="@+id/deleteButton"
             android:layout_width="0dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:layout_height="40dp"
+            android:contentDescription="@string/app_name"
             android:src="@drawable/delete"
-            android:tint="@color/white"
-            android:contentDescription="@string/app_name" />
+            app:tint="@color/white" />
 
         <Button
             android:id="@+id/playButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:layout_weight="1"
             android:backgroundTint="@color/mustard"
-            android:fontFamily="@font/hobo"
-            android:text="@string/play" />
+            android:fontFamily="@font/gothic"
+            android:text="@string/play"
+            android:textSize="20sp" />
     </LinearLayout>
 
 </LinearLayout>

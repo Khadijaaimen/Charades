@@ -34,6 +34,7 @@ public class CustomCategoryActivity extends AppCompatActivity {
     String name;
     ListView listView;
     ArrayAdapter<String> arrayAdapter;
+    ArrayList<String> customList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,14 +52,16 @@ public class CustomCategoryActivity extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(this);
         Cursor data = databaseHelper.getListContents();
 
-        ArrayList<String> customList = new ArrayList<>();
+        customList = new ArrayList<>();
 
         while (data.moveToNext()) {
             customList.add(data.getString(1));
-            arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
-                    android.R.layout.simple_list_item_1, customList);
-            listView.setAdapter(arrayAdapter);
         }
+
+        arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
+                android.R.layout.simple_list_item_1, customList);
+        listView.setAdapter(arrayAdapter);
+        arrayAdapter.notifyDataSetChanged();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
@@ -66,19 +69,19 @@ public class CustomCategoryActivity extends AppCompatActivity {
                 AlertDialog.Builder adb = new AlertDialog.Builder(CustomCategoryActivity.this);
                 adb.setTitle("Delete Item");
                 adb.setMessage("Are you sure you want to delete?");
+                adb.setIcon(android.R.drawable.ic_menu_delete);
                 final int positionToRemove = position;
                 adb.setNegativeButton("Cancel", null);
                 adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        customList.remove(positionToRemove);
+                        arrayAdapter.notifyDataSetChanged();
                         Cursor data = databaseHelper.getListContents();
-                        int itemID = -1;
+                        int itemID;
                         while (data.moveToNext()) {
                             itemID = data.getInt(0);
                             databaseHelper.deleteName(itemID, name);
-                            arrayAdapter.remove(String.valueOf(positionToRemove));
-                            customList.remove(positionToRemove);
-                            arrayAdapter.notifyDataSetChanged();
                         }
                     }
                 });
@@ -115,8 +118,8 @@ public class CustomCategoryActivity extends AppCompatActivity {
             }
         });
 
-        arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
-                android.R.layout.simple_list_item_1, customList);
+//        arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
+//                android.R.layout.simple_list_item_1, customList);
 
         customListText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
