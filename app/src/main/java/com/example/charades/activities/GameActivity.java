@@ -5,6 +5,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -30,7 +31,7 @@ public class GameActivity extends AppCompatActivity {
 
     private static final long START_TIME_IN_MILLIS = 60000;
     Gyroscope gyroscope;
-    TextView foreheadText, timerText, guessesText, secondTimerText, correctTextview, backTextView;
+    TextView foreheadText, timerText, guessesText, secondTimerText, correctTextview, backTextView, passTextview, bonusTextview;
     String name, textCorrect = "", textIncorrect = "", backgroundColor = "purple";
     CountDownTimer countDownTimer;
     LinearLayout linearLayout;
@@ -45,6 +46,8 @@ public class GameActivity extends AppCompatActivity {
     ArrayList<String> correctList = new ArrayList<>();
     ArrayList<String> item = new ArrayList<>();
     TextView warning;
+    String timeSelected = "";
+    Boolean isSoundChecked, isBonusChecked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,41 @@ public class GameActivity extends AppCompatActivity {
 
         getWindow().getDecorView().setBackgroundColor(Color.parseColor("#A344f3"));
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        timeSelected = AppPreferences.isButtonCLicked(getApplicationContext());
+        isBonusChecked = AppPreferences.isBonusButtonCLicked(getApplicationContext());
+        isSoundChecked = AppPreferences.isSoundButtonCLicked(getApplicationContext());
+
+        switch (timeSelected) {
+            case "60":
+                mTimeLeftInMillis = 60000;
+                break;
+            case "80":
+                mTimeLeftInMillis = 80000;
+                break;
+            case "120":
+                mTimeLeftInMillis = 120000;
+                break;
+        }
+
+        linearLayout = findViewById(R.id.linearLayout);
+
+        if (isBonusChecked) {
+            mTimeLeftInMillis = mTimeLeftInMillis + 10000;
+            Snackbar snackbar = Snackbar.make(linearLayout, "", Snackbar.LENGTH_LONG);
+            View view = getLayoutInflater().inflate(R.layout.custom_snackbar, null);
+            Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbar.getView();
+            correctTextview = view.findViewById(R.id.correctText);
+            passTextview = view.findViewById(R.id.passText);
+            bonusTextview = view.findViewById(R.id.addTime);
+
+            correctTextview.setVisibility(View.GONE);
+            passTextview.setVisibility(View.GONE);
+            bonusTextview.setVisibility(View.VISIBLE);
+
+            snackbarLayout.addView(view, 0);
+            snackbar.show();
+        }
 
         gyroscope = new Gyroscope(this);
         random = new Random();
@@ -69,7 +107,6 @@ public class GameActivity extends AppCompatActivity {
         secondTimerText = findViewById(R.id.secondTimer);
         warning = findViewById(R.id.verticalWarning);
         backButton = findViewById(R.id.backBtn);
-        linearLayout = findViewById(R.id.linearLayout);
         backTextView = findViewById(R.id.backText);
 
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -94,20 +131,11 @@ public class GameActivity extends AppCompatActivity {
 
                 @Override
                 public void onFinish() {
-//                    TSnackbar snackbar = TSnackbar.make(linearLayout, "TILT UP TO PASS, DOWN TO CORRECT", TSnackbar.LENGTH_LONG);
-//                    View snackbarView = getLayoutInflater().inflate(R.layout.custom_snackbar, null);
-//                    correctTextview = snackbarView.findViewById(R.id.correctText);
-//                    snackbar.show();
 
                     Snackbar snackbar = Snackbar.make(linearLayout, "", Snackbar.LENGTH_LONG);
                     View view = getLayoutInflater().inflate(R.layout.custom_snackbar, null);
                     Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbar.getView();
                     correctTextview = view.findViewById(R.id.correctText);
-
-//                    FrameLayout.LayoutParams params2 =(FrameLayout.LayoutParams)view.getLayoutParams();
-//                    params2.gravity = Gravity.TOP;
-////                    params2.setMargins(0,50,0,0);
-//                    view.setLayoutParams(params2);
 
                     snackbarLayout.addView(view, 0);
                     snackbar.show();

@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.example.charades.R;
 import com.example.charades.adapter.CategoryAdapter;
+import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -185,12 +186,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()){
             case R.id.home:
                 startActivity(new Intent(MainActivity.this, MainActivity.class));
+                drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.favourites:
                 startActivity(new Intent(MainActivity.this, FavoritesActivity.class));
+                drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.settings:
                 startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.rating:
                 break;
