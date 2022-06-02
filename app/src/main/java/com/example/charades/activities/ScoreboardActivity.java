@@ -84,6 +84,12 @@ public class ScoreboardActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        startActivity(new Intent(ScoreboardActivity.this, MainActivity.class));
+        finish();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         correctList.clear();
@@ -95,5 +101,6 @@ public class ScoreboardActivity extends AppCompatActivity {
         super.onRestart();
         correctList.clear();
         incorrectList.clear();
+        startActivity(new Intent(ScoreboardActivity.this, MainActivity.class));
     }
 }

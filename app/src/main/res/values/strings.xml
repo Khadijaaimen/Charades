@@ -36,4 +36,8 @@
     <string name="_60s">60s</string>
     <string name="_80s">80s</string>
     <string name="_120s">120s</string>
+    <string name="pakistani_celebrity">Pakistani Celebrity</string>
+    <string name="hollywood_celebrity">Hollywood Celebrity</string>
+    <string name="bollywood_celebrity">Bollywood Celebrity</string>
+    <string name="choose_a_category">Choose a Category</string>
 </resources>

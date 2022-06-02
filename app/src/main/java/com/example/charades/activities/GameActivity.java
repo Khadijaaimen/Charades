@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -31,6 +32,7 @@ public class GameActivity extends AppCompatActivity {
 
     private static final long START_TIME_IN_MILLIS = 60000;
     Gyroscope gyroscope;
+    Boolean onBack = false;
     TextView foreheadText, timerText, guessesText, secondTimerText, correctTextview, backTextView, passTextview, bonusTextview;
     String name, textCorrect = "", textIncorrect = "", backgroundColor = "purple";
     CountDownTimer countDownTimer;
@@ -139,7 +141,6 @@ public class GameActivity extends AppCompatActivity {
 
                     snackbarLayout.addView(view, 0);
                     snackbar.show();
-
                     displayData();
                 }
             }.start();
@@ -158,17 +159,21 @@ public class GameActivity extends AppCompatActivity {
             public void onFinish() {
                 secondTimerText.setVisibility(View.GONE);
                 guessesText.setText("Finish!");
-                Intent intent = new Intent(GameActivity.this, ScoreboardActivity.class);
-                intent.putExtra("incorrectAns", incorrectCount);
-                intent.putExtra("correctAns", correctCount);
-                Bundle b = new Bundle();
-                b.putSerializable("incorrectList", (Serializable) incorrectList);
-                intent.putExtras(b);
-                Bundle b2 = new Bundle();
-                b2.putSerializable("correctList", (Serializable) correctList);
-                intent.putExtras(b2);
-                intent.putExtra("nameCategory", name);
-                startActivity(intent);
+                if(onBack){
+                    finishAffinity();
+                } else {
+                    Intent intent = new Intent(GameActivity.this, ScoreboardActivity.class);
+                    intent.putExtra("incorrectAns", incorrectCount);
+                    intent.putExtra("correctAns", correctCount);
+                    Bundle b = new Bundle();
+                    b.putSerializable("incorrectList", (Serializable) incorrectList);
+                    intent.putExtras(b);
+                    Bundle b2 = new Bundle();
+                    b2.putSerializable("correctList", (Serializable) correctList);
+                    intent.putExtras(b2);
+                    intent.putExtra("nameCategory", name);
+                    startActivity(intent);
+                }
             }
         }.start();
     }
@@ -2179,7 +2184,7 @@ public class GameActivity extends AppCompatActivity {
                     }
                 });
                 break;
-            case "TV Shows":
+            case "Hollywood TV Shows":
 
                 correctTextview.setTextColor(Color.parseColor("#3dd3e6"));
 
@@ -4072,7 +4077,7 @@ public class GameActivity extends AppCompatActivity {
                     }
                 });
                 break;
-            case "Indian Songs":
+            case "Hindi Songs":
 
                 correctTextview.setTextColor(Color.parseColor("#f9ae21"));
 
@@ -7688,6 +7693,7 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        onBack = true;
         startActivity(new Intent(GameActivity.this, MainActivity.class));
         finish();
         finishAffinity();

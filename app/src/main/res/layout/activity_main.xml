@@ -10,10 +10,11 @@
     <com.google.android.material.navigation.NavigationView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
         android:theme="@style/navigation_theme"
         android:id="@+id/navView"
-        android:background="@color/tapioca"
+        android:layout_gravity="start"
+        android:background="@color/teal_700"
+        app:headerLayout="@layout/nav_header_layout"
         app:menu="@menu/nav_options" />
 
     <LinearLayout
@@ -65,12 +66,12 @@
             android:layout_height="wrap_content"
             android:background="@drawable/yellow_part"
             android:elevation="5dp"
-            android:paddingStart="20dp"
             android:paddingTop="20dp"
-            android:paddingEnd="20dp"
+            android:paddingEnd="10dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
-            tools:listitem="@layout/category_recyclerview" />
+            tools:listitem="@layout/category_recyclerview"
+            tools:ignore="RtlSymmetry" />
     </LinearLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

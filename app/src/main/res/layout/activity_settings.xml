@@ -71,7 +71,7 @@
                 android:checked="true"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/button_bg"
-                android:fontFamily="@font/gothic"
+                android:fontFamily="@font/hobo"
                 android:text="@string/on"
                 android:textSize="20sp"
                 android:theme="@style/navigation_theme" />
@@ -95,7 +95,7 @@
                 android:layout_marginBottom="20dp"
                 android:textColor="@color/white"
                 android:background="@drawable/button_bg"
-                android:fontFamily="@font/gothic"
+                android:fontFamily="@font/hobo"
                 android:text="@string/on"
                 android:textSize="20sp"
                 android:theme="@style/navigation_theme" />
@@ -155,6 +155,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="55dp"
                 android:layout_marginTop="30dp"
+                android:fontFamily="@font/hobo"
                 android:backgroundTint="@color/orange"
                 android:text="@string/back"
                 android:textSize="18sp" />

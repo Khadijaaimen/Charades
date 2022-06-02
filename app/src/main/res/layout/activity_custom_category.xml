@@ -107,7 +107,7 @@
             android:layout_height="55dp"
             android:layout_weight="1"
             android:backgroundTint="@color/orange"
-            android:fontFamily="@font/gothic"
+            android:fontFamily="@font/hobo"
             android:text="@string/back"
             android:textSize="20sp"
             tools:ignore="NestedWeights" />
@@ -127,7 +127,7 @@
             android:layout_height="55dp"
             android:layout_weight="1"
             android:backgroundTint="@color/mustard"
-            android:fontFamily="@font/gothic"
+            android:fontFamily="@font/hobo"
             android:text="@string/play"
             android:textSize="20sp" />
     </LinearLayout>
