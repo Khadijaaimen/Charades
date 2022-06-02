@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.charades.activities.AppPreferences;
+import com.example.charades.activities.CustomCategoryActivity;
 import com.example.charades.activities.GameActivity;
 import com.example.charades.R;
 
@@ -24,7 +27,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     ArrayList<String> categoryList;
     ArrayList<Integer> categoryIconsList;
     Context context;
-    ImageView pak, holly, bolly;
+    ImageView pak, holly, bolly, play, close, icon;
     Dialog dialog;
     ImageView btnClose;
 
@@ -42,9 +45,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CategoryHolderView holder, int position) {
+    public void onBindViewHolder(@NonNull CategoryHolderView holder, @SuppressLint("RecyclerView") int position) {
         holder.categoryName.setText(categoryList.get(position));
-//        holder.categoryName.setVisibility(View.GONE);
+        holder.categoryName.setVisibility(View.GONE);
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -68,10 +71,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                     case "Singers":
                         showDialog("Singers");
                         break;
+                    case "Custom Category":
+                        context.startActivity(new Intent(context, CustomCategoryActivity.class));
+                        break;
                     default:
-                        Intent intent = new Intent(context, GameActivity.class);
-                        intent.putExtra("category", categoryList.get(position));
-                        context.startActivity(intent);
+                        showIconDialog(position);
                         break;
                 }
             }
@@ -167,6 +171,37 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                 context.startActivity(intent);
             }
         });
+        dialog.show();
+    }
+
+    private void showIconDialog(Integer position) {
+        dialog = new Dialog(context, R.style.DialogStyle);
+        dialog.setContentView(R.layout.custom_icon_popup);
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        play = dialog.findViewById(R.id.playButton);
+        close = dialog.findViewById(R.id.closeButton);
+        icon = dialog.findViewById(R.id.icon);
+
+        icon.setImageResource(categoryIconsList.get(position));
+
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, GameActivity.class);
+                intent.putExtra("category", categoryList.get(position));
+                context.startActivity(intent);
+            }
+        });
+
         dialog.show();
     }
 

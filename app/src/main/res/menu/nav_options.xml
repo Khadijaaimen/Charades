@@ -8,10 +8,6 @@
             android:title="@string/home"
             android:icon="@drawable/ic_round_home_24"/>
 
-        <item android:id="@+id/favourites"
-            android:title="@string/favourites"
-            android:icon="@drawable/ic_round_favorite_24"/>
-
         <item android:id="@+id/settings"
             android:title="@string/settings"
             android:icon="@drawable/ic_round_settings_24"/>

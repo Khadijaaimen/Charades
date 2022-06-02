@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-class AppPreferences {
+public class AppPreferences {
 
     private static SharedPreferences mPrefs;
     private static SharedPreferences.Editor mPrefsEditor;
@@ -44,5 +44,4 @@ class AppPreferences {
         mPrefsEditor.putBoolean("bonus_clicked", value);
         mPrefsEditor.commit();
     }
-
 }

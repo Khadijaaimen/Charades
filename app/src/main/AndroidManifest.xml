@@ -27,9 +27,6 @@
             android:name=".activities.SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.FavoritesActivity"
-            android:exported="false" />
-        <activity
             android:name=".activities.CustomCategoryActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan|stateHidden" />

@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         categoryIcons.add(R.drawable.music);
         categoryIcons.add(R.drawable.movies);
         categoryIcons.add(R.drawable.tv_shows);
-        categoryIcons.add(R.drawable.music);
+        categoryIcons.add(R.drawable.items);
         categoryIcons.add(R.drawable.animals);
         categoryIcons.add(R.drawable.books);
         categoryIcons.add(R.drawable.science);
@@ -204,10 +204,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()){
             case R.id.home:
                 startActivity(new Intent(MainActivity.this, MainActivity.class));
-                drawerLayout.closeDrawer(GravityCompat.START);
-                break;
-            case R.id.favourites:
-                startActivity(new Intent(MainActivity.this, FavoritesActivity.class));
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.settings:

@@ -127,6 +127,7 @@
                     android:layout_width="wrap_content"
                     android:textSize="18sp"
                     android:textStyle="bold"
+                    android:textAllCaps="false"
                     android:layout_height="wrap_content"
                     android:text="@string/_60s" />
 
@@ -137,12 +138,14 @@
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:textStyle="bold"
+                    android:textAllCaps="false"
                     android:text="@string/_80s" />
 
                 <Button
                     android:id="@+id/btnTwenty"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="wrap_content"
+                    android:textAllCaps="false"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:textStyle="bold"
