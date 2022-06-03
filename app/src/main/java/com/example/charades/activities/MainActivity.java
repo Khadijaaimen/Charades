@@ -210,6 +210,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
+            case R.id.instructions:
+                startActivity(new Intent(MainActivity.this, InstructionsActivity.class));
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
             case R.id.rating:
                 break;
             case R.id.share:

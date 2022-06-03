@@ -40,4 +40,11 @@
     <string name="hollywood_celebrity">Hollywood Celebrity</string>
     <string name="bollywood_celebrity">Bollywood Celebrity</string>
     <string name="choose_a_category">Choose a Category</string>
+    <string name="how_to_play">How to Play</string>
+    <string name="follow_instructions">Follow Instructions</string>
+    <string name="place_phone_on_your_forehead_guess_the_word_while_your_friends_act_sing_or_describe_clues">Place phone on your forehead. Guess the word while your friends act, sing or describe clues.</string>
+    <string name="tilt_the_phone_down_if_you_guessed_the_word">Tilt the phone downwards if you guessed the word.</string>
+    <string name="tilt_the_phone_upwards_if_you_want_to_pass">Tilt the phone upwards if you want to pass.</string>
+    <string name="guess_as_many_words_as_possible_in_the_shortest_time_possible">Guess as many words as possible in the shortest time possible.</string>
+    <string name="ok">OK</string>
 </resources>

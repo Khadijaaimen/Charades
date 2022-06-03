@@ -12,6 +12,10 @@
             android:title="@string/settings"
             android:icon="@drawable/ic_round_settings_24"/>
 
+        <item android:id="@+id/instructions"
+            android:title="@string/how_to_play"
+            android:icon="@drawable/ic_round_question_mark_24"/>
+
         <item android:id="@+id/rating"
             android:icon="@drawable/ic_round_star_rate_24"
             android:title="@string/rate_us"/>

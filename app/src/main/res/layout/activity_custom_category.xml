@@ -63,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:fontFamily="sans-serif-condensed"
+            android:fontFamily="@font/gothic_light"
             android:gravity="center"
             android:text="@string/enter_the_words_one_below_the_other_using_enter_key"
             android:textColor="#403E3E"

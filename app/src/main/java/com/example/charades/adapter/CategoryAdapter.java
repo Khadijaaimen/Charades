@@ -19,6 +19,7 @@ import com.example.charades.activities.AppPreferences;
 import com.example.charades.activities.CustomCategoryActivity;
 import com.example.charades.activities.GameActivity;
 import com.example.charades.R;
+import com.example.charades.activities.InstructionsActivity;
 
 import java.util.ArrayList;
 
@@ -27,7 +28,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     ArrayList<String> categoryList;
     ArrayList<Integer> categoryIconsList;
     Context context;
-    ImageView pak, holly, bolly, play, close, icon;
+    ImageView pak, holly, bolly, play, close, icon, how, how2;
     Dialog dialog;
     ImageView btnClose;
 
@@ -81,8 +82,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             }
         });
 
-        int width = 420;
-        int height = 440;
+        int width = 440;
+        int height = 460;
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width,height);
         holder.categoryIcon.setLayoutParams(params);
         holder.categoryIcon.setImageResource(categoryIconsList.get(position));
@@ -98,6 +99,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         pak = dialog.findViewById(R.id.pakiCeleb);
         holly = dialog.findViewById(R.id.hollyCeleb);
         bolly = dialog.findViewById(R.id.bollyCeleb);
+        how2 = dialog.findViewById(R.id.btn_ok);
+
+        how2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                context.startActivity(new Intent(context, InstructionsActivity.class));
+            }
+        });
 
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,6 +192,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         play = dialog.findViewById(R.id.playButton);
         close = dialog.findViewById(R.id.closeButton);
         icon = dialog.findViewById(R.id.icon);
+        how = dialog.findViewById(R.id.howButton);
+
+        how.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                context.startActivity(new Intent(context, InstructionsActivity.class));
+            }
+        });
 
         icon.setImageResource(categoryIconsList.get(position));
 
