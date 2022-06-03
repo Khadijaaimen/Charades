@@ -50,6 +50,7 @@ public class GameActivity extends AppCompatActivity {
     TextView warning;
     String timeSelected = "";
     Boolean isSoundChecked, isBonusChecked;
+    SoundEffects soundEffects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +112,8 @@ public class GameActivity extends AppCompatActivity {
         backButton = findViewById(R.id.backBtn);
         backTextView = findViewById(R.id.backText);
 
+        soundEffects = new SoundEffects(GameActivity.this);
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -124,16 +127,26 @@ public class GameActivity extends AppCompatActivity {
             countDownTimer = new CountDownTimer(5000, 1000) {
                 @Override
                 public void onTick(long l) {
+                    if (isSoundChecked)
+                        soundEffects.gameStartSound();
                     timerText.setText(String.valueOf(count));
                     count--;
                     if (count < 2) {
                         foreheadText.setText("Get Ready!");
                     }
+
+                    if (onBack) {
+                        if (isSoundChecked)
+                            soundEffects.endSound();
+                        finishAffinity();
+                        countDownTimer.cancel();
+                    }
                 }
 
                 @Override
                 public void onFinish() {
-
+                    if (isSoundChecked)
+                        soundEffects.gameBeepSound();
                     Snackbar snackbar = Snackbar.make(linearLayout, "", Snackbar.LENGTH_LONG);
                     View view = getLayoutInflater().inflate(R.layout.custom_snackbar, null);
                     Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbar.getView();
@@ -153,27 +166,36 @@ public class GameActivity extends AppCompatActivity {
             public void onTick(long l) {
                 mTimeLeftInMillis = l;
                 updateCountDownText();
+                if (isSoundChecked)
+                    if (mTimeLeftInMillis < 11000) {
+                        soundEffects.gameEndSound();
+                    }
+
+                if (onBack) {
+                    if (isSoundChecked)
+                        soundEffects.endSound();
+                    finishAffinity();
+                    countDownTimer.cancel();
+                }
             }
 
             @Override
             public void onFinish() {
+                if (isSoundChecked)
+                    soundEffects.finishSound();
                 secondTimerText.setVisibility(View.GONE);
                 guessesText.setText("Finish!");
-                if(onBack){
-                    finishAffinity();
-                } else {
-                    Intent intent = new Intent(GameActivity.this, ScoreboardActivity.class);
-                    intent.putExtra("incorrectAns", incorrectCount);
-                    intent.putExtra("correctAns", correctCount);
-                    Bundle b = new Bundle();
-                    b.putSerializable("incorrectList", (Serializable) incorrectList);
-                    intent.putExtras(b);
-                    Bundle b2 = new Bundle();
-                    b2.putSerializable("correctList", (Serializable) correctList);
-                    intent.putExtras(b2);
-                    intent.putExtra("nameCategory", name);
-                    startActivity(intent);
-                }
+                Intent intent = new Intent(GameActivity.this, ScoreboardActivity.class);
+                intent.putExtra("incorrectAns", incorrectCount);
+                intent.putExtra("correctAns", correctCount);
+                Bundle b = new Bundle();
+                b.putSerializable("incorrectList", (Serializable) incorrectList);
+                intent.putExtras(b);
+                Bundle b2 = new Bundle();
+                b2.putSerializable("correctList", (Serializable) correctList);
+                intent.putExtras(b2);
+                intent.putExtra("nameCategory", name);
+                startActivity(intent);
             }
         }.start();
     }
@@ -398,6 +420,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -424,6 +448,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -679,6 +705,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -705,6 +733,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -836,6 +866,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -862,6 +894,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -997,6 +1031,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -1023,6 +1059,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -1281,6 +1319,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -1307,6 +1347,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -1453,6 +1495,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -1479,6 +1523,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -1614,6 +1660,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -1640,6 +1688,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -1740,6 +1790,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -1766,6 +1818,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -1870,6 +1924,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -1896,6 +1952,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -2004,6 +2062,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -2030,6 +2090,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -2282,6 +2344,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -2308,6 +2372,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -2495,6 +2561,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -2521,6 +2589,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -2630,6 +2700,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -2656,6 +2728,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -2785,6 +2859,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -2811,6 +2887,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -3234,6 +3312,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -3260,6 +3340,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -3410,6 +3492,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -3436,6 +3520,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -3728,6 +3814,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -3754,6 +3842,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -4026,6 +4116,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -4052,6 +4144,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -4298,6 +4392,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -4324,6 +4420,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -4548,6 +4646,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -4574,6 +4674,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -4841,6 +4943,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -4867,6 +4971,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -5131,6 +5237,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -5157,6 +5265,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -5382,6 +5492,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -5408,6 +5520,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -5598,6 +5712,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -5624,6 +5740,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -5832,6 +5950,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -5858,6 +5978,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -5946,6 +6068,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -5972,6 +6096,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -6081,6 +6207,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -6107,6 +6235,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -6230,6 +6360,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -6256,6 +6388,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -6414,6 +6548,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -6440,6 +6576,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -6744,6 +6882,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -6770,6 +6910,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -6936,6 +7078,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -6962,6 +7106,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -7235,6 +7381,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -7261,6 +7409,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -7522,6 +7672,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -7548,6 +7700,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -7606,6 +7760,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#D63434"));
                                 backgroundColor = "red";
+                                if (isSoundChecked)
+                                    soundEffects.wrongSound();
                                 textIncorrect = (String) guessesText.getText();
                                 guessesText.setText("Pass");
                                 new Handler().postDelayed(new Runnable() {
@@ -7632,6 +7788,8 @@ public class GameActivity extends AppCompatActivity {
                             if (backgroundColor.equals("purple")) {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
+                                if (isSoundChecked)
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
