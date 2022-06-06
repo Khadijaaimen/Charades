@@ -449,7 +449,7 @@ public class GameActivity extends AppCompatActivity {
                                 getWindow().getDecorView().setBackgroundColor(Color.parseColor("#44D14A"));
                                 backgroundColor = "green";
                                 if (isSoundChecked)
-                                    soundEffects.wrongSound();
+                                    soundEffects.correctSound();
                                 textCorrect = (String) guessesText.getText();
                                 guessesText.setText("Correct");
                                 new Handler().postDelayed(new Runnable() {
@@ -3559,7 +3559,7 @@ public class GameActivity extends AppCompatActivity {
                 namesList.add("Aamir Khan");
                 namesList.add("Aditya Roy Kapur");
                 namesList.add("Ajay Devgn");
-                namesList.add("Akhsgay Kumar");
+                namesList.add("Akshay Kumar");
                 namesList.add("Amit Sadh");
                 namesList.add("Amitabh Bachan");
                 namesList.add("Anil Kapoor");

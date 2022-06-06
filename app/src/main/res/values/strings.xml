@@ -8,8 +8,8 @@
     <string name="guesses">Guesses</string>
     <string name="_60">60</string>
     <string name="results">Final Score</string>
-    <string name="correct_answers">Correct Answers</string>
-    <string name="incorrect_answers">Incorrect Answers</string>
+    <string name="correct_answers">Correct</string>
+    <string name="incorrect_answers">Incorrect</string>
     <string name="total">Total:</string>
     <string name="_10">10</string>
     <string name="aamir_khan">Aamir Khan</string>
@@ -47,4 +47,6 @@
     <string name="tilt_the_phone_upwards_if_you_want_to_pass">Tilt the phone upwards if you want to pass.</string>
     <string name="guess_as_many_words_as_possible_in_the_shortest_time_possible">Guess as many words as possible in the shortest time possible.</string>
     <string name="ok">OK</string>
+    <string name="score">Score</string>
+    <string name="Final">Final</string>
 </resources>

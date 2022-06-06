@@ -24,7 +24,7 @@ public class ScoreboardActivity extends AppCompatActivity {
     ArrayList<String> correctList = new ArrayList<>();
     ArrayList<String> incorrectList = new ArrayList<>();
     RecyclerView recyclerView1, recyclerView2;
-    TextView incorrectTotal, correctTotal;
+    TextView incorrectTotal, correctTotal, scoreText;
     CorrectAnswersAdapter correctAnswersAdapter;
     IncorrectAnswersAdapter incorrectAnswersAdapter;
     ImageView buttonRestart, buttonHome;
@@ -41,11 +41,14 @@ public class ScoreboardActivity extends AppCompatActivity {
 
         incorrectTotal = findViewById(R.id.totalCountIncorrect);
         correctTotal = findViewById(R.id.totalCountCorrect);
+        scoreText = findViewById(R.id.score);
 
         Intent intent = getIntent();
         correct = intent.getIntExtra("correctAns", 0);
         incorrect = intent.getIntExtra("incorrectAns", 0);
         name = intent.getStringExtra("nameCategory");
+
+        scoreText.setText(String.valueOf(correct));
 
         buttonRestart = findViewById(R.id.restartButton);
         buttonRestart.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +97,12 @@ public class ScoreboardActivity extends AppCompatActivity {
         super.onDestroy();
         correctList.clear();
         incorrectList.clear();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        startActivity(new Intent(ScoreboardActivity.this, MainActivity.class));
     }
 
     @Override
