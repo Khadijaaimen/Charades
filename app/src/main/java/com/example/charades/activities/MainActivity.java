@@ -117,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.categoryRv);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
+        recyclerView.setHasFixedSize(true);
         adapter = new CategoryAdapter(categoryNames, categoryIcons, this);
         recyclerView.setAdapter(adapter);
 

@@ -23,7 +23,7 @@ public class AppPreferences {
 
     public static Boolean isSoundButtonCLicked(Context ctx) {
         mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
-        return mPrefs.getBoolean("sound_clicked", false);
+        return mPrefs.getBoolean("sound_clicked", true);
     }
 
     public static void setSoundButtonCLicked(Context ctx, Boolean value) {

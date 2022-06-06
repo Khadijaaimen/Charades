@@ -81,10 +81,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             }
         });
 
-        int width = 440;
-        int height = 460;
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width,height);
-        holder.categoryIcon.setLayoutParams(params);
+//        int width = 440;
+//        int height = 460;
+//        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width,height);
+//        holder.categoryIcon.setLayoutParams(params);
         holder.categoryIcon.setImageResource(categoryIconsList.get(position));
     }
 
