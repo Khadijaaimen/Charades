@@ -6,7 +6,6 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -23,7 +22,6 @@ import android.widget.TextView;
 
 import com.example.charades.R;
 import com.example.charades.adapter.CategoryAdapter;
-import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -92,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         categoryIcons.add(R.drawable.music);
         categoryIcons.add(R.drawable.movies);
         categoryIcons.add(R.drawable.tv_shows);
-        categoryIcons.add(R.drawable.items);
+        categoryIcons.add(R.drawable.miscellanous);
         categoryIcons.add(R.drawable.animals);
         categoryIcons.add(R.drawable.books);
         categoryIcons.add(R.drawable.science);

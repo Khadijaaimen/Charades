@@ -1,4 +1,4 @@
-package com.example.charades.activities;
+package com.example.charades.javaClass;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -1,4 +1,4 @@
-package com.example.charades.activities;
+package com.example.charades.javaClass;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -9,11 +9,11 @@ import android.widget.Toast;
 
 public class Gyroscope {
 
-    private final SensorManager sensorManager;
-    private final Sensor sensor;
-    private final SensorEventListener sensorEventListener;
+    final SensorManager sensorManager;
+    final Sensor sensor;
+    final SensorEventListener sensorEventListener;
 
-    private Listener listener;
+    Listener listener;
 
     public void setListener(Listener l){
         listener = l;
@@ -23,7 +23,7 @@ public class Gyroscope {
         void onRotation(float rx, float ry,  float rz);
     }
 
-    Gyroscope(Context context){
+    public Gyroscope(Context context){
         sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
         if(sensor == null){

@@ -15,7 +15,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.charades.activities.AppPreferences;
 import com.example.charades.activities.CustomCategoryActivity;
 import com.example.charades.activities.GameActivity;
 import com.example.charades.R;

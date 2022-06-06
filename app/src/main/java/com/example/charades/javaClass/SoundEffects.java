@@ -1,4 +1,4 @@
-package com.example.charades.activities;
+package com.example.charades.javaClass;
 
 import android.content.Context;
 import android.media.AudioAttributes;
@@ -10,7 +10,7 @@ import com.example.charades.R;
 
 public class SoundEffects {
     AudioAttributes audioAttributes;
-    final int MAX = 1;
+    final int MAX = 2;
     int s1, s2, s3, s4, s5, s6;
 
     static int wrong_sound;

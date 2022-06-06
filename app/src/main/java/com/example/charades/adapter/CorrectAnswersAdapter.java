@@ -1,5 +1,6 @@
 package com.example.charades.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,10 +32,11 @@ public class CorrectAnswersAdapter extends RecyclerView.Adapter<CorrectAnswersAd
         return new CorrectAnswersAdapter.CorrectHolderView(rowItem);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull CorrectHolderView holder, int position) {
-        holder.correctText.setText(correctList.get(position));
-
+        String count = String.valueOf(position+1);
+        holder.correctText.setText(count + ". " + correctList.get(position));
     }
 
 
