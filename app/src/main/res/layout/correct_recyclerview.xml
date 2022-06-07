@@ -7,13 +7,13 @@
         android:id="@+id/correctNames"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_gravity="center"
+        android:gravity="start"
+        android:layout_gravity="top"
+        android:maxWidth="@dimen/_220sdp"
         android:maxLines="2"
-        android:maxWidth="220dp"
         android:fontFamily="@font/gothic"
         android:text="@string/aamir_khan"
         android:textColor="#788179"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:textSize="18sp" />
 </LinearLayout>

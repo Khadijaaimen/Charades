@@ -18,10 +18,10 @@
             android:id="@+id/linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="10"
-            android:paddingTop="12dp"
             android:background="@drawable/score_text"
+            android:orientation="horizontal"
+            android:paddingTop="12dp"
+            android:weightSum="10"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -51,23 +51,23 @@
             <TextView
                 android:id="@+id/score"
                 android:layout_width="0dp"
-                android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/gothic"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:layout_marginEnd="10dp"
-                android:text="@string/_10"
+                android:layout_weight="2"
+                android:fontFamily="@font/gothic"
+                android:gravity="center"
+                android:text="@string/_5"
                 android:textColor="@color/white"
-                android:textSize="42sp"
+                android:textSize="46sp"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="RtlSymmetry" />
 
             <TextView
                 android:id="@+id/timer2"
                 android:layout_width="0dp"
-                android:layout_weight="3"
                 android:layout_height="wrap_content"
+                android:layout_weight="3"
                 android:fontFamily="@font/gothic"
                 android:gravity="center"
                 android:text="@string/score"
@@ -87,52 +87,76 @@
                 app:tint="@color/white" />
         </LinearLayout>
 
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/headings"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/gothic"
-            android:gravity="center"
-            android:text="@string/correct_answers"
-            android:textColor="#4CAF50"
-            android:textSize="22sp" />
+            android:layout_marginTop="-60dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintTop_toBottomOf="@+id/linear">
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/gothic"
+                android:gravity="center"
+                android:text="@string/correct_answers"
+                android:textColor="#4CAF50"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/gothic"
+                android:gravity="center"
+                android:text="@string/incorrect_answers"
+                android:textColor="#EA6157"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/recyclerviews"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/gothic"
-            android:gravity="center"
-            android:text="@string/incorrect_answers"
-            android:textColor="#EA6157"
-            android:textSize="22sp" />
+            android:gravity="top"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintTop_toBottomOf="@+id/headings">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/correctAnsRv"
+                android:paddingStart="@dimen/_50sdp"
+                android:paddingEnd="@dimen/_5sdp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_weight="1"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/correct_recyclerview" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/correctAnsRv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/correct_recyclerview" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/incorrectAnsRv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toStartOf="@+id/flow2"
-            app:layout_constraintStart_toEndOf="@+id/flow2"
-            app:layout_constraintTop_toBottomOf="@+id/textView7"
-            tools:listitem="@layout/incorrect_recyclerview" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/incorrectAnsRv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:paddingStart="@dimen/_50sdp"
+                android:paddingEnd="@dimen/_5sdp"
+                android:layout_weight="1"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/incorrect_recyclerview" />
+        </LinearLayout>
 
 
         <LinearLayout
             android:id="@+id/layout1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
             android:gravity="center">
 
             <TextView
@@ -162,8 +186,6 @@
             android:id="@+id/layout2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
             android:gravity="center">
 
             <TextView
@@ -188,27 +210,6 @@
                 android:textSize="19sp" />
         </LinearLayout>
 
-
-        <androidx.constraintlayout.helper.widget.Flow
-            android:id="@+id/flow2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:constraint_referenced_ids="correctAnsRv, incorrectAnsRv"
-            app:flow_maxElementsWrap="2"
-            app:flow_horizontalGap="100dp"
-            app:layout_constraintTop_toBottomOf="@+id/flow3"
-            tools:layout_editor_absoluteX="-16dp" />
-
-        <androidx.constraintlayout.helper.widget.Flow
-            android:id="@+id/flow3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-60dp"
-            app:flow_horizontalGap="120dp"
-            app:constraint_referenced_ids="textView6,textView7"
-            app:flow_maxElementsWrap="2"
-            app:layout_constraintTop_toBottomOf="@+id/linear" />
-
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow4"
             android:layout_width="match_parent"
@@ -216,6 +217,6 @@
             android:layout_marginTop="15dp"
             app:constraint_referenced_ids="layout1,layout2"
             app:flow_maxElementsWrap="2"
-            app:layout_constraintTop_toBottomOf="@id/flow2" />
+            app:layout_constraintTop_toBottomOf="@id/recyclerviews" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
