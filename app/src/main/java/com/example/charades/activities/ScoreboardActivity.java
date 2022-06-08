@@ -54,11 +54,11 @@ public class ScoreboardActivity extends AppCompatActivity {
         buttonRestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), GameActivity.class);
-                intent.putExtra("category", name);
-                startActivity(intent);
                 correctList.clear();
                 incorrectList.clear();
+                Intent intent = new Intent(ScoreboardActivity.this, GameActivity.class);
+                intent.putExtra("category", name);
+                startActivity(intent);
             }
         });
 
@@ -89,7 +89,6 @@ public class ScoreboardActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         startActivity(new Intent(ScoreboardActivity.this, MainActivity.class));
-        finish();
     }
 
     @Override
@@ -97,12 +96,6 @@ public class ScoreboardActivity extends AppCompatActivity {
         super.onDestroy();
         correctList.clear();
         incorrectList.clear();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        startActivity(new Intent(ScoreboardActivity.this, MainActivity.class));
     }
 
     @Override

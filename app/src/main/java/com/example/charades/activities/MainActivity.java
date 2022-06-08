@@ -182,7 +182,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawerLayout.isDrawerVisible(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
             new AlertDialog.Builder(this)
                     .setTitle("Exit App")
                     .setCancelable(true)
