@@ -20,6 +20,12 @@ import com.example.charades.javaClass.AdPreferences;
 import com.example.charades.javaClass.AppPreferences;
 import com.example.charades.javaClass.Gyroscope;
 import com.example.charades.javaClass.SoundEffects;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.io.Serializable;
@@ -52,6 +58,7 @@ public class GameActivity extends AppCompatActivity {
     Boolean isSoundChecked, isBonusChecked;
     SoundEffects soundEffects;
     Accelerometer accelerometer;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +71,28 @@ public class GameActivity extends AppCompatActivity {
         timeSelected = AppPreferences.isButtonCLicked(getApplicationContext());
         isBonusChecked = AppPreferences.isBonusButtonCLicked(getApplicationContext());
         isSoundChecked = AppPreferences.isSoundButtonCLicked(getApplicationContext());
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        mAdView = findViewById(R.id.adView);
+
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdClicked() {
+                super.onAdClicked();
+
+            }
+
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+                onResume();
+            }
+        });
 
         switch (timeSelected) {
             case "60":
@@ -226,6 +255,15 @@ public class GameActivity extends AppCompatActivity {
 
 
     public void displayData() {
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                AdRequest adRequest = new AdRequest.Builder().build();
+                mAdView.loadAd(adRequest);
+            }
+        }, 3000);
+
         backTextView.setVisibility(View.VISIBLE);
         switch (name) {
             case "Hollywood Celebrities":
@@ -620,6 +658,7 @@ public class GameActivity extends AppCompatActivity {
                 namesList.add("Weather");
                 namesList.add("Wheel & axl");
 
+                rotationFunction();
                 break;
             case "Hollywood Movies":
 
@@ -5255,7 +5294,7 @@ public class GameActivity extends AppCompatActivity {
         super.onResume();
 
         gyroscope.register();
-        accelerometer.unRegister();
+        accelerometer.register();
     }
 
     @Override
@@ -5281,7 +5320,7 @@ public class GameActivity extends AppCompatActivity {
             soundEffects.endSound();
         onBack = true;
         isButtonClicked = AdPreferences.isButtonCLicked(this);
-        if(isButtonClicked == 1){
+        if (isButtonClicked == 1) {
             AdPreferences.setButtonCLicked(this, 2);
         } else {
             AdPreferences.setButtonCLicked(this, 1);

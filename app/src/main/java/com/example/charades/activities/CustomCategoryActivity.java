@@ -1,12 +1,15 @@
 package com.example.charades.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -22,6 +25,15 @@ import android.widget.Toast;
 
 import com.example.charades.R;
 import com.example.charades.helper.DatabaseHelper;
+import com.example.charades.javaClass.AdPreferences;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 import java.util.ArrayList;
 
@@ -33,8 +45,10 @@ public class CustomCategoryActivity extends AppCompatActivity {
     ImageView deleteBtn;
     String name;
     ListView listView;
+    Integer isButtonClicked;
     ArrayAdapter<String> arrayAdapter;
     ArrayList<String> customList;
+    InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +70,18 @@ public class CustomCategoryActivity extends AppCompatActivity {
 
         while (data.moveToNext()) {
             customList.add(data.getString(1));
+        }
+
+        isButtonClicked = AdPreferences.isButtonCLicked(CustomCategoryActivity.this);
+
+        MobileAds.initialize(CustomCategoryActivity.this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        if (isButtonClicked == 0) {
+            setAds();
         }
 
         arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
@@ -102,12 +128,44 @@ public class CustomCategoryActivity extends AppCompatActivity {
         playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CustomCategoryActivity.this, GameActivity.class);
-                intent.putExtra("category", "Custom");
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("test", customList);
-                intent.putExtras(bundle);
-                startActivity(intent);
+                if (isButtonClicked == 0) {
+                    if (mInterstitialAd != null) {
+                        isButtonClicked++;
+                        mInterstitialAd.show((Activity) CustomCategoryActivity.this);
+                        mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                            @Override
+                            public void onAdDismissedFullScreenContent() {
+                                super.onAdDismissedFullScreenContent();
+                                AdPreferences.setButtonCLicked(CustomCategoryActivity.this, isButtonClicked);
+                                Intent intent = new Intent(CustomCategoryActivity.this, GameActivity.class);
+                                intent.putExtra("category", "Custom");
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("test", customList);
+                                intent.putExtras(bundle);
+                                startActivity(intent);
+                            }
+                            @Override
+                            public void onAdClicked() {
+                                super.onAdClicked();
+                                AdPreferences.setAdOpened(CustomCategoryActivity.this, true);
+                                Intent intent = new Intent(CustomCategoryActivity.this, GameActivity.class);
+                                intent.putExtra("category", "Custom");
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("test", customList);
+                                mInterstitialAd = null;
+                            }
+                        });
+                    }
+                } else if (isButtonClicked == 1) {
+                    isButtonClicked--;
+                    AdPreferences.setButtonCLicked(CustomCategoryActivity.this, isButtonClicked);
+                    Intent intent = new Intent(CustomCategoryActivity.this, GameActivity.class);
+                    intent.putExtra("category", "Custom");
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("test", customList);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -117,9 +175,6 @@ public class CustomCategoryActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
-//        arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
-//                android.R.layout.simple_list_item_1, customList);
 
         customListText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -141,6 +196,28 @@ public class CustomCategoryActivity extends AppCompatActivity {
                 return handled;
             }
         });
+    }
+
+    public void setAds() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        InterstitialAd.load(CustomCategoryActivity.this, getString(R.string.adUnitID), adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        // The mInterstitialAd reference will be null until
+                        // an ad is loaded.
+                        mInterstitialAd = interstitialAd;
+                        Log.i("TAG", "onAdLoaded");
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error
+                        Log.i("TAG", loadAdError.getMessage());
+                        mInterstitialAd = null;
+                    }
+                });
     }
 
     private void addData(String text) {

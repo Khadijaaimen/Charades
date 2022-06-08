@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayout;
     LinearLayout contentView;
     NavigationView navigationView;
+    Integer clickCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         contentView = findViewById(R.id.content);
 
         navigationDrawer();
+
+        clickCount = AdPreferences.isButtonCLicked(MainActivity.this);
+        if(clickCount == 2){
+            AdPreferences.setButtonCLicked(MainActivity.this, 0);
+        }
 
         categoryNames.add("Custom Category");
         categoryNames.add("Celebrities");

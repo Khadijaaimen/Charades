@@ -13,7 +13,7 @@
     <string name="total">Total:</string>
     <string name="_10">10</string>
     <string name="aamir_khan">Aamir Khan</string>
-    <string name="please_hold_mobile_vertically">Please hold mobile vertically to continue.</string>
+    <string name="please_hold_mobile_vertically">[Please hold mobile vertically to continue.]</string>
     <string name="custom_category">Custom Category</string>
     <string name="guess_the_word">- Guess the word -</string>
     <string name="create_custom_deck">Create Custom Deck!</string>
@@ -51,4 +51,5 @@
     <string name="Final">Final</string>
     <string name="adUnitID">ca-app-pub-3940256099942544/1033173712</string>
     <string name="manifestAdID">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="bannerAdID">ca-app-pub-3940256099942544/6300978111</string>
 </resources>
