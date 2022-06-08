@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.charades.R;
 import com.example.charades.javaClass.Accelerometer;
+import com.example.charades.javaClass.AdPreferences;
 import com.example.charades.javaClass.AppPreferences;
 import com.example.charades.javaClass.Gyroscope;
 import com.example.charades.javaClass.SoundEffects;
@@ -36,6 +37,7 @@ public class GameActivity extends AppCompatActivity {
     CountDownTimer countDownTimer;
     LinearLayout linearLayout;
     int count = 5;
+    Integer isButtonClicked;
     int correctCount = 0, incorrectCount = 0;
     List<String> namesList;
     int Min = 1, Max;
@@ -5278,8 +5280,16 @@ public class GameActivity extends AppCompatActivity {
         if (isSoundChecked)
             soundEffects.endSound();
         onBack = true;
+        isButtonClicked = AdPreferences.isButtonCLicked(this);
+        if(isButtonClicked == 1){
+            AdPreferences.setButtonCLicked(this, 2);
+        } else {
+            AdPreferences.setButtonCLicked(this, 1);
+        }
+
         accelerometer.unRegister();
         countDownTimer.cancel();
+
         startActivity(new Intent(GameActivity.this, MainActivity.class));
         finish();
         finishAffinity();

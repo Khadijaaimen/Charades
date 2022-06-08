@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.example.charades.R;
 import com.example.charades.adapter.CategoryAdapter;
+import com.example.charades.javaClass.AdPreferences;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -136,9 +137,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(drawerLayout.isDrawerVisible(GravityCompat.START)){
+                if (drawerLayout.isDrawerVisible(GravityCompat.START)) {
                     drawerLayout.closeDrawer(GravityCompat.START);
-                } else{
+                } else {
                     drawerLayout.openDrawer(GravityCompat.START);
                 }
             }
@@ -183,6 +184,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            AdPreferences.setButtonCLicked(getApplication(), 0);
+                            AdPreferences.setAdOpened(getApplication(), false);
                             MainActivity.this.finish();
                             finishAffinity();
                         }
@@ -200,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.home:
                 startActivity(new Intent(MainActivity.this, MainActivity.class));
                 drawerLayout.closeDrawer(GravityCompat.START);
@@ -219,5 +222,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
         return false;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        int isButtonClicked;
+        isButtonClicked = AdPreferences.isButtonCLicked(this);
+        if (isButtonClicked == 1)
+            AdPreferences.setButtonCLicked(getApplication(), 0);
+        else
+            AdPreferences.setButtonCLicked(getApplication(), 1);
+        AdPreferences.setAdOpened(getApplication(), false);
     }
 }

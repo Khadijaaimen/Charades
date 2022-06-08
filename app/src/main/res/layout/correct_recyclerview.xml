@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:gravity="start"
         android:layout_gravity="top"
-        android:maxWidth="@dimen/_220sdp"
+        android:maxWidth="@dimen/_200sdp"
         android:maxLines="2"
         android:fontFamily="@font/gothic"
         android:text="@string/aamir_khan"

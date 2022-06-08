@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.charades">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <uses-feature
         android:name="android.hardware.sensor.accelerometer"
         android:required="true" />
@@ -12,6 +14,7 @@
     <uses-feature
         android:name="android.hardware.sensor.gyroscope"
         android:required="true" />
+
 
     <application
         android:allowBackup="true"
@@ -41,6 +44,11 @@
             android:name=".activities.GameActivity"
             android:exported="false"
             android:screenOrientation="landscape" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/manifestAdID"/>
+
         <activity
             android:name=".activities.MainActivity"
             android:exported="true"

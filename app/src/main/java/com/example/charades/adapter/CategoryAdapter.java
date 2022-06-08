@@ -1,10 +1,12 @@
 package com.example.charades.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,16 @@ import com.example.charades.activities.CustomCategoryActivity;
 import com.example.charades.activities.GameActivity;
 import com.example.charades.R;
 import com.example.charades.activities.InstructionsActivity;
+import com.example.charades.activities.MainActivity;
+import com.example.charades.javaClass.AdPreferences;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 import java.util.ArrayList;
 
@@ -30,6 +42,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     ImageView pak, holly, bolly, play, close, icon, how, how2;
     Dialog dialog;
     ImageView btnClose;
+    InterstitialAd mInterstitialAd;
+    Integer isButtonClicked;
 
     public CategoryAdapter(ArrayList<String> nameList, ArrayList<Integer> categoryIcons, Context context) {
         this.categoryList = nameList;
@@ -100,6 +114,18 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         bolly = dialog.findViewById(R.id.bollyCeleb);
         how2 = dialog.findViewById(R.id.btn_ok);
 
+        isButtonClicked = AdPreferences.isButtonCLicked(context);
+
+        MobileAds.initialize(context, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        if (isButtonClicked == 0) {
+            setAds();
+        }
+
         how2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,70 +143,437 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         pak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, GameActivity.class);
                 switch (category) {
                     case "Celebrities":
-                        intent.putExtra("category", "Pakistani Celebrities");
+                        if (isButtonClicked == 0) {
+                            if (mInterstitialAd != null) {
+                                isButtonClicked++;
+                                mInterstitialAd.show((Activity) context);
+                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                    @Override
+                                    public void onAdDismissedFullScreenContent() {
+                                        super.onAdDismissedFullScreenContent();
+                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "Pakistani Celebrities");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                    @Override
+                                    public void onAdClicked() {
+                                        super.onAdClicked();
+                                        AdPreferences.setAdOpened(context, true);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "Pakistani Celebrities");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                });
+                            }
+                        } else if (isButtonClicked == 1) {
+                            isButtonClicked--;
+                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                            Intent intent = new Intent(context, GameActivity.class);
+                            intent.putExtra("category", "Pakistani Celebrities");
+                            context.startActivity(intent);
+                        }
                         break;
                     case "Singers":
-                        intent.putExtra("category", "Pakistani Singers");
+                        if (isButtonClicked == 0) {
+                            if (mInterstitialAd != null) {
+                                isButtonClicked++;
+                                mInterstitialAd.show((Activity) context);
+                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                    @Override
+                                    public void onAdDismissedFullScreenContent() {
+                                        super.onAdDismissedFullScreenContent();
+                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "Pakistani Singers");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                    @Override
+                                    public void onAdClicked() {
+                                        super.onAdClicked();
+                                        AdPreferences.setAdOpened(context, true);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "Pakistani Singers");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                });
+                            }
+                        } else if (isButtonClicked == 1) {
+                            isButtonClicked--;
+                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                            Intent intent = new Intent(context, GameActivity.class);
+                            intent.putExtra("category", "Pakistani Singers");
+                            context.startActivity(intent);
+                        }
                         break;
                     case "TV Shows":
-                        intent.putExtra("category", "Pakistani Dramas");
+                        if (isButtonClicked == 0) {
+                            if (mInterstitialAd != null) {
+                                isButtonClicked++;
+                                mInterstitialAd.show((Activity) context);
+                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                    @Override
+                                    public void onAdDismissedFullScreenContent() {
+                                        super.onAdDismissedFullScreenContent();
+                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "Pakistani Dramas");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                    @Override
+                                    public void onAdClicked() {
+                                        super.onAdClicked();
+                                        AdPreferences.setAdOpened(context, true);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "Pakistani Dramas");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                });
+                            }
+                        } else if (isButtonClicked == 1) {
+                            isButtonClicked--;
+                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                            Intent intent = new Intent(context, GameActivity.class);
+                            intent.putExtra("category", "Pakistani Dramas");
+                            context.startActivity(intent);
+                        }
                         break;
                 }
-                context.startActivity(intent);
             }
         });
 
         holly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, GameActivity.class);
                 switch (category) {
                     case "Celebrities":
-                        intent.putExtra("category", "Hollywood Celebrities");
+                        if (isButtonClicked == 0) {
+                            if (mInterstitialAd != null) {
+                                isButtonClicked++;
+                                mInterstitialAd.show((Activity) context);
+                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                    @Override
+                                    public void onAdDismissedFullScreenContent() {
+                                        super.onAdDismissedFullScreenContent();
+                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "Hollywood Celebrities");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                    @Override
+                                    public void onAdClicked() {
+                                        super.onAdClicked();
+                                        AdPreferences.setAdOpened(context, true);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "Hollywood Celebrities");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                });
+                            }
+                        } else if (isButtonClicked == 1) {
+                            isButtonClicked--;
+                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                            Intent intent = new Intent(context, GameActivity.class);
+                            intent.putExtra("category", "Hollywood Celebrities");
+                            context.startActivity(intent);
+                        }
                         break;
                     case "Movies":
-                        intent.putExtra("category", "Hollywood Movies");
+                        if (isButtonClicked == 0) {
+                            if (mInterstitialAd != null) {
+                                isButtonClicked++;
+                                mInterstitialAd.show((Activity) context);
+                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                    @Override
+                                    public void onAdDismissedFullScreenContent() {
+                                        super.onAdDismissedFullScreenContent();
+                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "Hollywood Movies");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                    @Override
+                                    public void onAdClicked() {
+                                        super.onAdClicked();
+                                        AdPreferences.setAdOpened(context, true);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "Hollywood Movies");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                });
+                            }
+                        } else if (isButtonClicked == 1) {
+                            isButtonClicked--;
+                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                            Intent intent = new Intent(context, GameActivity.class);
+                            intent.putExtra("category", "Hollywood Movies");
+                            context.startActivity(intent);
+                        }
                         break;
                     case "Songs":
-                        intent.putExtra("category", "English Songs");
+                        if (isButtonClicked == 0) {
+                            if (mInterstitialAd != null) {
+                                isButtonClicked++;
+                                mInterstitialAd.show((Activity) context);
+                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                    @Override
+                                    public void onAdDismissedFullScreenContent() {
+                                        super.onAdDismissedFullScreenContent();
+                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "English Songs");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                    @Override
+                                    public void onAdClicked() {
+                                        super.onAdClicked();
+                                        AdPreferences.setAdOpened(context, true);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "English Songs");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                });
+                            }
+                        } else if (isButtonClicked == 1) {
+                            isButtonClicked--;
+                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                            Intent intent = new Intent(context, GameActivity.class);
+                            intent.putExtra("category", "English Songs");
+                            context.startActivity(intent);
+                        }
                         break;
                     case "Singers":
-                        intent.putExtra("category", "Hollywood Singers");
+                        if (isButtonClicked == 0) {
+                            if (mInterstitialAd != null) {
+                                isButtonClicked++;
+                                mInterstitialAd.show((Activity) context);
+                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                    @Override
+                                    public void onAdDismissedFullScreenContent() {
+                                        super.onAdDismissedFullScreenContent();
+                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "Hollywood Singers");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                    @Override
+                                    public void onAdClicked() {
+                                        super.onAdClicked();
+                                        AdPreferences.setAdOpened(context, true);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "Hollywood Singers");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                });
+                            }
+                        } else if (isButtonClicked == 1) {
+                            isButtonClicked--;
+                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                            Intent intent = new Intent(context, GameActivity.class);
+                            intent.putExtra("category", "Hollywood Singers");
+                            context.startActivity(intent);
+                        }
                         break;
                     case "TV Shows":
-                        intent.putExtra("category", "Hollywood TV Shows");
+                        if (isButtonClicked == 0) {
+                            if (mInterstitialAd != null) {
+                                isButtonClicked++;
+                                mInterstitialAd.show((Activity) context);
+                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                    @Override
+                                    public void onAdDismissedFullScreenContent() {
+                                        super.onAdDismissedFullScreenContent();
+                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "Hollywood TV Shows");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                    @Override
+                                    public void onAdClicked() {
+                                        super.onAdClicked();
+                                        AdPreferences.setAdOpened(context, true);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "Hollywood TV Shows");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                });
+                            }
+                        } else if (isButtonClicked == 1) {
+                            isButtonClicked--;
+                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                            Intent intent = new Intent(context, GameActivity.class);
+                            intent.putExtra("category", "Hollywood TV Shows");
+                            context.startActivity(intent);
+                        }
                         break;
                 }
-                context.startActivity(intent);
             }
         });
 
         bolly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, GameActivity.class);
                 switch (category) {
                     case "Celebrities":
-                        intent.putExtra("category", "Bollywood Celebrities");
+                        if (isButtonClicked == 0) {
+                            if (mInterstitialAd != null) {
+                                isButtonClicked++;
+                                mInterstitialAd.show((Activity) context);
+                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                    @Override
+                                    public void onAdDismissedFullScreenContent() {
+                                        super.onAdDismissedFullScreenContent();
+                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "Bollywood Celebrities");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                    @Override
+                                    public void onAdClicked() {
+                                        super.onAdClicked();
+                                        AdPreferences.setAdOpened(context, true);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "Bollywood Celebrities");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                });
+                            }
+                        } else if (isButtonClicked == 1) {
+                            isButtonClicked--;
+                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                            Intent intent = new Intent(context, GameActivity.class);
+                            intent.putExtra("category", "Bollywood Celebrities");
+                            context.startActivity(intent);
+                        }
                         break;
                     case "Movies":
-                        intent.putExtra("category", "Bollywood Movies");
+                        if (isButtonClicked == 0) {
+                            if (mInterstitialAd != null) {
+                                isButtonClicked++;
+                                mInterstitialAd.show((Activity) context);
+                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                    @Override
+                                    public void onAdDismissedFullScreenContent() {
+                                        super.onAdDismissedFullScreenContent();
+                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "Bollywood Movies");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                    @Override
+                                    public void onAdClicked() {
+                                        super.onAdClicked();
+                                        AdPreferences.setAdOpened(context, true);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "Bollywood Movies");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                });
+                            }
+                        } else if (isButtonClicked == 1) {
+                            isButtonClicked--;
+                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                            Intent intent = new Intent(context, GameActivity.class);
+                            intent.putExtra("category", "Bollywood Movies");
+                            context.startActivity(intent);
+                        }
                         break;
                     case "Singers":
-                        intent.putExtra("category", "Bollywood Singers");
+                        if (isButtonClicked == 0) {
+                            if (mInterstitialAd != null) {
+                                isButtonClicked++;
+                                mInterstitialAd.show((Activity) context);
+                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                    @Override
+                                    public void onAdDismissedFullScreenContent() {
+                                        super.onAdDismissedFullScreenContent();
+                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "Bollywood Singers");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                    @Override
+                                    public void onAdClicked() {
+                                        super.onAdClicked();
+                                        AdPreferences.setAdOpened(context, true);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "Bollywood Singers");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                });
+                            }
+                        } else if (isButtonClicked == 1) {
+                            isButtonClicked--;
+                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                            Intent intent = new Intent(context, GameActivity.class);
+                            intent.putExtra("category", "Bollywood Singers");
+                            context.startActivity(intent);
+                        }
                         break;
                     case "Songs":
-                        intent.putExtra("category", "Hindi Songs");
+                        if (isButtonClicked == 0) {
+                            if (mInterstitialAd != null) {
+                                isButtonClicked++;
+                                mInterstitialAd.show((Activity) context);
+                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                    @Override
+                                    public void onAdDismissedFullScreenContent() {
+                                        super.onAdDismissedFullScreenContent();
+                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "Hindi Songs");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                    @Override
+                                    public void onAdClicked() {
+                                        super.onAdClicked();
+                                        AdPreferences.setAdOpened(context, true);
+                                        Intent intent = new Intent(context, GameActivity.class);
+                                        intent.putExtra("category", "Hindi Songs");
+                                        context.startActivity(intent);
+                                        mInterstitialAd = null;
+                                    }
+                                });
+                            }
+                        } else if (isButtonClicked == 1) {
+                            isButtonClicked--;
+                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                            Intent intent = new Intent(context, GameActivity.class);
+                            intent.putExtra("category", "Hindi Songs");
+                            context.startActivity(intent);
+                        }
                         break;
                 }
-                context.startActivity(intent);
             }
         });
         dialog.show();
     }
+
 
     private void showIconDialog(Integer position) {
         dialog = new Dialog(context, R.style.DialogStyle);
@@ -209,16 +602,78 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             }
         });
 
-        play.setOnClickListener(new View.OnClickListener() {
+        isButtonClicked = AdPreferences.isButtonCLicked(context);
+
+        MobileAds.initialize(context, new OnInitializationCompleteListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, GameActivity.class);
-                intent.putExtra("category", categoryList.get(position));
-                context.startActivity(intent);
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
 
+        if (isButtonClicked == 0) {
+            setAds();
+        }
+
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isButtonClicked == 0) {
+                    if (mInterstitialAd != null) {
+                        isButtonClicked++;
+                        mInterstitialAd.show((Activity) context);
+                        mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                            @Override
+                            public void onAdDismissedFullScreenContent() {
+                                super.onAdDismissedFullScreenContent();
+                                AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                Intent intent = new Intent(context, GameActivity.class);
+                                intent.putExtra("category", categoryList.get(position));
+                                context.startActivity(intent);
+                                mInterstitialAd = null;
+                            }
+                            @Override
+                            public void onAdClicked() {
+                                super.onAdClicked();
+                                AdPreferences.setAdOpened(context, true);
+                                Intent intent = new Intent(context, GameActivity.class);
+                                intent.putExtra("category", categoryList.get(position));
+                                context.startActivity(intent);
+                                mInterstitialAd = null;
+                            }
+                        });
+                    }
+                } else if (isButtonClicked == 1) {
+                    isButtonClicked--;
+                    AdPreferences.setButtonCLicked(context, isButtonClicked);
+                    Intent intent = new Intent(context, GameActivity.class);
+                    intent.putExtra("category", categoryList.get(position));
+                    context.startActivity(intent);
+                }
+            }
+        });
         dialog.show();
+    }
+
+    public void setAds() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        InterstitialAd.load(context, context.getString(R.string.adUnitID), adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        // The mInterstitialAd reference will be null until
+                        // an ad is loaded.
+                        mInterstitialAd = interstitialAd;
+                        Log.i("TAG", "onAdLoaded");
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error
+                        Log.i("TAG", loadAdError.getMessage());
+                        mInterstitialAd = null;
+                    }
+                });
     }
 
     @Override

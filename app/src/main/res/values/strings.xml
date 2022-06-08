@@ -49,4 +49,6 @@
     <string name="ok">OK</string>
     <string name="score">Score</string>
     <string name="Final">Final</string>
+    <string name="adUnitID">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="manifestAdID">ca-app-pub-3940256099942544~3347511713</string>
 </resources>
