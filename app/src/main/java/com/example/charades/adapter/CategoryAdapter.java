@@ -143,6 +143,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         pak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                setAds();
                 switch (category) {
                     case "Celebrities":
                         if (isButtonClicked == 0) {
@@ -253,6 +254,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         holly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                setAds();
                 switch (category) {
                     case "Celebrities":
                         if (isButtonClicked == 0) {
@@ -431,6 +433,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         bolly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                setAds();
                 switch (category) {
                     case "Celebrities":
                         if (isButtonClicked == 0) {
@@ -617,6 +620,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                setAds();
                 if (isButtonClicked == 0) {
                     if (mInterstitialAd != null) {
                         isButtonClicked++;
