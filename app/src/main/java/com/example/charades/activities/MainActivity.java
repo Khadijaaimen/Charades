@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationDrawer();
 
         clickCount = AdPreferences.isButtonCLicked(MainActivity.this);
-        if(clickCount == 2){
+        if(clickCount == 2 || clickCount == 1){
             AdPreferences.setButtonCLicked(MainActivity.this, 0);
         }
 
