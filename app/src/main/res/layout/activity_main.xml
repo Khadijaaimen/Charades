@@ -64,6 +64,7 @@
             android:id="@+id/categoryRv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:animateLayoutChanges="false"
             android:background="@drawable/yellow_part"
             android:elevation="@dimen/_5sdp"
             android:paddingTop="@dimen/_20sdp"

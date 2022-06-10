@@ -69,7 +69,7 @@ public class CustomCategoryActivity extends AppCompatActivity {
         customList = new ArrayList<>();
 
         while (data.moveToNext()) {
-            customList.add(data.getString(1));
+            customList.add(data.getString(0));
         }
 
         isButtonClicked = AdPreferences.isButtonCLicked(CustomCategoryActivity.this);
@@ -101,14 +101,10 @@ public class CustomCategoryActivity extends AppCompatActivity {
                 adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+                        databaseHelper.deleteName(position);
                         customList.remove(positionToRemove);
                         arrayAdapter.notifyDataSetChanged();
-                        Cursor data = databaseHelper.getListContents();
-                        int itemID;
-                        while (data.moveToNext()) {
-                            itemID = data.getInt(0);
-                            databaseHelper.deleteName(itemID, name);
-                        }
                     }
                 });
                 adb.show();
@@ -137,34 +133,48 @@ public class CustomCategoryActivity extends AppCompatActivity {
                             public void onAdDismissedFullScreenContent() {
                                 super.onAdDismissedFullScreenContent();
                                 AdPreferences.setButtonCLicked(CustomCategoryActivity.this, isButtonClicked);
-                                Intent intent = new Intent(CustomCategoryActivity.this, GameActivity.class);
-                                intent.putExtra("category", "Custom");
-                                Bundle bundle = new Bundle();
-                                bundle.putSerializable("test", customList);
-                                intent.putExtras(bundle);
-                                startActivity(intent);
+                                if(customList.size() > 50) {
+                                    Intent intent = new Intent(CustomCategoryActivity.this, GameActivity.class);
+                                    intent.putExtra("category", "Custom");
+                                    Bundle bundle = new Bundle();
+                                    bundle.putSerializable("test", customList);
+                                    intent.putExtras(bundle);
+                                    startActivity(intent);
+                                } else{
+                                    Toast.makeText(getApplicationContext(), "PLease add up to 50 words to play.", Toast.LENGTH_SHORT).show();
+                                }
                             }
                             @Override
                             public void onAdClicked() {
                                 super.onAdClicked();
                                 AdPreferences.setAdOpened(CustomCategoryActivity.this, true);
-                                Intent intent = new Intent(CustomCategoryActivity.this, GameActivity.class);
-                                intent.putExtra("category", "Custom");
-                                Bundle bundle = new Bundle();
-                                bundle.putSerializable("test", customList);
-                                mInterstitialAd = null;
+                                if(customList.size() > 50) {
+                                    Intent intent = new Intent(CustomCategoryActivity.this, GameActivity.class);
+                                    intent.putExtra("category", "Custom");
+                                    Bundle bundle = new Bundle();
+                                    bundle.putSerializable("test", customList);
+                                    intent.putExtras(bundle);
+                                    mInterstitialAd = null;
+                                    startActivity(intent);
+                                } else{
+                                    Toast.makeText(getApplicationContext(), "PLease add up to 50 words to play.", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         });
                     }
                 } else if (isButtonClicked == 1) {
                     isButtonClicked--;
                     AdPreferences.setButtonCLicked(CustomCategoryActivity.this, isButtonClicked);
-                    Intent intent = new Intent(CustomCategoryActivity.this, GameActivity.class);
-                    intent.putExtra("category", "Custom");
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("test", customList);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
+                    if(customList.size() > 50) {
+                        Intent intent = new Intent(CustomCategoryActivity.this, GameActivity.class);
+                        intent.putExtra("category", "Custom");
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("test", customList);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    } else{
+                        Toast.makeText(getApplicationContext(), "PLease add up to 50 words to play.", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -185,7 +195,7 @@ public class CustomCategoryActivity extends AppCompatActivity {
                     if (!text.equals("")) {
                         customList.add(0, text);
                         customListText.setText("");
-                        addData(text);
+                        addData(customList.size() + ". " + text);
                         listView.setAdapter(arrayAdapter);
                         arrayAdapter.notifyDataSetChanged();
                         handled = true;

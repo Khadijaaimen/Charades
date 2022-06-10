@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -14,6 +17,7 @@ import android.widget.TextView;
 import com.example.charades.R;
 import com.example.charades.adapter.CorrectAnswersAdapter;
 import com.example.charades.adapter.IncorrectAnswersAdapter;
+import com.example.charades.helper.DatabaseHelper;
 
 import java.util.ArrayList;
 
@@ -28,6 +32,9 @@ public class ScoreboardActivity extends AppCompatActivity {
     CorrectAnswersAdapter correctAnswersAdapter;
     IncorrectAnswersAdapter incorrectAnswersAdapter;
     ImageView buttonRestart, buttonHome;
+    DatabaseHelper databaseHelper;
+    Cursor playedCount, wonCount, lostCount, drawCount;
+    Integer play, won, lost, draw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +50,65 @@ public class ScoreboardActivity extends AppCompatActivity {
         correctTotal = findViewById(R.id.totalCountCorrect);
         scoreText = findViewById(R.id.score);
 
+        databaseHelper = new DatabaseHelper(this);
+
         Intent intent = getIntent();
         correct = intent.getIntExtra("correctAns", 0);
         incorrect = intent.getIntExtra("incorrectAns", 0);
         name = intent.getStringExtra("nameCategory");
 
         scoreText.setText(String.valueOf(correct));
+
+        wonCount = databaseHelper.getWon();
+        drawCount = databaseHelper.getDraw();
+        lostCount = databaseHelper.getLost();
+
+        if (lostCount.moveToFirst())
+            lost = lostCount.getInt(0);
+        else
+            lost = 0;
+
+        if (wonCount.moveToFirst())
+            won = wonCount.getInt(0);
+        else
+            won = 0;
+
+        if (drawCount.moveToFirst())
+            draw = drawCount.getInt(0);
+        else
+            draw = 0;
+
+        if (correct > incorrect) {
+            if (wonCount.moveToFirst()) {
+                won = wonCount.getInt(0);
+                won++;
+                databaseHelper.saveGamesWon(won);
+            } else {
+                databaseHelper.saveGamesWon(1);
+                won = 1;
+            }
+        } else if (correct.equals(incorrect)) {
+            if (drawCount.moveToFirst()) {
+                draw = drawCount.getInt(0);
+                draw++;
+                databaseHelper.saveGamesDrawn(draw);
+            } else {
+                databaseHelper.saveGamesDrawn(1);
+                draw = 1;
+            }
+        } else {
+            if (lostCount.moveToFirst()) {
+                lost = lostCount.getInt(0);
+                lost++;
+                databaseHelper.saveGamesLost(lost);
+            } else {
+                databaseHelper.saveGamesLost(1);
+                lost = 1;
+            }
+        }
+
+        int total = lost + won + draw;
+        databaseHelper.saveGamesPlayed(total);
 
         buttonRestart = findViewById(R.id.restartButton);
         buttonRestart.setOnClickListener(new View.OnClickListener() {

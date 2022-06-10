@@ -31,6 +31,7 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -95,11 +96,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             }
         });
 
-//        int width = 440;
-//        int height = 460;
-//        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width,height);
-//        holder.categoryIcon.setLayoutParams(params);
-        holder.categoryIcon.setImageResource(categoryIconsList.get(position));
+        Picasso.get().load(categoryIconsList.get(position)).into(holder.categoryIcon);
+//        holder.categoryIcon.setImageResource(categoryIconsList.get(position));
     }
 
     private void showDialog(String category) {

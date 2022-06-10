@@ -40,6 +40,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     implementation 'com.github.Redman1037:TSnackBar:V2.0.0'
 

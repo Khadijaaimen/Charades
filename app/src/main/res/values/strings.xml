@@ -52,4 +52,11 @@
     <string name="adUnitID">ca-app-pub-3940256099942544/1033173712</string>
     <string name="manifestAdID">ca-app-pub-3940256099942544~3347511713</string>
     <string name="bannerAdID">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="history">History</string>
+    <string name="games_played">Games Played</string>
+    <string name="_22">22</string>
+    <string name="games_won">Games Won</string>
+    <string name="_12">12</string>
+    <string name="games_lost">Games Lost</string>
+    <string name="games_draw">Games Draw</string>
 </resources>
