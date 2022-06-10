@@ -6,6 +6,10 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,7 +26,6 @@ import com.example.charades.activities.CustomCategoryActivity;
 import com.example.charades.activities.GameActivity;
 import com.example.charades.R;
 import com.example.charades.activities.InstructionsActivity;
-import com.example.charades.activities.MainActivity;
 import com.example.charades.javaClass.AdPreferences;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
@@ -56,18 +60,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     @Override
     public CategoryHolderView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View rowItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_recyclerview, parent, false);
-        return new CategoryHolderView(rowItem);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull CategoryHolderView holder, @SuppressLint("RecyclerView") int position) {
-        holder.categoryName.setText(categoryList.get(position));
-        holder.categoryName.setVisibility(View.GONE);
+        CategoryHolderView holder = new CategoryHolderView(rowItem);
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                switch (categoryList.get(position)) {
+                switch (categoryList.get(holder.getAdapterPosition())) {
                     case "Celebrities":
                         showDialog("Celebrities");
                         break;
@@ -90,12 +88,17 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                         context.startActivity(new Intent(context, CustomCategoryActivity.class));
                         break;
                     default:
-                        showIconDialog(position);
+                        showIconDialog(holder.getAdapterPosition());
                         break;
                 }
             }
         });
+        return holder;
+    }
 
+    @Override
+    public void onBindViewHolder(@NonNull CategoryHolderView holder, @SuppressLint("RecyclerView") int position) {
+        holder.categoryName.setText(categoryList.get(position));
         Picasso.get().load(categoryIconsList.get(position)).into(holder.categoryIcon);
 //        holder.categoryIcon.setImageResource(categoryIconsList.get(position));
     }
@@ -145,7 +148,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                 switch (category) {
                     case "Celebrities":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null) {
+                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
                                 isButtonClicked++;
                                 mInterstitialAd.show((Activity) context);
                                 mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -158,6 +161,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -168,6 +172,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
+
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -179,7 +186,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                         break;
                     case "Singers":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null) {
+                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
                                 isButtonClicked++;
                                 mInterstitialAd.show((Activity) context);
                                 mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -192,6 +199,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -202,6 +210,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -213,7 +223,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                         break;
                     case "TV Shows":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null) {
+                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
                                 isButtonClicked++;
                                 mInterstitialAd.show((Activity) context);
                                 mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -226,6 +236,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -236,6 +247,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -256,7 +269,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                 switch (category) {
                     case "Celebrities":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null) {
+                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
                                 isButtonClicked++;
                                 mInterstitialAd.show((Activity) context);
                                 mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -269,6 +282,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -279,6 +293,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -290,7 +306,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                         break;
                     case "Movies":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null) {
+                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
                                 isButtonClicked++;
                                 mInterstitialAd.show((Activity) context);
                                 mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -303,6 +319,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -313,6 +330,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -324,7 +343,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                         break;
                     case "Songs":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null) {
+                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
                                 isButtonClicked++;
                                 mInterstitialAd.show((Activity) context);
                                 mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -337,6 +356,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -347,6 +367,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -358,7 +380,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                         break;
                     case "Singers":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null) {
+                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
                                 isButtonClicked++;
                                 mInterstitialAd.show((Activity) context);
                                 mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -371,6 +393,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -381,6 +404,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -392,7 +417,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                         break;
                     case "TV Shows":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null) {
+                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
                                 isButtonClicked++;
                                 mInterstitialAd.show((Activity) context);
                                 mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -405,6 +430,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -415,6 +441,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -435,7 +463,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                 switch (category) {
                     case "Celebrities":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null) {
+                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
                                 isButtonClicked++;
                                 mInterstitialAd.show((Activity) context);
                                 mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -448,6 +476,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -458,6 +487,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -469,7 +500,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                         break;
                     case "Movies":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null) {
+                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
                                 isButtonClicked++;
                                 mInterstitialAd.show((Activity) context);
                                 mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -482,6 +513,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -492,6 +524,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -503,7 +537,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                         break;
                     case "Singers":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null) {
+                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
                                 isButtonClicked++;
                                 mInterstitialAd.show((Activity) context);
                                 mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -516,6 +550,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -526,6 +561,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -537,7 +574,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                         break;
                     case "Songs":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null) {
+                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
                                 isButtonClicked++;
                                 mInterstitialAd.show((Activity) context);
                                 mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -550,6 +587,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -560,6 +598,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -575,6 +615,19 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         dialog.show();
     }
 
+
+    public Boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork());
+            return capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) ||
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR);
+        } else {
+            NetworkInfo netInfo = connectivityManager.getActiveNetworkInfo();
+            return netInfo != null && netInfo.isConnectedOrConnecting();
+        }
+    }
 
     private void showIconDialog(Integer position) {
         dialog = new Dialog(context, R.style.DialogStyle);
@@ -620,7 +673,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             public void onClick(View view) {
                 setAds();
                 if (isButtonClicked == 0) {
-                    if (mInterstitialAd != null) {
+                    if (mInterstitialAd != null && isNetworkAvailable(context)) {
                         isButtonClicked++;
                         mInterstitialAd.show((Activity) context);
                         mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -633,6 +686,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                 context.startActivity(intent);
                                 mInterstitialAd = null;
                             }
+
                             @Override
                             public void onAdClicked() {
                                 super.onAdClicked();
@@ -643,6 +697,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                 mInterstitialAd = null;
                             }
                         });
+                    } else {
+                        Intent intent = new Intent(context, GameActivity.class);
+                        intent.putExtra("category", categoryList.get(position));
+                        context.startActivity(intent);
                     }
                 } else if (isButtonClicked == 1) {
                     isButtonClicked--;

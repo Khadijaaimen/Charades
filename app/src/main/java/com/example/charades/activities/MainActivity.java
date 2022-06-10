@@ -65,10 +65,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = findViewById(R.id.navView);
         contentView = findViewById(R.id.content);
 
-//        databaseHelper = new DatabaseHelper(this);
-//        databaseHelper.deleteAll();
-
-
         navigationDrawer();
 
         clickCount = AdPreferences.isButtonCLicked(MainActivity.this);
@@ -137,8 +133,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.categoryRv);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setNestedScrollingEnabled(false);
         adapter = new CategoryAdapter(categoryNames, categoryIcons, this);
         recyclerView.setAdapter(adapter);
 
@@ -278,10 +272,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 String s3 = String.valueOf(playedCount);
                 String s4 = String.valueOf(drawCount);
 
-                won.setText(s1);
-                lost.setText(s2);
-                played.setText(s3);
-                draw.setText(s4);
+                if (!s1.equals("null"))
+                    won.setText(s1);
+                else
+                    won.setText("0");
+
+                if (!s2.equals("null"))
+                    lost.setText(s2);
+                else
+                    lost.setText("0");
+
+                if (!s3.equals("null"))
+                    played.setText(s3);
+                else
+                    played.setText("0");
+
+                if (!s4.equals("null"))
+                    draw.setText(s4);
+                else
+                    draw.setText("0");
 
                 dialog.setCancelable(true);
                 dialog.show();
