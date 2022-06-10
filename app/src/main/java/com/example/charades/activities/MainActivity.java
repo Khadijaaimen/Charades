@@ -65,10 +65,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = findViewById(R.id.navView);
         contentView = findViewById(R.id.content);
 
-//        databaseHelper = new DatabaseHelper(this);
-//        databaseHelper.deleteAll();
-
-
         navigationDrawer();
 
         clickCount = AdPreferences.isButtonCLicked(MainActivity.this);
@@ -137,8 +133,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.categoryRv);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setNestedScrollingEnabled(false);
         adapter = new CategoryAdapter(categoryNames, categoryIcons, this);
         recyclerView.setAdapter(adapter);
 

@@ -56,18 +56,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     @Override
     public CategoryHolderView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View rowItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_recyclerview, parent, false);
-        return new CategoryHolderView(rowItem);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull CategoryHolderView holder, @SuppressLint("RecyclerView") int position) {
-        holder.categoryName.setText(categoryList.get(position));
-        holder.categoryName.setVisibility(View.GONE);
+        final CategoryHolderView holder = new CategoryHolderView(rowItem);
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                switch (categoryList.get(position)) {
+                switch (categoryList.get(holder.getAdapterPosition())) {
                     case "Celebrities":
                         showDialog("Celebrities");
                         break;
@@ -90,11 +84,17 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                         context.startActivity(new Intent(context, CustomCategoryActivity.class));
                         break;
                     default:
-                        showIconDialog(position);
+                        showIconDialog(holder.getAdapterPosition());
                         break;
                 }
             }
         });
+        return holder;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull CategoryHolderView holder, @SuppressLint("RecyclerView") int position) {
+        holder.categoryName.setText(categoryList.get(position));
 
         Picasso.get().load(categoryIconsList.get(position)).into(holder.categoryIcon);
 //        holder.categoryIcon.setImageResource(categoryIconsList.get(position));
