@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationDrawer();
 
         clickCount = AdPreferences.isButtonCLicked(MainActivity.this);
-        if(clickCount == 2){
+        if (clickCount == 2) {
             AdPreferences.setButtonCLicked(MainActivity.this, 0);
         }
 
@@ -135,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
         adapter = new CategoryAdapter(categoryNames, categoryIcons, this);
         recyclerView.setAdapter(adapter);
+        recyclerView.invalidate();
 
         imageView = findViewById(R.id.logo);
         textView = findViewById(R.id.guess_word);
@@ -158,7 +159,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             }
         });
-
         animateNavigationDrawer();
     }
 
@@ -179,8 +179,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 final float xOffsetDiff = contentView.getWidth() * diffScaleOffSet / 2;
                 final float xTranslation = xOffset - xOffsetDiff;
                 contentView.setTranslationX(xTranslation);
-
-
             }
         });
     }
@@ -202,7 +200,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             MainActivity.this.finish();
                             finishAffinity();
                         }
-
                     })
                     .setNegativeButton("No", new DialogInterface.OnClickListener() {
                         @Override
@@ -244,19 +241,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 gamesWon = databaseHelper.getWon();
                 gamesDrawn = databaseHelper.getDraw();
 
-                if(gamesWon. moveToNext()){
+                if (gamesWon.moveToFirst()) {
                     wonCount = gamesWon.getInt(0);
                 }
 
-                if(gamesPlayed.moveToNext()){
+                if (gamesPlayed.moveToFirst()) {
                     playedCount = gamesPlayed.getInt(0);
                 }
 
-                if(gamesLost.moveToNext()){
+                if (gamesLost.moveToFirst()) {
                     lostCount = gamesLost.getInt(0);
                 }
 
-                if(gamesDrawn.moveToFirst()){
+                if (gamesDrawn.moveToFirst()) {
                     drawCount = gamesDrawn.getInt(0);
                 }
 
@@ -272,10 +269,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 String s3 = String.valueOf(playedCount);
                 String s4 = String.valueOf(drawCount);
 
-                won.setText(s1);
-                lost.setText(s2);
-                played.setText(s3);
-                draw.setText(s4);
+                if (!s1.equals("null"))
+                    won.setText(s1);
+                else
+                    won.setText("0");
+
+                if (!s2.equals("null"))
+                    lost.setText(s2);
+                else
+                    lost.setText("0");
+
+                if (!s3.equals("null"))
+                    played.setText(s3);
+                else
+                    played.setText("0");
+
+                if (!s4.equals("null"))
+                    draw.setText(s4);
+                else
+                    draw.setText("0");
 
                 dialog.setCancelable(true);
                 dialog.show();

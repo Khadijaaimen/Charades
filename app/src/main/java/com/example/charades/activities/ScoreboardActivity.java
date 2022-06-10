@@ -79,7 +79,7 @@ public class ScoreboardActivity extends AppCompatActivity {
             draw = 0;
 
         if (correct > incorrect) {
-            if (wonCount.moveToFirst()) {
+            if (wonCount.moveToNext()) {
                 won = wonCount.getInt(0);
                 won++;
                 databaseHelper.saveGamesWon(won);

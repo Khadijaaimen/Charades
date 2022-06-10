@@ -158,6 +158,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -168,6 +169,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Intent intent = new Intent(context, GameActivity.class);
+                                intent.putExtra("category", "Pakistani Celebrities");
+                                context.startActivity(intent);
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -192,6 +197,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -202,6 +208,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Intent intent = new Intent(context, GameActivity.class);
+                                intent.putExtra("category", "Pakistani Singers");
+                                context.startActivity(intent);
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -226,6 +236,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -236,6 +247,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Intent intent = new Intent(context, GameActivity.class);
+                                intent.putExtra("category", "Pakistani Dramas");
+                                context.startActivity(intent);
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -269,6 +284,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -279,6 +295,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Intent intent = new Intent(context, GameActivity.class);
+                                intent.putExtra("category", "Hollywood Celebrities");
+                                context.startActivity(intent);
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -303,6 +323,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -313,6 +334,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Intent intent = new Intent(context, GameActivity.class);
+                                intent.putExtra("category", "Hollywood Movies");
+                                context.startActivity(intent);
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -337,6 +362,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -347,6 +373,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Intent intent = new Intent(context, GameActivity.class);
+                                intent.putExtra("category", "English Songs");
+                                context.startActivity(intent);
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -371,6 +401,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -381,6 +412,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Intent intent = new Intent(context, GameActivity.class);
+                                intent.putExtra("category", "Hollywood Singers");
+                                context.startActivity(intent);
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -405,6 +440,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -415,6 +451,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Intent intent = new Intent(context, GameActivity.class);
+                                intent.putExtra("category", "Hollywood TV Shows");
+                                context.startActivity(intent);
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -448,6 +488,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -458,6 +499,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Intent intent = new Intent(context, GameActivity.class);
+                                intent.putExtra("category", "Bollywood Celebrities");
+                                context.startActivity(intent);
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -482,6 +527,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -492,6 +538,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Intent intent = new Intent(context, GameActivity.class);
+                                intent.putExtra("category", "Bollywood Movies");
+                                context.startActivity(intent);
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -516,6 +566,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -526,6 +577,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Intent intent = new Intent(context, GameActivity.class);
+                                intent.putExtra("category", "Bollywood Singers");
+                                context.startActivity(intent);
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -550,6 +605,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         context.startActivity(intent);
                                         mInterstitialAd = null;
                                     }
+
                                     @Override
                                     public void onAdClicked() {
                                         super.onAdClicked();
@@ -560,6 +616,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                         mInterstitialAd = null;
                                     }
                                 });
+                            } else {
+                                Intent intent = new Intent(context, GameActivity.class);
+                                intent.putExtra("category", "Hindi Songs");
+                                context.startActivity(intent);
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -633,6 +693,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                 context.startActivity(intent);
                                 mInterstitialAd = null;
                             }
+
                             @Override
                             public void onAdClicked() {
                                 super.onAdClicked();
@@ -643,6 +704,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                 mInterstitialAd = null;
                             }
                         });
+                    } else {
+                        Intent intent = new Intent(context, GameActivity.class);
+                        intent.putExtra("category", categoryList.get(position));
+                        context.startActivity(intent);
                     }
                 } else if (isButtonClicked == 1) {
                     isButtonClicked--;
