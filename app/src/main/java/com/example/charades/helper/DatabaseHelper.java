@@ -54,7 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(COL_5, played);
-        db.update(TABLE_NAME, contentValues, COL_1 + " = '" + 1 + "'", null);
+        db.update(TABLE_NAME, contentValues, COL_1 + " = '" + 0 + "'", null);
 
 //        long result = db.insert(TABLE_NAME, null, contentValues);
 //        return result != -1;
@@ -65,7 +65,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(COL_3, won);
-        db.update(TABLE_NAME, contentValues, COL_1 + " = '" + 1 + "'", null);
+        db.update(TABLE_NAME, contentValues, COL_1 + " = '" + 0 + "'", null);
 
 //        long result = db.insert(TABLE_NAME, null, contentValues);
 //        return result != -1;
@@ -76,7 +76,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(COL_4, lost);
-        db.update(TABLE_NAME, contentValues, COL_1 + " = '" + 1 + "'", null);
+        db.update(TABLE_NAME, contentValues, COL_1 + " = '" + 0 + "'", null);
 
 //        long result = db.insert(TABLE_NAME, null, contentValues);
 //        return result != -1;
@@ -87,7 +87,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(COL_6, draw);
-        db.update(TABLE_NAME, contentValues, COL_1 + " = '" + 1 + "'", null);
+        db.update(TABLE_NAME, contentValues, COL_1 + " = '" + 0 + "'", null);
 
         //        long result = db.insert(TABLE_NAME, null, contentValues);
 //        return result != -1;
@@ -95,25 +95,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getDraw() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor query = db.rawQuery("SELECT " + COL_6 + " FROM " + TABLE_NAME + " WHERE " + COL_1 + " = '" + 1 + "'", null);
+        Cursor query = db.rawQuery("SELECT " + COL_6 + " FROM " + TABLE_NAME + " WHERE " + COL_1 + " = '" + 0 + "'", null);
         return query;
     }
 
     public Cursor getPlayed() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor query = db.rawQuery("SELECT " + COL_5 + " FROM " + TABLE_NAME + " WHERE " + COL_1 + " = '" + 1 + "'", null);
+        Cursor query = db.rawQuery("SELECT " + COL_5 + " FROM " + TABLE_NAME + " WHERE " + COL_1 + " = '" + 0 + "'", null);
         return query;
     }
 
     public Cursor getWon() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor query = db.rawQuery("SELECT " + COL_3 + " FROM " + TABLE_NAME + " WHERE " + COL_1 + " = '" + 1 + "'", null);
+        Cursor query = db.rawQuery("SELECT " + COL_3 + " FROM " + TABLE_NAME + " WHERE " + COL_1 + " = '" + 0 + "'", null);
         return query;
     }
 
     public Cursor getLost() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor query = db.rawQuery("SELECT " + COL_4 + " FROM " + TABLE_NAME + " WHERE " + COL_1 + " = '" + 1 + "'", null);
+        Cursor query = db.rawQuery("SELECT " + COL_4 + " FROM " + TABLE_NAME + " WHERE " + COL_1 + " = '" + 0 + "'", null);
         return query;
     }
 

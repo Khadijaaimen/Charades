@@ -148,30 +148,32 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                 switch (category) {
                     case "Celebrities":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
-                                isButtonClicked++;
-                                mInterstitialAd.show((Activity) context);
-                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                                    @Override
-                                    public void onAdDismissedFullScreenContent() {
-                                        super.onAdDismissedFullScreenContent();
-                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "Pakistani Celebrities");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
+                            if (isNetworkAvailable(context)) {
+                                if (mInterstitialAd != null) {
+                                    isButtonClicked++;
+                                    mInterstitialAd.show((Activity) context);
+                                    mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                        @Override
+                                        public void onAdDismissedFullScreenContent() {
+                                            super.onAdDismissedFullScreenContent();
+                                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "Pakistani Celebrities");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
 
-                                    @Override
-                                    public void onAdClicked() {
-                                        super.onAdClicked();
-                                        AdPreferences.setAdOpened(context, true);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "Pakistani Celebrities");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
-                                });
+                                        @Override
+                                        public void onAdClicked() {
+                                            super.onAdClicked();
+                                            AdPreferences.setAdOpened(context, true);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "Pakistani Celebrities");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
+                                    });
+                                }
                             } else {
                                 Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                             }
@@ -185,30 +187,32 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                         break;
                     case "Singers":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
-                                isButtonClicked++;
-                                mInterstitialAd.show((Activity) context);
-                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                                    @Override
-                                    public void onAdDismissedFullScreenContent() {
-                                        super.onAdDismissedFullScreenContent();
-                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "Pakistani Singers");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
+                            if (isNetworkAvailable(context)) {
+                                if (mInterstitialAd != null) {
+                                    isButtonClicked++;
+                                    mInterstitialAd.show((Activity) context);
+                                    mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                        @Override
+                                        public void onAdDismissedFullScreenContent() {
+                                            super.onAdDismissedFullScreenContent();
+                                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "Pakistani Singers");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
 
-                                    @Override
-                                    public void onAdClicked() {
-                                        super.onAdClicked();
-                                        AdPreferences.setAdOpened(context, true);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "Pakistani Singers");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
-                                });
+                                        @Override
+                                        public void onAdClicked() {
+                                            super.onAdClicked();
+                                            AdPreferences.setAdOpened(context, true);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "Pakistani Singers");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
+                                    });
+                                }
                             } else {
                                 Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                             }
@@ -222,30 +226,32 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                         break;
                     case "TV Shows":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
-                                isButtonClicked++;
-                                mInterstitialAd.show((Activity) context);
-                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                                    @Override
-                                    public void onAdDismissedFullScreenContent() {
-                                        super.onAdDismissedFullScreenContent();
-                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "Pakistani Dramas");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
+                            if (isNetworkAvailable(context)) {
+                                if (mInterstitialAd != null) {
+                                    isButtonClicked++;
+                                    mInterstitialAd.show((Activity) context);
+                                    mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                        @Override
+                                        public void onAdDismissedFullScreenContent() {
+                                            super.onAdDismissedFullScreenContent();
+                                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "Pakistani Dramas");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
 
-                                    @Override
-                                    public void onAdClicked() {
-                                        super.onAdClicked();
-                                        AdPreferences.setAdOpened(context, true);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "Pakistani Dramas");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
-                                });
+                                        @Override
+                                        public void onAdClicked() {
+                                            super.onAdClicked();
+                                            AdPreferences.setAdOpened(context, true);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "Pakistani Dramas");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
+                                    });
+                                }
                             } else {
                                 Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                             }
@@ -268,30 +274,32 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                 switch (category) {
                     case "Celebrities":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
-                                isButtonClicked++;
-                                mInterstitialAd.show((Activity) context);
-                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                                    @Override
-                                    public void onAdDismissedFullScreenContent() {
-                                        super.onAdDismissedFullScreenContent();
-                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "Hollywood Celebrities");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
+                            if (isNetworkAvailable(context)) {
+                                if (mInterstitialAd != null) {
+                                    isButtonClicked++;
+                                    mInterstitialAd.show((Activity) context);
+                                    mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                        @Override
+                                        public void onAdDismissedFullScreenContent() {
+                                            super.onAdDismissedFullScreenContent();
+                                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "Hollywood Celebrities");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
 
-                                    @Override
-                                    public void onAdClicked() {
-                                        super.onAdClicked();
-                                        AdPreferences.setAdOpened(context, true);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "Hollywood Celebrities");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
-                                });
+                                        @Override
+                                        public void onAdClicked() {
+                                            super.onAdClicked();
+                                            AdPreferences.setAdOpened(context, true);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "Hollywood Celebrities");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
+                                    });
+                                }
                             } else {
                                 Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                             }
@@ -305,30 +313,32 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                         break;
                     case "Movies":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
-                                isButtonClicked++;
-                                mInterstitialAd.show((Activity) context);
-                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                                    @Override
-                                    public void onAdDismissedFullScreenContent() {
-                                        super.onAdDismissedFullScreenContent();
-                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "Hollywood Movies");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
+                            if (isNetworkAvailable(context)) {
+                                if (mInterstitialAd != null) {
+                                    isButtonClicked++;
+                                    mInterstitialAd.show((Activity) context);
+                                    mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                        @Override
+                                        public void onAdDismissedFullScreenContent() {
+                                            super.onAdDismissedFullScreenContent();
+                                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "Hollywood Movies");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
 
-                                    @Override
-                                    public void onAdClicked() {
-                                        super.onAdClicked();
-                                        AdPreferences.setAdOpened(context, true);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "Hollywood Movies");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
-                                });
+                                        @Override
+                                        public void onAdClicked() {
+                                            super.onAdClicked();
+                                            AdPreferences.setAdOpened(context, true);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "Hollywood Movies");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
+                                    });
+                                }
                             } else {
                                 Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                             }
@@ -342,30 +352,32 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                         break;
                     case "Songs":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
-                                isButtonClicked++;
-                                mInterstitialAd.show((Activity) context);
-                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                                    @Override
-                                    public void onAdDismissedFullScreenContent() {
-                                        super.onAdDismissedFullScreenContent();
-                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "English Songs");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
+                            if (isNetworkAvailable(context)) {
+                                if (mInterstitialAd != null) {
+                                    isButtonClicked++;
+                                    mInterstitialAd.show((Activity) context);
+                                    mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                        @Override
+                                        public void onAdDismissedFullScreenContent() {
+                                            super.onAdDismissedFullScreenContent();
+                                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "English Songs");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
 
-                                    @Override
-                                    public void onAdClicked() {
-                                        super.onAdClicked();
-                                        AdPreferences.setAdOpened(context, true);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "English Songs");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
-                                });
+                                        @Override
+                                        public void onAdClicked() {
+                                            super.onAdClicked();
+                                            AdPreferences.setAdOpened(context, true);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "English Songs");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
+                                    });
+                                }
                             } else {
                                 Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                             }
@@ -379,30 +391,32 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                         break;
                     case "Singers":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
-                                isButtonClicked++;
-                                mInterstitialAd.show((Activity) context);
-                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                                    @Override
-                                    public void onAdDismissedFullScreenContent() {
-                                        super.onAdDismissedFullScreenContent();
-                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "Hollywood Singers");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
+                            if (isNetworkAvailable(context)) {
+                                if (mInterstitialAd != null) {
+                                    isButtonClicked++;
+                                    mInterstitialAd.show((Activity) context);
+                                    mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                        @Override
+                                        public void onAdDismissedFullScreenContent() {
+                                            super.onAdDismissedFullScreenContent();
+                                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "Hollywood Singers");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
 
-                                    @Override
-                                    public void onAdClicked() {
-                                        super.onAdClicked();
-                                        AdPreferences.setAdOpened(context, true);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "Hollywood Singers");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
-                                });
+                                        @Override
+                                        public void onAdClicked() {
+                                            super.onAdClicked();
+                                            AdPreferences.setAdOpened(context, true);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "Hollywood Singers");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
+                                    });
+                                }
                             } else {
                                 Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                             }
@@ -416,30 +430,32 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                         break;
                     case "TV Shows":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
-                                isButtonClicked++;
-                                mInterstitialAd.show((Activity) context);
-                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                                    @Override
-                                    public void onAdDismissedFullScreenContent() {
-                                        super.onAdDismissedFullScreenContent();
-                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "Hollywood TV Shows");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
+                            if (isNetworkAvailable(context)) {
+                                if (mInterstitialAd != null) {
+                                    isButtonClicked++;
+                                    mInterstitialAd.show((Activity) context);
+                                    mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                        @Override
+                                        public void onAdDismissedFullScreenContent() {
+                                            super.onAdDismissedFullScreenContent();
+                                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "Hollywood TV Shows");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
 
-                                    @Override
-                                    public void onAdClicked() {
-                                        super.onAdClicked();
-                                        AdPreferences.setAdOpened(context, true);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "Hollywood TV Shows");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
-                                });
+                                        @Override
+                                        public void onAdClicked() {
+                                            super.onAdClicked();
+                                            AdPreferences.setAdOpened(context, true);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "Hollywood TV Shows");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
+                                    });
+                                }
                             } else {
                                 Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                             }
@@ -462,30 +478,32 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                 switch (category) {
                     case "Celebrities":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
-                                isButtonClicked++;
-                                mInterstitialAd.show((Activity) context);
-                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                                    @Override
-                                    public void onAdDismissedFullScreenContent() {
-                                        super.onAdDismissedFullScreenContent();
-                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "Bollywood Celebrities");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
+                            if (isNetworkAvailable(context)) {
+                                if (mInterstitialAd != null) {
+                                    isButtonClicked++;
+                                    mInterstitialAd.show((Activity) context);
+                                    mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                        @Override
+                                        public void onAdDismissedFullScreenContent() {
+                                            super.onAdDismissedFullScreenContent();
+                                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "Bollywood Celebrities");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
 
-                                    @Override
-                                    public void onAdClicked() {
-                                        super.onAdClicked();
-                                        AdPreferences.setAdOpened(context, true);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "Bollywood Celebrities");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
-                                });
+                                        @Override
+                                        public void onAdClicked() {
+                                            super.onAdClicked();
+                                            AdPreferences.setAdOpened(context, true);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "Bollywood Celebrities");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
+                                    });
+                                }
                             } else {
                                 Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                             }
@@ -499,30 +517,32 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                         break;
                     case "Movies":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
-                                isButtonClicked++;
-                                mInterstitialAd.show((Activity) context);
-                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                                    @Override
-                                    public void onAdDismissedFullScreenContent() {
-                                        super.onAdDismissedFullScreenContent();
-                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "Bollywood Movies");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
+                            if (isNetworkAvailable(context)) {
+                                if (mInterstitialAd != null) {
+                                    isButtonClicked++;
+                                    mInterstitialAd.show((Activity) context);
+                                    mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                        @Override
+                                        public void onAdDismissedFullScreenContent() {
+                                            super.onAdDismissedFullScreenContent();
+                                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "Bollywood Movies");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
 
-                                    @Override
-                                    public void onAdClicked() {
-                                        super.onAdClicked();
-                                        AdPreferences.setAdOpened(context, true);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "Bollywood Movies");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
-                                });
+                                        @Override
+                                        public void onAdClicked() {
+                                            super.onAdClicked();
+                                            AdPreferences.setAdOpened(context, true);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "Bollywood Movies");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
+                                    });
+                                }
                             } else {
                                 Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                             }
@@ -536,30 +556,32 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                         break;
                     case "Singers":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
-                                isButtonClicked++;
-                                mInterstitialAd.show((Activity) context);
-                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                                    @Override
-                                    public void onAdDismissedFullScreenContent() {
-                                        super.onAdDismissedFullScreenContent();
-                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "Bollywood Singers");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
+                            if (isNetworkAvailable(context)) {
+                                if (mInterstitialAd != null) {
+                                    isButtonClicked++;
+                                    mInterstitialAd.show((Activity) context);
+                                    mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                        @Override
+                                        public void onAdDismissedFullScreenContent() {
+                                            super.onAdDismissedFullScreenContent();
+                                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "Bollywood Singers");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
 
-                                    @Override
-                                    public void onAdClicked() {
-                                        super.onAdClicked();
-                                        AdPreferences.setAdOpened(context, true);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "Bollywood Singers");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
-                                });
+                                        @Override
+                                        public void onAdClicked() {
+                                            super.onAdClicked();
+                                            AdPreferences.setAdOpened(context, true);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "Bollywood Singers");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
+                                    });
+                                }
                             } else {
                                 Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                             }
@@ -573,30 +595,32 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                         break;
                     case "Songs":
                         if (isButtonClicked == 0) {
-                            if (mInterstitialAd != null && isNetworkAvailable(context)) {
-                                isButtonClicked++;
-                                mInterstitialAd.show((Activity) context);
-                                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                                    @Override
-                                    public void onAdDismissedFullScreenContent() {
-                                        super.onAdDismissedFullScreenContent();
-                                        AdPreferences.setButtonCLicked(context, isButtonClicked);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "Hindi Songs");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
+                            if (isNetworkAvailable(context)) {
+                                if (mInterstitialAd != null) {
+                                    isButtonClicked++;
+                                    mInterstitialAd.show((Activity) context);
+                                    mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                        @Override
+                                        public void onAdDismissedFullScreenContent() {
+                                            super.onAdDismissedFullScreenContent();
+                                            AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "Hindi Songs");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
 
-                                    @Override
-                                    public void onAdClicked() {
-                                        super.onAdClicked();
-                                        AdPreferences.setAdOpened(context, true);
-                                        Intent intent = new Intent(context, GameActivity.class);
-                                        intent.putExtra("category", "Hindi Songs");
-                                        context.startActivity(intent);
-                                        mInterstitialAd = null;
-                                    }
-                                });
+                                        @Override
+                                        public void onAdClicked() {
+                                            super.onAdClicked();
+                                            AdPreferences.setAdOpened(context, true);
+                                            Intent intent = new Intent(context, GameActivity.class);
+                                            intent.putExtra("category", "Hindi Songs");
+                                            context.startActivity(intent);
+                                            mInterstitialAd = null;
+                                        }
+                                    });
+                                }
                             } else {
                                 Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                             }
@@ -616,21 +640,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
 
     public Boolean isNetworkAvailable(Context context) {
-//        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-//            NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork());
-//            return capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
-//                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) ||
-//                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR);
-//        } else {
-//            NetworkInfo netInfo = connectivityManager.getActiveNetworkInfo();
-//            return netInfo != null && netInfo.isConnectedOrConnecting();
-//        }
-
-        ConnectivityManager cm = (ConnectivityManager) context
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        return netInfo != null && netInfo.isConnectedOrConnecting();
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork());
+            return capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) ||
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR);
+        } else {
+            NetworkInfo netInfo = connectivityManager.getActiveNetworkInfo();
+            return netInfo != null && netInfo.isConnectedOrConnecting();
+        }
     }
 
     private void showIconDialog(Integer position) {
@@ -677,31 +696,33 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             public void onClick(View view) {
                 setAds();
                 if (isButtonClicked == 0) {
-                    if (mInterstitialAd != null && isNetworkAvailable(context)) {
-                        isButtonClicked++;
-                        mInterstitialAd.show((Activity) context);
-                        mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                            @Override
-                            public void onAdDismissedFullScreenContent() {
-                                super.onAdDismissedFullScreenContent();
-                                AdPreferences.setButtonCLicked(context, isButtonClicked);
-                                Intent intent = new Intent(context, GameActivity.class);
-                                intent.putExtra("category", categoryList.get(position));
-                                context.startActivity(intent);
-                                mInterstitialAd = null;
-                            }
+                    if (isNetworkAvailable(context)) {
+                        if (mInterstitialAd != null) {
+                            isButtonClicked++;
+                            mInterstitialAd.show((Activity) context);
+                            mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                                @Override
+                                public void onAdDismissedFullScreenContent() {
+                                    super.onAdDismissedFullScreenContent();
+                                    AdPreferences.setButtonCLicked(context, isButtonClicked);
+                                    Intent intent = new Intent(context, GameActivity.class);
+                                    intent.putExtra("category", categoryList.get(position));
+                                    context.startActivity(intent);
+                                    mInterstitialAd = null;
+                                }
 
-                            @Override
-                            public void onAdClicked() {
-                                super.onAdClicked();
-                                AdPreferences.setAdOpened(context, true);
-                                Intent intent = new Intent(context, GameActivity.class);
-                                intent.putExtra("category", categoryList.get(position));
-                                context.startActivity(intent);
-                                mInterstitialAd = null;
-                            }
-                        });
-                    }else {
+                                @Override
+                                public void onAdClicked() {
+                                    super.onAdClicked();
+                                    AdPreferences.setAdOpened(context, true);
+                                    Intent intent = new Intent(context, GameActivity.class);
+                                    intent.putExtra("category", categoryList.get(position));
+                                    context.startActivity(intent);
+                                    mInterstitialAd = null;
+                                }
+                            });
+                        }
+                    } else {
                         Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                     }
                 } else if (isButtonClicked == 1) {

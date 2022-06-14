@@ -301,7 +301,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 dialog.setCancelable(true);
                 dialog.show();
-                drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.instructions:
                 startActivity(new Intent(MainActivity.this, InstructionsActivity.class));
