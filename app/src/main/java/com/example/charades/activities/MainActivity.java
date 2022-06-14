@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     CategoryAdapter adapter;
     ImageView imageView, navigationBar;
     TextView textView, won, lost, played, draw;
-    Button ok;
+    Button ok, reset;
     Animation topAnim, bottomAnim;
     DrawerLayout drawerLayout;
     LinearLayout contentView;
@@ -49,8 +49,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Integer clickCount;
     String wonCount, playedCount, lostCount, drawCount;
     Dialog dialog;
-    DatabaseHelper databaseHelper;
-    Cursor gamesLost, gamesWon, gamesPlayed, gamesDrawn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -234,38 +232,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 dialog.getWindow().setBackgroundDrawableResource(R.drawable.white_bg);
 
                 ok = dialog.findViewById(R.id.okButton);
+                reset = dialog.findViewById(R.id.resetButton);
                 won = dialog.findViewById(R.id.games_won);
                 lost = dialog.findViewById(R.id.games_lost);
                 played = dialog.findViewById(R.id.games_played);
                 draw = dialog.findViewById(R.id.games_draw);
-
-                databaseHelper = new DatabaseHelper(this);
-
-//                gamesLost = databaseHelper.getLost();
-//                gamesPlayed = databaseHelper.getPlayed();
-//                gamesWon = databaseHelper.getWon();
-//                gamesDrawn = databaseHelper.getDraw();
-//
-//                if(gamesWon. moveToNext()){
-//                    wonCount = gamesWon.getInt(0);
-//                }
-//
-//                if(gamesPlayed.moveToNext()){
-//                    playedCount = gamesPlayed.getInt(0);
-//                }
-//
-//                if(gamesLost.moveToNext()){
-//                    lostCount = gamesLost.getInt(0);
-//                }
-//
-//                if(gamesDrawn.moveToFirst()){
-//                    drawCount = gamesDrawn.getInt(0);
-//                }
-
-                wonCount = AppPreferences.isWonButtonCLicked(this);
-                lostCount = AppPreferences.islostButtonCLicked(this);
-                playedCount = AppPreferences.isPlayButtonCLicked(this);
-                drawCount = AppPreferences.isDrawButtonCLicked(this);
 
                 ok.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -273,6 +244,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         dialog.cancel();
                     }
                 });
+
+                reset.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AppPreferences.setLostButtonCLicked(MainActivity.this, "0");
+                        AppPreferences.seDrawButtonCLicked(MainActivity.this, "0");
+                        AppPreferences.setPlayButtonCLicked(MainActivity.this, "0");
+                        AppPreferences.setWonButtonCLicked(MainActivity.this, "0");
+
+                        won.setText("0");
+                        draw.setText("0");
+                        lost.setText("0");
+                        played.setText("0");
+                    }
+                });
+
+                wonCount = AppPreferences.isWonButtonCLicked(this);
+                lostCount = AppPreferences.islostButtonCLicked(this);
+                playedCount = AppPreferences.isPlayButtonCLicked(this);
+                drawCount = AppPreferences.isDrawButtonCLicked(this);
 
                 String s1 = String.valueOf(wonCount);
                 String s2 = String.valueOf(lostCount);
@@ -301,6 +292,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 dialog.setCancelable(true);
                 dialog.show();
+                drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.instructions:
                 startActivity(new Intent(MainActivity.this, InstructionsActivity.class));

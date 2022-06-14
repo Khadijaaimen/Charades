@@ -59,4 +59,5 @@
     <string name="_12">12</string>
     <string name="games_lost">Games Lost</string>
     <string name="games_draw">Games Draw</string>
+    <string name="reset">Reset</string>
 </resources>
