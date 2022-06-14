@@ -18,12 +18,13 @@ import com.example.charades.R;
 import com.example.charades.adapter.CorrectAnswersAdapter;
 import com.example.charades.adapter.IncorrectAnswersAdapter;
 import com.example.charades.helper.DatabaseHelper;
+import com.example.charades.javaClass.AppPreferences;
 
 import java.util.ArrayList;
 
 public class ScoreboardActivity extends AppCompatActivity {
 
-    Integer correct, incorrect;
+    Integer correct, incorrect, countWon, countLost, countDraw;
     String name;
     ArrayList<String> correctList = new ArrayList<>();
     ArrayList<String> incorrectList = new ArrayList<>();
@@ -33,8 +34,8 @@ public class ScoreboardActivity extends AppCompatActivity {
     IncorrectAnswersAdapter incorrectAnswersAdapter;
     ImageView buttonRestart, buttonHome;
     DatabaseHelper databaseHelper;
-    Cursor playedCount, wonCount, lostCount, drawCount;
-    Integer play, won, lost, draw;
+    Cursor wonCount, lostCount, drawCount;
+    String won, lost, draw, play;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,56 +60,76 @@ public class ScoreboardActivity extends AppCompatActivity {
 
         scoreText.setText(String.valueOf(correct));
 
-        wonCount = databaseHelper.getWon();
-        drawCount = databaseHelper.getDraw();
-        lostCount = databaseHelper.getLost();
+//        wonCount = databaseHelper.getWon();
+//        drawCount = databaseHelper.getDraw();
+//        lostCount = databaseHelper.getLost();
 
-        if (lostCount.moveToFirst())
-            lost = lostCount.getInt(0);
-        else
-            lost = 0;
+        lost = AppPreferences.islostButtonCLicked(this);
+        won = AppPreferences.isWonButtonCLicked(this);
+        draw = AppPreferences.isDrawButtonCLicked(this);
+        play = AppPreferences.isPlayButtonCLicked(this);
 
-        if (wonCount.moveToFirst())
-            won = wonCount.getInt(0);
-        else
-            won = 0;
+//        if (lostCount.moveToFirst())
+//            lost = lostCount.getInt(0);
+//        else
+//            lost = 0;
+//
+//        if (wonCount.moveToFirst())
+//            won = wonCount.getInt(0);
+//        else
+//            won = 0;
+//
+//        if (drawCount.moveToFirst())
+//            draw = drawCount.getInt(0);
+//        else
+//            draw = 0;
 
-        if (drawCount.moveToFirst())
-            draw = drawCount.getInt(0);
-        else
-            draw = 0;
+        countWon = Integer.parseInt(won);
+        countDraw = Integer.parseInt(draw);
+        countLost = Integer.parseInt(lost);
 
         if (correct > incorrect) {
-            if (wonCount.moveToFirst()) {
-                won = wonCount.getInt(0);
-                won++;
-                databaseHelper.saveGamesWon(won);
-            } else {
-                databaseHelper.saveGamesWon(1);
-                won = 1;
-            }
+            countWon++;
+            won = countWon.toString();
+            AppPreferences.setWonButtonCLicked(this, won);
+//            if (wonCount.moveToFirst()) {
+//                won = wonCount.getInt(0);
+//                won++;
+//                databaseHelper.saveGamesWon(won);
+//            } else {
+//                databaseHelper.saveGamesWon(1);
+//                won = 1;
+//            }
         } else if (correct.equals(incorrect)) {
-            if (drawCount.moveToFirst()) {
-                draw = drawCount.getInt(0);
-                draw++;
-                databaseHelper.saveGamesDrawn(draw);
-            } else {
-                databaseHelper.saveGamesDrawn(1);
-                draw = 1;
-            }
+            countDraw++;
+            draw = countDraw.toString();
+            AppPreferences.seDrawButtonCLicked(this, draw);
+//            if (drawCount.moveToFirst()) {
+//                draw = drawCount.getInt(0);
+//                draw++;
+//                databaseHelper.saveGamesDrawn(draw);
+//            } else {
+//                databaseHelper.saveGamesDrawn(1);
+//                draw = 1;
+//            }
         } else {
-            if (lostCount.moveToFirst()) {
-                lost = lostCount.getInt(0);
-                lost++;
-                databaseHelper.saveGamesLost(lost);
-            } else {
-                databaseHelper.saveGamesLost(1);
-                lost = 1;
-            }
+            countLost++;
+            lost = countLost.toString();
+            AppPreferences.setLostButtonCLicked(this, lost);
+//            if (lostCount.moveToFirst()) {
+//                lost = lostCount.getInt(0);
+//                lost++;
+//                databaseHelper.saveGamesLost(lost);
+//            } else {
+//                databaseHelper.saveGamesLost(1);
+//                lost = 1;
+//            }
         }
 
-        int total = lost + won + draw;
-        databaseHelper.saveGamesPlayed(total);
+        int total = countLost + countWon + countDraw;
+        String s = String.valueOf(total);
+        AppPreferences.setPlayButtonCLicked(this, s);
+//        databaseHelper.saveGamesPlayed(total);
 
         buttonRestart = findViewById(R.id.restartButton);
         buttonRestart.setOnClickListener(new View.OnClickListener() {

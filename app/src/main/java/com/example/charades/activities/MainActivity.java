@@ -28,6 +28,7 @@ import com.example.charades.R;
 import com.example.charades.adapter.CategoryAdapter;
 import com.example.charades.helper.DatabaseHelper;
 import com.example.charades.javaClass.AdPreferences;
+import com.example.charades.javaClass.AppPreferences;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -45,7 +46,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayout;
     LinearLayout contentView;
     NavigationView navigationView;
-    Integer clickCount, wonCount, playedCount, lostCount, drawCount;
+    Integer clickCount;
+    String wonCount, playedCount, lostCount, drawCount;
     Dialog dialog;
     DatabaseHelper databaseHelper;
     Cursor gamesLost, gamesWon, gamesPlayed, gamesDrawn;
@@ -239,26 +241,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 databaseHelper = new DatabaseHelper(this);
 
-                gamesLost = databaseHelper.getLost();
-                gamesPlayed = databaseHelper.getPlayed();
-                gamesWon = databaseHelper.getWon();
-                gamesDrawn = databaseHelper.getDraw();
+//                gamesLost = databaseHelper.getLost();
+//                gamesPlayed = databaseHelper.getPlayed();
+//                gamesWon = databaseHelper.getWon();
+//                gamesDrawn = databaseHelper.getDraw();
+//
+//                if(gamesWon. moveToNext()){
+//                    wonCount = gamesWon.getInt(0);
+//                }
+//
+//                if(gamesPlayed.moveToNext()){
+//                    playedCount = gamesPlayed.getInt(0);
+//                }
+//
+//                if(gamesLost.moveToNext()){
+//                    lostCount = gamesLost.getInt(0);
+//                }
+//
+//                if(gamesDrawn.moveToFirst()){
+//                    drawCount = gamesDrawn.getInt(0);
+//                }
 
-                if(gamesWon. moveToNext()){
-                    wonCount = gamesWon.getInt(0);
-                }
-
-                if(gamesPlayed.moveToNext()){
-                    playedCount = gamesPlayed.getInt(0);
-                }
-
-                if(gamesLost.moveToNext()){
-                    lostCount = gamesLost.getInt(0);
-                }
-
-                if(gamesDrawn.moveToFirst()){
-                    drawCount = gamesDrawn.getInt(0);
-                }
+                wonCount = AppPreferences.isWonButtonCLicked(this);
+                lostCount = AppPreferences.islostButtonCLicked(this);
+                playedCount = AppPreferences.isPlayButtonCLicked(this);
+                drawCount = AppPreferences.isDrawButtonCLicked(this);
 
                 ok.setOnClickListener(new View.OnClickListener() {
                     @Override

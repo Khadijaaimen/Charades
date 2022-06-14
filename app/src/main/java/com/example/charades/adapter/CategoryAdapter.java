@@ -174,7 +174,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                 });
                             } else {
                                 Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
-
                             }
                         } else if (isButtonClicked == 1) {
                             isButtonClicked--;
@@ -697,10 +696,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                                 mInterstitialAd = null;
                             }
                         });
-                    } else {
-                        Intent intent = new Intent(context, GameActivity.class);
-                        intent.putExtra("category", categoryList.get(position));
-                        context.startActivity(intent);
+                    }else {
+                        Toast.makeText(context.getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
                     }
                 } else if (isButtonClicked == 1) {
                     isButtonClicked--;

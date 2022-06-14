@@ -44,4 +44,52 @@ public class AppPreferences {
         mPrefsEditor.putBoolean("bonus_clicked", value);
         mPrefsEditor.commit();
     }
+
+    public static String isPlayButtonCLicked(Context ctx) {
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+        return mPrefs.getString("play_clicked", "0");
+    }
+
+    public static void setPlayButtonCLicked(Context ctx, String value) {
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+        mPrefsEditor = mPrefs.edit();
+        mPrefsEditor.putString("play_clicked", value);
+        mPrefsEditor.commit();
+    }
+
+    public static String isWonButtonCLicked(Context ctx) {
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+        return mPrefs.getString("won_clicked", "0");
+    }
+
+    public static void setWonButtonCLicked(Context ctx, String value) {
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+        mPrefsEditor = mPrefs.edit();
+        mPrefsEditor.putString("won_clicked", value);
+        mPrefsEditor.commit();
+    }
+
+    public static String islostButtonCLicked(Context ctx) {
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+        return mPrefs.getString("lost_clicked", "0");
+    }
+
+    public static void setLostButtonCLicked(Context ctx, String value) {
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+        mPrefsEditor = mPrefs.edit();
+        mPrefsEditor.putString("lost_clicked", value);
+        mPrefsEditor.commit();
+    }
+
+    public static String isDrawButtonCLicked(Context ctx) {
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+        return mPrefs.getString("draw_clicked", "0");
+    }
+
+    public static void seDrawButtonCLicked(Context ctx, String value) {
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+        mPrefsEditor = mPrefs.edit();
+        mPrefsEditor.putString("draw_clicked", value);
+        mPrefsEditor.commit();
+    }
 }
