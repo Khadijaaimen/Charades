@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ArrayList<Integer> categoryIcons = new ArrayList<>();
     CategoryAdapter adapter;
     ImageView imageView, navigationBar;
-    TextView textView, won, lost, played, draw;
+    TextView won, lost, played, draw;
     Button ok, reset;
     Animation topAnim, bottomAnim;
     DrawerLayout drawerLayout;
@@ -137,9 +137,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         recyclerView.setAdapter(adapter);
 
         imageView = findViewById(R.id.logo);
-        textView = findViewById(R.id.guess_word);
 
-        textView.setAnimation(topAnim);
         imageView.setAnimation(topAnim);
     }
 

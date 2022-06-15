@@ -1,25 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="@drawable/pink_part"
+    android:background="@drawable/background"
     android:padding="20dp"
     android:layout_width="match_parent"
-    android:layout_height="200dp">
-
-    <TextView
-        android:id="@+id/guess_word"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/guess_bg"
-        android:fontFamily="@font/hobo"
-        android:gravity="center"
-        android:padding="5dp"
-        android:text="@string/guess_the_word"
-        android:textColor="@color/white"
-        android:textSize="16sp" />
+    android:layout_height="@dimen/_130sdp">
 
     <ImageView
         android:id="@+id/logo"
@@ -29,6 +14,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:background="@drawable/decor"
         android:layout_marginBottom="10dp"
         android:contentDescription="@string/app_name"
         android:gravity="center"

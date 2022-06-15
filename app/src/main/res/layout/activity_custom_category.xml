@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pink_straight"
+    android:background="@drawable/background"
     android:orientation="vertical"
     android:weightSum="5"
     tools:context=".activities.CustomCategoryActivity">
@@ -12,23 +12,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.5"
+        android:layout_weight="1.2"
         android:orientation="vertical"
         tools:ignore="UseCompoundDrawables">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="50dp"
-            android:background="@drawable/guess_bg"
-            android:fontFamily="@font/hobo"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="@string/guess_the_word"
-            android:textColor="@color/white"
-            android:textSize="22sp" />
 
         <ImageView
             android:layout_width="match_parent"
@@ -36,7 +22,8 @@
             android:layout_gravity="center"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="10dp"
+            android:background="@drawable/decor"
+            android:layout_marginTop="30dp"
             android:contentDescription="@string/app_name"
             android:gravity="center"
             android:src="@drawable/charades" />
@@ -46,7 +33,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
-        android:background="@drawable/yellow_round"
         android:orientation="vertical"
         android:padding="20dp">
 
@@ -126,7 +112,7 @@
             android:layout_width="0dp"
             android:layout_height="55dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/mustard"
+            android:backgroundTint="@color/dark_green"
             android:fontFamily="@font/hobo"
             android:text="@string/play"
             android:textSize="20sp" />

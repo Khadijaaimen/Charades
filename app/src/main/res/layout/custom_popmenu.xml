@@ -53,7 +53,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/pink_bg"
+        android:background="@drawable/background"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingTop="40dp"
@@ -66,45 +66,6 @@
             android:gravity="center"
             android:orientation="horizontal"
             android:weightSum="2">
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/pakiCeleb"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_gravity="center_horizontal"-->
-            <!--                android:layout_marginBottom="20dp"-->
-            <!--                android:background="@drawable/guess_bg"-->
-            <!--                android:fontFamily="@font/gothic_light"-->
-            <!--                android:padding="10dp"-->
-            <!--                android:text="@string/pakistani_celebrity"-->
-            <!--                android:textColor="@color/black"-->
-            <!--                android:textSize="20sp" />-->
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/hollyCeleb"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_gravity="center_horizontal"-->
-            <!--                android:layout_marginBottom="20dp"-->
-            <!--                android:background="@drawable/guess_bg"-->
-            <!--                android:fontFamily="@font/gothic_light"-->
-            <!--                android:padding="10dp"-->
-            <!--                android:text="@string/hollywood_celebrity"-->
-            <!--                android:textColor="@color/black"-->
-            <!--                android:textSize="20sp" />-->
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/bollyCeleb"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_gravity="center_horizontal"-->
-            <!--                android:background="@drawable/guess_bg"-->
-            <!--                android:fontFamily="@font/gothic_light"-->
-            <!--                android:padding="10dp"-->
-            <!--                android:text="@string/bollywood_celebrity"-->
-            <!--                android:textColor="@color/black"-->
-            <!--                android:textSize="20sp" />-->
-
 
             <ImageView
                 android:id="@+id/pakiCeleb"

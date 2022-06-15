@@ -13,7 +13,7 @@
         android:theme="@style/navigation_theme"
         android:id="@+id/navView"
         android:layout_gravity="start"
-        android:background="@color/teal_700"
+        android:background="#F67327"
         app:headerLayout="@layout/nav_header_layout"
         app:menu="@menu/nav_options" />
 
@@ -21,7 +21,7 @@
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/pink_straight"
+        android:background="@drawable/background"
         android:orientation="vertical">
 
         <ImageView
@@ -34,26 +34,13 @@
             android:src="@drawable/menu"
             app:tint="@color/white" />
 
-        <TextView
-            android:id="@+id/guess_word"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            android:background="@drawable/guess_bg"
-            android:fontFamily="@font/hobo"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="@string/guess_the_word"
-            android:textColor="@color/white"
-            android:textSize="22sp" />
-
         <ImageView
             android:id="@+id/logo"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:layout_marginStart="20dp"
+            android:background="@drawable/decor"
             android:layout_marginEnd="20dp"
             android:contentDescription="@string/app_name"
             android:gravity="center"
@@ -64,7 +51,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:animateLayoutChanges="false"
-            android:background="@drawable/yellow_round"
             android:elevation="@dimen/_5sdp"
             android:paddingTop="@dimen/_20sdp"
             android:paddingStart="@dimen/_10sdp"

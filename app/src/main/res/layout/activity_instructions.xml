@@ -4,30 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pink_straight"
+    android:background="@drawable/background"
     android:orientation="vertical"
     tools:context=".activities.InstructionsActivity">
-
-    <TextView
-        android:id="@+id/guess_word"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/guess_bg"
-        android:fontFamily="@font/hobo"
-        android:gravity="center"
-        android:padding="5dp"
-        android:text="@string/guess_the_word"
-        android:textColor="@color/white"
-        android:textSize="22sp" />
 
     <ImageView
         android:id="@+id/logo"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:background="@drawable/decor"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:contentDescription="@string/app_name"
@@ -40,7 +27,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/yellow_straight">
+        android:background="#FFCA00">
 
         <LinearLayout
             android:layout_width="match_parent"
