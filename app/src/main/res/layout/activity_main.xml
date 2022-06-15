@@ -32,16 +32,16 @@
             android:layout_marginTop="10dp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/menu"
-            app:tint="@color/white" />
+            app:tint="@color/black" />
 
         <ImageView
             android:id="@+id/logo"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="@dimen/_120sdp"
             android:layout_gravity="center"
             android:layout_marginStart="20dp"
-            android:background="@drawable/decor"
             android:layout_marginEnd="20dp"
+            android:background="@drawable/decor"
             android:contentDescription="@string/app_name"
             android:gravity="center"
             android:src="@drawable/charades" />
