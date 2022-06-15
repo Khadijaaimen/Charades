@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pink_part"
+    android:background="@drawable/pink_straight"
     android:orientation="vertical"
     tools:context=".activities.InstructionsActivity">
 
@@ -40,7 +40,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/yellow_part_rect">
+        android:background="@drawable/yellow_straight">
 
         <LinearLayout
             android:layout_width="match_parent"

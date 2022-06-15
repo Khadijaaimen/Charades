@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pink_part"
+    android:background="@drawable/pink_straight"
     android:orientation="vertical"
     android:weightSum="5"
     tools:context=".activities.CustomCategoryActivity">
@@ -46,7 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
-        android:background="@drawable/yellow_part"
+        android:background="@drawable/yellow_round"
         android:orientation="vertical"
         android:padding="20dp">
 

@@ -179,8 +179,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 final float xOffsetDiff = contentView.getWidth() * diffScaleOffSet / 2;
                 final float xTranslation = xOffset - xOffsetDiff;
                 contentView.setTranslationX(xTranslation);
-
-
             }
         });
     }

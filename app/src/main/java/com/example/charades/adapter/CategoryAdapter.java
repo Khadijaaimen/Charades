@@ -99,8 +99,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     @Override
     public void onBindViewHolder(@NonNull CategoryHolderView holder, @SuppressLint("RecyclerView") int position) {
         holder.categoryName.setText(categoryList.get(position));
-        Picasso.get().load(categoryIconsList.get(position)).into(holder.categoryIcon);
-//        holder.categoryIcon.setImageResource(categoryIconsList.get(position));
+//        Picasso.get().load(categoryIconsList.get(position)).into(holder.categoryIcon);
+        holder.categoryIcon.setImageResource(categoryIconsList.get(position));
     }
 
     private void showDialog(String category) {

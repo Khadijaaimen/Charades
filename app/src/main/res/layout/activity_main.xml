@@ -21,7 +21,7 @@
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/pink_part"
+        android:background="@drawable/pink_straight"
         android:orientation="vertical">
 
         <ImageView
@@ -39,7 +39,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="20dp"
             android:layout_marginEnd="50dp"
             android:background="@drawable/guess_bg"
             android:fontFamily="@font/hobo"
@@ -65,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:animateLayoutChanges="false"
-            android:background="@drawable/yellow_part"
+            android:background="@drawable/yellow_round"
             android:elevation="@dimen/_5sdp"
             android:paddingTop="@dimen/_20sdp"
             android:paddingStart="@dimen/_10sdp"
