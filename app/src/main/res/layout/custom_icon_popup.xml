@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/closeButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:elevation="5dp"
         android:layout_alignEnd="@+id/icon"
         android:contentDescription="@string/app_name"
@@ -17,10 +17,10 @@
 
     <ImageView
         android:id="@+id/howButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
         android:elevation="5dp"
-        android:layout_marginStart="20dp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/instructions" />
 
@@ -29,7 +29,7 @@
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/celebs" />
+        android:src="@drawable/movies" />
 
     <ImageView
         android:id="@+id/playButton"

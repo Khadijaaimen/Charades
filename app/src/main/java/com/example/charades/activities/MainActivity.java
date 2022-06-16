@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         categoryNames.add("Cricket Players");
         categoryNames.add("Football Players");
 
-        categoryIcons.add(R.drawable.custom);
+        categoryIcons.add(R.drawable.custom3);
         categoryIcons.add(R.drawable.celebs);
         categoryIcons.add(R.drawable.music);
         categoryIcons.add(R.drawable.movies);
@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void animateNavigationDrawer() {
 
-        drawerLayout.setScrimColor(getResources().getColor(R.color.teal_200));
+        drawerLayout.setScrimColor(getResources().getColor(R.color.teal_700));
         drawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
             @Override
             public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
