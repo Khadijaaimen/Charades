@@ -35,7 +35,7 @@ import java.util.Random;
 
 public class GameActivity extends AppCompatActivity {
 
-    private static final long START_TIME_IN_MILLIS = 10000;
+    private static final long START_TIME_IN_MILLIS = 60000;
     Gyroscope gyroscope;
     Boolean onBack = false;
     TextView foreheadText, timerText, guessesText, secondTimerText, correctTextview, backTextView, passTextview, bonusTextview;
@@ -96,7 +96,7 @@ public class GameActivity extends AppCompatActivity {
 
         switch (timeSelected) {
             case "60":
-                mTimeLeftInMillis = 10000;
+                mTimeLeftInMillis = 60000;
                 break;
             case "80":
                 mTimeLeftInMillis = 80000;

@@ -5,7 +5,6 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/blue"
     tools:context=".activities.MainActivity">
 
     <com.google.android.material.navigation.NavigationView
@@ -20,45 +19,54 @@
 
     <LinearLayout
         android:id="@+id/content"
+        android:scaleType="fitXY"
+        android:background="@drawable/background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/navBar"
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="@dimen/_30sdp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/menu"
-            app:tint="@color/teal_700" />
+            <ImageView
+                android:id="@+id/navBar"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/menu"
+                app:tint="#FBF4D2" />
 
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_120sdp"
-            android:layout_gravity="center"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/decor"
-            android:contentDescription="@string/app_name"
-            android:gravity="center"
-            android:src="@drawable/charades" />
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/decor"
+                android:contentDescription="@string/app_name"
+                android:gravity="center"
+                android:src="@drawable/charades" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/categoryRv"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:animateLayoutChanges="false"
-            android:background="@drawable/yellow_part"
-            android:elevation="@dimen/_5sdp"
-            android:paddingTop="@dimen/_35sdp"
-            android:paddingStart="@dimen/_10sdp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
-            tools:listitem="@layout/category_recyclerview"
-            tools:ignore="RtlSymmetry" />
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/categoryRv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="false"
+                android:elevation="@dimen/_5sdp"
+                android:paddingTop="@dimen/_20sdp"
+                android:paddingStart="@dimen/_10sdp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                tools:listitem="@layout/category_recyclerview"
+                tools:ignore="RtlSymmetry" />
+        </LinearLayout>
+
+
+
     </LinearLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

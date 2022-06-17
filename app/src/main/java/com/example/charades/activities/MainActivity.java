@@ -30,6 +30,8 @@ import com.example.charades.helper.DatabaseHelper;
 import com.example.charades.javaClass.AdPreferences;
 import com.example.charades.javaClass.AppPreferences;
 import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 
@@ -65,6 +67,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = findViewById(R.id.navView);
         contentView = findViewById(R.id.content);
 
+//        final ImageView img = new ImageView(this);
+//        Picasso.get().load(R.drawable.background).into(img, new com.squareup.picasso.Callback() {
+//            @Override
+//            public void onSuccess() {
+//                contentView.setBackgroundDrawable(img.getDrawable());
+//            }
+//
+//            @Override
+//            public void onError(Exception e) {
+//
+//            }
+//        });
+
         navigationDrawer();
 
         clickCount = AdPreferences.isButtonCLicked(MainActivity.this);
@@ -73,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         categoryNames.add("Custom Category");
-        categoryNames.add("Celebrities");
         categoryNames.add("Songs");
         categoryNames.add("Movies");
         categoryNames.add("TV Shows");
@@ -85,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         categoryNames.add("Singers");
         categoryNames.add("Activities");
         categoryNames.add("Sports/Leisure Activities");
+        categoryNames.add("Celebrities");
         categoryNames.add("Jobs/Personalities");
         categoryNames.add("Musical Instruments");
         categoryNames.add("Emotions");
@@ -101,12 +116,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         categoryNames.add("Cricket Players");
         categoryNames.add("Football Players");
 
-        categoryIcons.add(R.drawable.custom3);
-        categoryIcons.add(R.drawable.celebs);
+        categoryIcons.add(R.drawable.custom2);
         categoryIcons.add(R.drawable.music);
         categoryIcons.add(R.drawable.movies);
         categoryIcons.add(R.drawable.tv_shows);
-        categoryIcons.add(R.drawable.miscellanous);
+        categoryIcons.add(R.drawable.items);
         categoryIcons.add(R.drawable.animals);
         categoryIcons.add(R.drawable.books);
         categoryIcons.add(R.drawable.science);
@@ -114,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         categoryIcons.add(R.drawable.singers);
         categoryIcons.add(R.drawable.activities);
         categoryIcons.add(R.drawable.sports);
+        categoryIcons.add(R.drawable.celebs);
         categoryIcons.add(R.drawable.jobs);
         categoryIcons.add(R.drawable.instruments);
         categoryIcons.add(R.drawable.emotions);
@@ -127,8 +142,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         categoryIcons.add(R.drawable.tools);
         categoryIcons.add(R.drawable.disney);
         categoryIcons.add(R.drawable.brands);
-        categoryIcons.add(R.drawable.cricket);
-        categoryIcons.add(R.drawable.football);
+        categoryIcons.add(R.drawable.cricket_player);
+        categoryIcons.add(R.drawable.football_players);
 
         // set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.categoryRv);
