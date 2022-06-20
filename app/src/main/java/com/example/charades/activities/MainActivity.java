@@ -9,11 +9,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -22,6 +25,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.charades.R;
@@ -44,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ImageView imageView, navigationBar;
     TextView won, lost, played, draw;
     Button ok, reset;
-    Animation topAnim, bottomAnim;
     DrawerLayout drawerLayout;
     LinearLayout contentView;
     NavigationView navigationView;
@@ -52,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     String wonCount, playedCount, lostCount, drawCount;
     Dialog dialog;
     Animation animZoomout, animZoomin;
+    RelativeLayout relativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,14 +64,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-//        topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
-//        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
-
         navigationBar = findViewById(R.id.navBar);
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navView);
         contentView = findViewById(R.id.content);
         imageView = findViewById(R.id.logo);
+        relativeLayout = findViewById(R.id.relative);
 
         animZoomout = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.zoom_out);
@@ -81,23 +83,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         imageView.startAnimation(animZoomin);
 
-//        final ImageView img = new ImageView(this);
-//        Picasso.get().load(R.drawable.background).into(img, new com.squareup.picasso.Callback() {
-//            @Override
-//            public void onSuccess() {
-//                contentView.setBackgroundDrawable(img.getDrawable());
-//            }
-//
-//            @Override
-//            public void onError(Exception e) {
-//
-//            }
-//        });
-
         navigationDrawer();
 
         clickCount = AdPreferences.isButtonCLicked(MainActivity.this);
-        if(clickCount == 2){
+        if (clickCount == 2) {
             AdPreferences.setButtonCLicked(MainActivity.this, 0);
         }
 
@@ -247,10 +236,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.settings:
-                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                contentView.setVisibility(View.GONE);
+                navigationView.setVisibility(View.GONE);
+
+                relativeLayout.setVisibility(View.VISIBLE);
+
                 drawerLayout.closeDrawer(GravityCompat.START);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                        startActivity(intent);
+                    }
+                }, 500);
                 break;
             case R.id.history:
+
                 dialog = new Dialog(MainActivity.this, R.style.DialogStyle);
                 dialog.setContentView(R.layout.history_popup_layout);
 
@@ -267,6 +268,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     @Override
                     public void onClick(View view) {
                         dialog.cancel();
+
                     }
                 });
 
@@ -285,10 +287,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 });
 
-                wonCount = AppPreferences.isWonButtonCLicked(this);
-                lostCount = AppPreferences.islostButtonCLicked(this);
-                playedCount = AppPreferences.isPlayButtonCLicked(this);
-                drawCount = AppPreferences.isDrawButtonCLicked(this);
+                wonCount = AppPreferences.isWonButtonCLicked(MainActivity.this);
+                lostCount = AppPreferences.islostButtonCLicked(MainActivity.this);
+                playedCount = AppPreferences.isPlayButtonCLicked(MainActivity.this);
+                drawCount = AppPreferences.isDrawButtonCLicked(MainActivity.this);
 
                 String s1 = String.valueOf(wonCount);
                 String s2 = String.valueOf(lostCount);
@@ -318,10 +320,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 dialog.setCancelable(true);
                 dialog.show();
                 drawerLayout.closeDrawer(GravityCompat.START);
+
                 break;
             case R.id.instructions:
-                startActivity(new Intent(MainActivity.this, InstructionsActivity.class));
+                contentView.setVisibility(View.GONE);
+                navigationView.setVisibility(View.GONE);
+
+                relativeLayout.setVisibility(View.VISIBLE);
+
                 drawerLayout.closeDrawer(GravityCompat.START);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        startActivity(new Intent(MainActivity.this, InstructionsActivity.class));
+                    }
+                }, 500);
                 break;
             case R.id.rating:
                 drawerLayout.closeDrawer(GravityCompat.START);

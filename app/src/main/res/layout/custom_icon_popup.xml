@@ -26,15 +26,15 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_200sdp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/movies" />
 
     <ImageView
         android:id="@+id/playButton"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
         android:layout_alignEnd="@+id/icon"
         android:layout_alignBottom="@+id/icon"
         android:contentDescription="@string/app_name"

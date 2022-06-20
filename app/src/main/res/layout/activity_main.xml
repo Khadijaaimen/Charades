@@ -13,9 +13,31 @@
         android:theme="@style/navigation_theme"
         android:id="@+id/navView"
         android:layout_gravity="start"
-        android:background="#E4E3E3"
+        android:background="#FBF2D2"
         app:headerLayout="@layout/nav_header_layout"
         app:menu="@menu/nav_options" />
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/relative"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_10sdp"
+        android:background="@drawable/background">
+
+        <ImageView
+            android:id="@+id/image1"
+            android:src="@drawable/decor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:id="@+id/image"
+            android:src="@drawable/charades"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/content"
@@ -33,7 +55,7 @@
                 android:layout_marginTop="10dp"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/menu"
-                app:tint="#FBF4D2" />
+                app:tint="#FBF2D2" />
 
             <ImageView
                 android:id="@+id/logo"
@@ -46,11 +68,6 @@
                 android:contentDescription="@string/app_name"
                 android:gravity="center"
                 android:src="@drawable/charades" />
-
-<!--        <pl.droidsonroids.gif.GifImageView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="12"-->
-<!--            android:src="@drawable/gif_file" />-->
 
         <LinearLayout
             android:layout_width="match_parent"
