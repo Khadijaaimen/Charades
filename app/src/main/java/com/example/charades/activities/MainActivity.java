@@ -35,7 +35,7 @@ import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, Animation.AnimationListener {
 
     private static final float END_SCALE = 0.7F;
     ArrayList<String> categoryNames = new ArrayList<>();
@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Integer clickCount;
     String wonCount, playedCount, lostCount, drawCount;
     Dialog dialog;
+    Animation animZoomout, animZoomin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,13 +60,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
-        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
+//        topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
+//        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
 
         navigationBar = findViewById(R.id.navBar);
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navView);
         contentView = findViewById(R.id.content);
+        imageView = findViewById(R.id.logo);
+
+        animZoomout = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.zoom_out);
+        animZoomout.setAnimationListener(this);
+
+        imageView.startAnimation(animZoomout);
+
+        animZoomin = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.zoom_in);
+        animZoomin.setAnimationListener(this);
+
+        imageView.startAnimation(animZoomin);
 
 //        final ImageView img = new ImageView(this);
 //        Picasso.get().load(R.drawable.background).into(img, new com.squareup.picasso.Callback() {
@@ -88,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         categoryNames.add("Custom Category");
+        categoryNames.add("Celebrities");
         categoryNames.add("Songs");
         categoryNames.add("Movies");
         categoryNames.add("TV Shows");
@@ -99,7 +114,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         categoryNames.add("Singers");
         categoryNames.add("Activities");
         categoryNames.add("Sports/Leisure Activities");
-        categoryNames.add("Celebrities");
         categoryNames.add("Jobs/Personalities");
         categoryNames.add("Musical Instruments");
         categoryNames.add("Emotions");
@@ -116,7 +130,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         categoryNames.add("Cricket Players");
         categoryNames.add("Football Players");
 
-        categoryIcons.add(R.drawable.custom2);
+        categoryIcons.add(R.drawable.custom);
+        categoryIcons.add(R.drawable.celebs);
         categoryIcons.add(R.drawable.music);
         categoryIcons.add(R.drawable.movies);
         categoryIcons.add(R.drawable.tv_shows);
@@ -128,7 +143,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         categoryIcons.add(R.drawable.singers);
         categoryIcons.add(R.drawable.activities);
         categoryIcons.add(R.drawable.sports);
-        categoryIcons.add(R.drawable.celebs);
         categoryIcons.add(R.drawable.jobs);
         categoryIcons.add(R.drawable.instruments);
         categoryIcons.add(R.drawable.emotions);
@@ -153,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         imageView = findViewById(R.id.logo);
 
-        imageView.setAnimation(topAnim);
+//        imageView.setAnimation(topAnim);
     }
 
     private void navigationDrawer() {
@@ -329,5 +343,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else
             AdPreferences.setButtonCLicked(getApplication(), 1);
         AdPreferences.setAdOpened(getApplication(), false);
+    }
+
+    @Override
+    public void onAnimationStart(Animation animation) {
+
+    }
+
+    @Override
+    public void onAnimationEnd(Animation animation) {
+
+    }
+
+    @Override
+    public void onAnimationRepeat(Animation animation) {
+
     }
 }

@@ -47,6 +47,11 @@
                 android:gravity="center"
                 android:src="@drawable/charades" />
 
+<!--        <pl.droidsonroids.gif.GifImageView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="12"-->
+<!--            android:src="@drawable/gif_file" />-->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
