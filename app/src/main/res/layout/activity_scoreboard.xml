@@ -17,9 +17,9 @@
         <LinearLayout
             android:id="@+id/linear"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/score_text"
+            android:layout_height="@dimen/_135sdp"
             android:orientation="horizontal"
+            android:background="@drawable/score_text"
             android:paddingTop="12dp"
             android:weightSum="10"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +53,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginEnd="10dp"
                 android:layout_weight="2"
                 android:fontFamily="@font/gothic"
                 android:gravity="center"
@@ -91,7 +90,7 @@
             android:id="@+id/headings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-60dp"
+            android:layout_marginTop="-70dp"
             android:orientation="horizontal"
             android:weightSum="2"
             app:layout_constraintTop_toBottomOf="@+id/linear">
