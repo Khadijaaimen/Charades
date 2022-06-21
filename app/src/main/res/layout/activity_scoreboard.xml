@@ -1,162 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EAF1EE"
+    android:background="#F6F2E2"
     tools:context=".activities.ScoreboardActivity">
 
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_135sdp"
+        android:background="@drawable/score_text"
+        android:orientation="horizontal"
+        android:paddingTop="12dp"
+        android:weightSum="10">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/linearLayout4"
+        <ImageView
+            android:id="@+id/homeButton"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="20dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/app_name"
+            android:gravity="center"
+            android:src="@drawable/ic_round_home_24"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/timer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:fontFamily="@font/gothic"
+            android:gravity="center"
+            android:text="@string/Final"
+            android:textColor="@color/white"
+            android:textSize="42sp"/>
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:fontFamily="@font/gothic"
+            android:gravity="center"
+            android:text="@string/_5"
+            android:textColor="@color/white"
+            android:textSize="46sp"
+            tools:ignore="RtlSymmetry" />
+
+        <TextView
+            android:id="@+id/timer2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:fontFamily="@font/gothic"
+            android:gravity="center"
+            android:text="@string/score"
+            android:textColor="@color/white"
+            android:textSize="42sp" />
+
+        <ImageView
+            android:id="@+id/restartButton"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/app_name"
+            android:gravity="center"
+            android:src="@drawable/loop"
+            app:tint="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/headings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp">
+        android:orientation="horizontal"
+        android:layout_marginTop="-75dp"
+        android:weightSum="2"
+        android:layout_below="@id/linear">
 
-        <LinearLayout
-            android:id="@+id/linear"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_135sdp"
-            android:orientation="horizontal"
-            android:background="@drawable/score_text"
-            android:paddingTop="12dp"
-            android:weightSum="10"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/homeButton"
-                android:layout_width="0dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="20dp"
-                android:layout_weight="1"
-                android:contentDescription="@string/app_name"
-                android:gravity="center"
-                android:src="@drawable/ic_round_home_24"
-                app:tint="@color/white" />
-
-            <TextView
-                android:id="@+id/timer"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:fontFamily="@font/gothic"
-                android:gravity="center"
-                android:text="@string/Final"
-                android:textColor="@color/white"
-                android:textSize="42sp"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/score"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="2"
-                android:fontFamily="@font/gothic"
-                android:gravity="center"
-                android:text="@string/_5"
-                android:textColor="@color/white"
-                android:textSize="46sp"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="RtlSymmetry" />
-
-            <TextView
-                android:id="@+id/timer2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:fontFamily="@font/gothic"
-                android:gravity="center"
-                android:text="@string/score"
-                android:textColor="@color/white"
-                android:textSize="42sp"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/restartButton"
-                android:layout_width="0dp"
-                android:layout_height="45dp"
-                android:layout_marginEnd="20dp"
-                android:layout_weight="1"
-                android:contentDescription="@string/app_name"
-                android:gravity="center"
-                android:src="@drawable/loop"
-                app:tint="@color/white" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/headings"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-70dp"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            app:layout_constraintTop_toBottomOf="@+id/linear">
+            android:layout_weight="1"
+            android:fontFamily="@font/gothic"
+            android:gravity="center"
+            android:text="@string/correct_answers"
+            android:textColor="@color/dark_green"
+            android:textSize="22sp" />
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/gothic"
-                android:gravity="center"
-                android:text="@string/correct_answers"
-                android:textColor="#4CAF50"
-                android:textSize="22sp" />
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/gothic"
-                android:gravity="center"
-                android:text="@string/incorrect_answers"
-                android:textColor="#EA6157"
-                android:textSize="22sp" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/recyclerviews"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="top"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            app:layout_constraintTop_toBottomOf="@+id/headings">
+            android:layout_weight="1"
+            android:fontFamily="@font/gothic"
+            android:gravity="center"
+            android:text="@string/incorrect_answers"
+            android:textColor="#EA6157"
+            android:textSize="22sp" />
+    </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/correctAnsRv"
-                android:paddingStart="@dimen/_50sdp"
-                android:paddingEnd="@dimen/_5sdp"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_weight="1"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/correct_recyclerview" />
+    <LinearLayout
+        android:id="@+id/recyclerviews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:paddingBottom="@dimen/_8sdp"
+        android:layout_below="@id/headings"
+        android:layout_above="@id/score_layout"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/incorrectAnsRv"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:paddingStart="@dimen/_50sdp"
-                android:paddingEnd="@dimen/_5sdp"
-                android:layout_weight="1"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/incorrect_recyclerview" />
-        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/correctAnsRv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_weight="1"
+            android:paddingStart="@dimen/_60sdp"
+            android:paddingEnd="@dimen/_5sdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/correct_recyclerview" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/incorrectAnsRv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_weight="1"
+            android:paddingStart="@dimen/_60sdp"
+            android:paddingEnd="@dimen/_5sdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/incorrect_recyclerview" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/score_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_2sdp"
+        android:baselineAligned="false"
+        android:weightSum="2">
 
         <LinearLayout
             android:id="@+id/layout1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:layout_weight="1"
+            android:background="@color/dark_green"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/_5sdp">
 
             <TextView
                 android:id="@+id/textView8"
@@ -166,7 +168,7 @@
                 android:fontFamily="@font/gothic"
                 android:gravity="end"
                 android:text="@string/total"
-                android:textColor="#4B534C"
+                android:textColor="@color/white"
                 android:textSize="19sp" />
 
             <TextView
@@ -176,7 +178,7 @@
                 android:fontFamily="@font/gothic"
                 android:gravity="start"
                 android:text="@string/_10"
-                android:textColor="#4B534C"
+                android:textColor="@color/white"
                 android:textSize="19sp" />
 
         </LinearLayout>
@@ -185,7 +187,12 @@
             android:id="@+id/layout2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:layout_marginStart="@dimen/_2sdp"
+            android:layout_weight="1"
+            android:background="@color/red"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/_5sdp">
 
             <TextView
                 android:id="@+id/textView9"
@@ -194,7 +201,7 @@
                 android:fontFamily="@font/gothic"
                 android:gravity="end"
                 android:text="@string/total"
-                android:textColor="#4B534C"
+                android:textColor="@color/white"
                 android:textSize="19sp" />
 
             <TextView
@@ -205,17 +212,9 @@
                 android:fontFamily="@font/gothic"
                 android:gravity="start"
                 android:text="@string/_10"
-                android:textColor="#4B534C"
+                android:textColor="@color/white"
                 android:textSize="19sp" />
         </LinearLayout>
 
-        <androidx.constraintlayout.helper.widget.Flow
-            android:id="@+id/flow4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            app:constraint_referenced_ids="layout1,layout2"
-            app:flow_maxElementsWrap="2"
-            app:layout_constraintTop_toBottomOf="@id/recyclerviews" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+    </LinearLayout>
+</RelativeLayout>

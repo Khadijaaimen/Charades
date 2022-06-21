@@ -89,35 +89,46 @@ public class CustomCategoryActivity extends AppCompatActivity {
         listView.setAdapter(arrayAdapter);
         arrayAdapter.notifyDataSetChanged();
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                name = a.getItemAtPosition(position).toString();
-                AlertDialog.Builder adb = new AlertDialog.Builder(CustomCategoryActivity.this);
-                adb.setTitle("Delete Item");
-                adb.setMessage("Are you sure you want to delete?");
-                adb.setIcon(android.R.drawable.ic_menu_delete);
-                final int positionToRemove = position;
-                adb.setNegativeButton("Cancel", null);
-                adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
-                        databaseHelper.deleteName(position);
-                        customList.remove(positionToRemove);
-                        arrayAdapter.notifyDataSetChanged();
-                    }
-                });
-                adb.show();
-            }
-        });
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+//                name = a.getItemAtPosition(position).toString();
+//                AlertDialog.Builder adb = new AlertDialog.Builder(CustomCategoryActivity.this);
+//                adb.setTitle("Delete Item");
+//                adb.setMessage("Are you sure you want to delete?");
+//                adb.setIcon(android.R.drawable.ic_menu_delete);
+//                final int positionToRemove = position;
+//                adb.setNegativeButton("Cancel", null);
+//                adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+//                        databaseHelper.deleteName(position);
+//                        customList.remove(positionToRemove);
+//                        arrayAdapter.notifyDataSetChanged();
+//                    }
+//                });
+//                adb.show();
+//            }
+//        });
 
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                databaseHelper.deleteAll();
-                customList.clear();
-                arrayAdapter.notifyDataSetChanged();
-                listView.setAdapter(arrayAdapter);
+                AlertDialog.Builder adb = new AlertDialog.Builder(CustomCategoryActivity.this);
+                adb.setTitle("Delete List");
+                adb.setMessage("Are you sure you want to delete all items?");
+                adb.setIcon(android.R.drawable.ic_menu_delete);
+                adb.setNegativeButton("Cancel", null);
+                adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        databaseHelper.deleteAll();
+                        customList.clear();
+                        arrayAdapter.notifyDataSetChanged();
+                        listView.setAdapter(arrayAdapter);
+                    }
+                });
+                adb.show();
             }
         });
 
@@ -133,22 +144,23 @@ public class CustomCategoryActivity extends AppCompatActivity {
                             public void onAdDismissedFullScreenContent() {
                                 super.onAdDismissedFullScreenContent();
                                 AdPreferences.setButtonCLicked(CustomCategoryActivity.this, isButtonClicked);
-                                if(customList.size() > 50) {
+                                if (customList.size() > 30) {
                                     Intent intent = new Intent(CustomCategoryActivity.this, GameActivity.class);
                                     intent.putExtra("category", "Custom");
                                     Bundle bundle = new Bundle();
                                     bundle.putSerializable("test", customList);
                                     intent.putExtras(bundle);
                                     startActivity(intent);
-                                } else{
-                                    Toast.makeText(getApplicationContext(), "PLease add up to 50 words to play.", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "PLease add up to 30 words to play.", Toast.LENGTH_SHORT).show();
                                 }
                             }
+
                             @Override
                             public void onAdClicked() {
                                 super.onAdClicked();
                                 AdPreferences.setAdOpened(CustomCategoryActivity.this, true);
-                                if(customList.size() > 50) {
+                                if (customList.size() > 30) {
                                     Intent intent = new Intent(CustomCategoryActivity.this, GameActivity.class);
                                     intent.putExtra("category", "Custom");
                                     Bundle bundle = new Bundle();
@@ -156,8 +168,8 @@ public class CustomCategoryActivity extends AppCompatActivity {
                                     intent.putExtras(bundle);
                                     mInterstitialAd = null;
                                     startActivity(intent);
-                                } else{
-                                    Toast.makeText(getApplicationContext(), "PLease add up to 50 words to play.", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "PLease add up to 30 words to play.", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -165,15 +177,15 @@ public class CustomCategoryActivity extends AppCompatActivity {
                 } else if (isButtonClicked == 1) {
                     isButtonClicked--;
                     AdPreferences.setButtonCLicked(CustomCategoryActivity.this, isButtonClicked);
-                    if(customList.size() > 50) {
+                    if (customList.size() > 30) {
                         Intent intent = new Intent(CustomCategoryActivity.this, GameActivity.class);
                         intent.putExtra("category", "Custom");
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("test", customList);
                         intent.putExtras(bundle);
                         startActivity(intent);
-                    } else{
-                        Toast.makeText(getApplicationContext(), "PLease add up to 50 words to play.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "PLease add up to 30 words to play.", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
