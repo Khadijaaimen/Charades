@@ -7,6 +7,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -227,6 +228,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -337,8 +339,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }, 500);
                 break;
             case R.id.rating:
-                drawerLayout.closeDrawer(GravityCompat.START);
-                break;
             case R.id.share:
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;

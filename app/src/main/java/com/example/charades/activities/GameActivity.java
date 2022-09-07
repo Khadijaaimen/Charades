@@ -1,5 +1,6 @@
 package com.example.charades.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -23,6 +24,7 @@ import com.example.charades.javaClass.SoundEffects;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
@@ -84,12 +86,18 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onAdClicked() {
                 super.onAdClicked();
-
+                onPause();
             }
 
             @Override
             public void onAdClosed() {
                 super.onAdClosed();
+                onResume();
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
                 onResume();
             }
         });
@@ -123,6 +131,13 @@ public class GameActivity extends AppCompatActivity {
 
             snackbarLayout.addView(view, 0);
             snackbar.show();
+        } else {
+            Snackbar snackbar = Snackbar.make(linearLayout, "", Snackbar.LENGTH_LONG);
+            View view = getLayoutInflater().inflate(R.layout.custom_snackbar, null);
+            Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbar.getView();
+            correctTextview = view.findViewById(R.id.correctText);
+            passTextview = view.findViewById(R.id.passText);
+            bonusTextview = view.findViewById(R.id.addTime);
         }
 
         gyroscope = new Gyroscope(this);
@@ -153,51 +168,51 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        if (name.equals("Custom Category")) {
-            displayData();
-        } else {
-            countDownTimer = new CountDownTimer(5000, 1000) {
-                @Override
-                public void onTick(long l) {
-                    if (isSoundChecked)
+        countDownTimer = new CountDownTimer(5000, 1000) {
+            @Override
+            public void onTick(long l) {
+                timerText.setText(String.valueOf(count));
+                count--;
+                if (isSoundChecked)
+                    if (count > 0)
                         soundEffects.gameStartSound();
-                    timerText.setText(String.valueOf(count));
-                    count--;
-                    if (count < 2) {
-                        foreheadText.setText("Get Ready!");
-                    }
-
-                    if (onBack) {
-                        if (isSoundChecked)
-                            soundEffects.endSound();
-                        finishAffinity();
-                        countDownTimer.cancel();
-                        accelerometer.unRegister();
-                    }
-                }
-
-                @Override
-                public void onFinish() {
-                    if (onBack) {
-                        if (isSoundChecked)
-                            soundEffects.endSound();
-                        finishAffinity();
-                        countDownTimer.cancel();
-                        accelerometer.unRegister();
-                    }
-                    if (isSoundChecked)
+                    else
                         soundEffects.gameBeepSound();
-                    Snackbar snackbar = Snackbar.make(linearLayout, "", Snackbar.LENGTH_LONG);
-                    View view = getLayoutInflater().inflate(R.layout.custom_snackbar, null);
-                    Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbar.getView();
-                    correctTextview = view.findViewById(R.id.correctText);
 
-                    snackbarLayout.addView(view, 0);
-                    snackbar.show();
-                    displayData();
+                if (count < 2) {
+                    foreheadText.setText("Get Ready!");
                 }
-            }.start();
-        }
+
+                if (onBack) {
+                    if (isSoundChecked)
+                        soundEffects.endSound();
+                    finishAffinity();
+                    countDownTimer.cancel();
+                    accelerometer.unRegister();
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                if (onBack) {
+                    if (isSoundChecked)
+                        soundEffects.endSound();
+                    finishAffinity();
+                    countDownTimer.cancel();
+                    accelerometer.unRegister();
+                }
+//                if (isSoundChecked)
+//                    soundEffects.gameBeepSound();
+                Snackbar snackbar = Snackbar.make(linearLayout, "", Snackbar.LENGTH_LONG);
+                View view = getLayoutInflater().inflate(R.layout.custom_snackbar, null);
+                Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbar.getView();
+                correctTextview = view.findViewById(R.id.correctText);
+
+                snackbarLayout.addView(view, 0);
+                snackbar.show();
+                displayData();
+            }
+        }.start();
     }
 
     private void startTimer() {
@@ -5308,6 +5323,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
         gyroscope.unRegister();
         accelerometer.unRegister();
         finish();
@@ -5326,6 +5342,7 @@ public class GameActivity extends AppCompatActivity {
             AdPreferences.setButtonCLicked(this, 1);
         }
 
+        gyroscope.unRegister();
         accelerometer.unRegister();
         countDownTimer.cancel();
 
